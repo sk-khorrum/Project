@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team X Project Store</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#2563eb',secondary:'#7c3aed'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-20px); }
+}
+@keyframes wave {
+0% { transform: rotate(0deg); }
+50% { transform: rotate(30deg); }
+100% { transform: rotate(0deg); }
+}
+@keyframes blink {
+0%, 90%, 100% { height: 20px; }
+95% { height: 2px; }
+}
+@keyframes fadeOut {
+from { opacity: 1; }
+to { opacity: 0; visibility: hidden; }
+}
+.loading-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.9);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 9999;
+flex-direction: column;
+}
+.bot-3d {
+width: 160px;
+height: 200px;
+position: relative;
+animation: float 3s ease-in-out infinite;
+}
+.bot-head {
+width: 120px;
+height: 100px;
+background: #fff;
+border: 8px solid #000;
+border-radius: 24px;
+position: relative;
+margin: 0 auto;
+transform: rotate(5deg);
+}
+.bot-eye {
+width: 12px;
+height: 24px;
+background: #000;
+border-radius: 4px;
+position: absolute;
+top: 30px;
+animation: blink 4s ease-in-out infinite;
+}
+.bot-eye.left { left: 30px; }
+.bot-eye.right { right: 30px; }
+.bot-mouth {
+width: 40px;
+height: 8px;
+background: #000;
+border-radius: 4px;
+position: absolute;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+}
+.bot-body {
+width: 80px;
+height: 100px;
+background: #fff;
+border: 8px solid #000;
+border-radius: 16px;
+margin: -10px auto 0;
+position: relative;
+}
+.bot-arm {
+width: 30px;
+height: 60px;
+background: #fff;
+border: 8px solid #000;
+position: absolute;
+top: 20px;
+border-radius: 12px;
+}
+.bot-arm.left {
+left: -35px;
+transform-origin: right center;
+animation: wave 2s ease-in-out infinite;
+}
+.bot-arm.right {
+right: -35px;
+}
+.bot-leg {
+width: 24px;
+height: 40px;
+background: #fff;
+border: 8px solid #000;
+position: absolute;
+bottom: -35px;
+border-radius: 8px;
+}
+.bot-leg.left {
+left: 10px;
+}
+.bot-leg.right {
+right: 10px;
+}
+@keyframes textFloat {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-10px); }
+}
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.welcome-text {
+color: white;
+font-size: 1.75rem;
+margin-top: 3rem;
+text-align: center;
+opacity: 0;
+animation: fadeInUp 1s ease-out forwards 1s, textFloat 3s ease-in-out infinite 2s;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+font-weight: 600;
+letter-spacing: 1px;
+}
+@keyframes progressPulse {
+0% { transform: scaleY(1); }
+50% { transform: scaleY(1.2); }
+100% { transform: scaleY(1); }
+}
+.loading-progress {
+width: 240px;
+height: 6px;
+background: rgba(255, 255, 255, 0.15);
+border-radius: 4px;
+margin-top: 2.5rem;
+overflow: hidden;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.progress-bar {
+width: 0%;
+height: 100%;
+background: linear-gradient(90deg, #FF9BB3, #FFB7C5);
+border-radius: 4px;
+transition: width 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+animation: progressPulse 1.5s ease-in-out infinite;
+}
+</style>
+</head>
+<body class="bg-white text-gray-800">
+<!-- Loading Screen -->
+<div class="loading-container">
+<div class="bot-3d">
+<div class="bot-head">
+<div class="bot-eye left"></div>
+<div class="bot-eye right"></div>
+<div class="bot-mouth"></div>
+</div>
+<div class="bot-body">
+<div class="bot-arm left"></div>
+<div class="bot-arm right"></div>
+<div class="bot-leg left"></div>
+<div class="bot-leg right"></div>
+</div>
+</div>
+<div class="welcome-text">স্বাগতম! খুররমের সাইটে আপনাকে স্বাগত</div>
+<audio id="welcomeAudio" src="https://public.readdy.ai/gen_page/welcome.mp3" preload="auto"></audio>
+<div class="loading-progress">
+<div class="progress-bar"></div>
+</div>
+</div>
+<!-- Navigation Bar -->
+<nav class="fixed top-0 w-full bg-white shadow-md text-gray-800 z-10">
+<div class="flex items-center justify-between px-4 py-2">
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20tech%20logo%2C%20letter%20X%2C%20blue%20color%2C%20professional%20design%2C%20isolated%20on%20transparent%20background%2C%20high%20quality%20digital%20art&width=40&height=40&seq=9&orientation=squarish" class="h-10 w-10" alt="Logo">
+</div>
+<div class="flex-1 mx-4">
+<div class="relative">
+<input type="text" placeholder="অনুসন্ধান করুন..." class="w-full py-2 pl-10 pr-4 text-sm bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+<i class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-16 pb-20">
+<div class="px-4 py-6">
+<h1 class="text-3xl font-bold text-center mb-4">Team X Project Store</h1>
+<!-- Menu Navigation -->
+<div class="flex overflow-x-auto whitespace-nowrap mb-6 pb-2">
+<a href="#" class="px-3 py-2 text-sm font-medium hover:text-primary">ওয়েব প্রজেক্ট</a>
+<a href="#" class="px-3 py-2 text-sm font-medium hover:text-primary">ডেভেলপার</a>
+<a href="#" class="px-3 py-2 text-sm font-medium hover:text-primary">টেলিগ্রাম</a>
+<a href="#" class="px-3 py-2 text-sm font-medium hover:text-primary">যোগাযোগ করুন</a>
+<a href="#" class="px-3 py-2 text-sm font-medium hover:text-primary">প্লে অ্যান্থেম</a>
+</div>
+<!-- Project Cards Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Card 1 -->
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=SMS%20messaging%20app%20icon%2C%20digital%20circuit%20background%2C%20green%20color%20scheme%2C%20smiley%20face%20logo%2C%20tech%20theme%2C%20centered%20composition%2C%20high%20quality%20digital%20art&width=300&height=200&seq=1&orientation=landscape" class="w-full h-full object-cover object-top" alt="UltraSMS">
+</div>
+<div class="p-4 text-white text-center">
+<h3 class="text-xl font-bold mb-1">আল্ট্রাএসএমএস</h3>
+<p class="text-sm text-gray-300">সর্বনিম্ন মূল্যে বাল্ক মেসেজ সেন্ডার</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Temporary%20email%20generator%20icon%2C%20@%20symbol%20with%20colorful%20gradient%20background%2C%20digital%20tech%20theme%2C%20centered%20composition%2C%20high%20quality%20digital%20art&width=300&height=200&seq=2&orientation=landscape" class="w-full h-full object-cover object-top" alt="Temp Mailer">
+</div>
+<div class="p-4 text-white text-center">
+<h3 class="text-xl font-bold mb-1">টেম্প মেইলার</h3>
+<p class="text-sm text-gray-300">প্রিমিয়াম অস্থায়ী মেইল জেনারেটর</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=SMS%20and%20email%20bomber%20app%20icon%2C%20wolf%20logo%2C%20blue%20digital%20circuit%20background%2C%20tech%20theme%2C%20centered%20composition%2C%20high%20quality%20digital%20art&width=300&height=200&seq=3&orientation=landscape" class="w-full h-full object-cover object-top" alt="SMS Bomber">
+</div>
+<div class="p-4 text-white text-center">
+<h3 class="text-xl font-bold mb-1">এসএমএস বম্বার</h3>
+<p class="text-sm text-gray-300">একটি শক্তিশালী এসএমএস এবং ইমেইল বম্বার অ্যাপ</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Phishing%20tool%20icon%2C%20envelope%20with%20password%20stars%2C%20blue%20digital%20circuit%20background%2C%20tech%20theme%2C%20centered%20composition%2C%20high%20quality%20digital%20art&width=300&height=200&seq=4&orientation=landscape" class="w-full h-full object-cover object-top" alt="X S0 Phisher">
+</div>
+<div class="p-4 text-white text-center">
+<h3 class="text-xl font-bold mb-1">X S0 ফিশার</h3>
+<p class="text-sm text-gray-300">১০০+ সামাজিক ফিশিং জেনারেটর</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=ChatGPT%20app%20icon%2C%20abstract%20geometric%20logo%2C%20blue-green%20gradient%2C%20digital%20circuit%20background%2C%20tech%20theme%2C%20centered%20composition%2C%20high%20quality%20digital%20art&width=300&height=200&seq=5&orientation=landscape" class="w-full h-full object-cover object-top" alt="ChatGPT App">
+</div>
+<div class="p-4 text-white text-center">
+<h3 class="text-xl font-bold mb-1">চ্যাটজিপিটি অ্যাপ</h3>
+<p class="text-sm text-gray-300">একটি শক্তিশালী ওপেন এআই অ্যান্ড্রয়েড অ্যাপ</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Age%20calculator%20app%20icon%2C%20calculator%20with%20clock%20design%2C%20yellow%20and%20blue%20color%20scheme%2C%20digital%20tech%20background%2C%20centered%20composition%2C%20high%20quality%20digital%20art&width=300&height=200&seq=6&orientation=landscape" class="w-full h-full object-cover object-top" alt="Job Calculator">
+</div>
+<div class="p-4 text-white text-center">
+<h3 class="text-xl font-bold mb-1">জব ক্যালকুলেটর</h3>
+<p class="text-sm text-gray-300">সেরা জব বয়স ক্যালকুলেটর অ্যাপ</p>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Hacking%20tool%20icon%2C%20digital%20lock%20with%20key%2C%20red%20and%20black%20color%20scheme%2C%20tech%20circuit%20background%2C%20centered%20composition%2C%20high%20quality%20digital%20art&width=300&height=200&seq=7&orientation=landscape" class="w-full h-full object-cover object-top" alt="Hack Tools">
+</div>
+<div class="p-4 text-white text-center">
+<h3 class="text-xl font-bold mb-1">হ্যাক টুলস</h3>
+<p class="text-sm text-gray-300">অ্যান্ড্রয়েড হ্যাকিং টুল কালেকশন</p>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=VPN%20app%20icon%2C%20shield%20with%20globe%20design%2C%20blue%20and%20green%20color%20scheme%2C%20digital%20tech%20background%2C%20centered%20composition%2C%20high%20quality%20digital%20art&width=300&height=200&seq=8&orientation=landscape" class="w-full h-full object-cover object-top" alt="Fast VPN">
+</div>
+<div class="p-4 text-white text-center">
+<h3 class="text-xl font-bold mb-1">ফাস্ট ভিপিএন</h3>
+<p class="text-sm text-gray-300">উচ্চ গতির প্রিমিয়াম ভিপিএন সার্ভিস</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Tab Bar -->
+<div class="fixed bottom-0 w-full bg-white shadow-lg text-gray-600 z-10">
+<div class="grid grid-cols-3 h-16">
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer hover:text-primary">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1">হোম</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer hover:text-primary">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-apps-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1">অ্যাপস</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer hover:text-primary">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1">প্রোফাইল</span>
+</a>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const loadingContainer = document.querySelector('.loading-container');
+const progressBar = document.querySelector('.progress-bar');
+const welcomeAudio = document.getElementById('welcomeAudio');
+// Play welcome audio
+welcomeAudio.play();
+// Animate progress bar
+setTimeout(() => {
+progressBar.style.width = '100%';
+}, 100);
+// Hide loading screen after animation
+setTimeout(() => {
+loadingContainer.style.animation = 'fadeOut 0.8s ease-in-out forwards';
+}, 4000);
+const searchInput = document.querySelector('input[type="text"]');
+const cards = document.querySelectorAll('.grid > div');
+searchInput.addEventListener('focus', function() {
+this.classList.add('ring-2', 'ring-primary');
+});
+searchInput.addEventListener('blur', function() {
+this.classList.remove('ring-2', 'ring-primary');
+});
+searchInput.addEventListener('input', function() {
+const searchTerm = this.value.toLowerCase();
+cards.forEach(card => {
+const title = card.querySelector('h3').textContent.toLowerCase();
+const description = card.querySelector('p').textContent.toLowerCase();
+if (title.includes(searchTerm) || description.includes(searchTerm)) {
+card.style.display = '';
+} else {
+card.style.display = 'none';
+}
+});
+if (searchTerm === '') {
+cards.forEach(card => {
+card.style.display = '';
+});
+}
+});
+});
+</script>
+</body>
+</html>
