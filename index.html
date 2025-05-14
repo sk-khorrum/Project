@@ -1,107 +1,353 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sk Khorrum Project</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: white;
-    }
-    header {
-      background-color: #222;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #333;
-      padding: 10px 0;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .project-card {
-      background-color: #1e1e1e;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-    }
-    .project-card img {
-      width: 80px;
-      height: 80px;
-    }
-    .project-card h3 {
-      margin: 10px 0 5px;
-      color: #00ffff;
-    }
-    .project-card p {
-      font-size: 14px;
-      color: #ccc;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sk Khorrum Project Store</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#0066ff',secondary:'#6b21a8'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+@keyframes loadingAnimation {
+0% { transform: scale(0.3); opacity: 0.2; }
+50% { transform: scale(1); opacity: 1; }
+100% { transform: scale(0.3); opacity: 0.2; }
+}
+@keyframes fadeOutLoader {
+from { opacity: 1; visibility: visible; }
+to { opacity: 0; visibility: hidden; }
+}
+@keyframes slideInContent {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.loading-screen {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #ffffff;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+z-index: 9999;
+}
+.loading-dots {
+display: flex;
+gap: 8px;
+}
+.loading-dot {
+width: 12px;
+height: 12px;
+background: #0066ff;
+border-radius: 50%;
+animation: loadingAnimation 1.4s infinite;
+}
+.loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.loading-dot:nth-child(3) { animation-delay: 0.4s; }
+.loading-text {
+margin-top: 20px;
+font-size: 1.2rem;
+color: #0066ff;
+font-family: 'Pacifico', serif;
+}
+.hide-loader {
+animation: fadeOutLoader 0.5s forwards;
+}
+.show-content {
+animation: slideInContent 0.8s forwards;
+}
+@keyframes ripple {
+0% { transform: scale(0); opacity: 1; }
+100% { transform: scale(2.5); opacity: 0; }
+}
+.ripple {
+position: relative;
+overflow: hidden;
+}
+.ripple-effect {
+position: absolute;
+border-radius: 50%;
+background-color: rgba(255, 255, 255, 0.4);
+animation: ripple 0.6s linear;
+transform: scale(0);
+}
+.card-hover {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+transform: scale(1.03);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.loading-spinner {
+display: none;
+width: 30px;
+height: 30px;
+border: 3px solid rgba(255, 255, 255, 0.3);
+border-radius: 50%;
+border-top-color: #fff;
+animation: spin 1s ease-in-out infinite;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+@keyframes spin {
+to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.fade-in {
+animation: fadeIn 0.5s ease-in forwards;
+}
+.slide-up {
+animation: slideUp 0.5s ease-out forwards;
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+@keyframes slideUp {
+from { transform: translateY(20px); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+.skeleton {
+background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+background-size: 200% 100%;
+animation: loading 1.5s infinite;
+}
+@keyframes loading {
+0% { background-position: 200% 0; }
+100% { background-position: -200% 0; }
+}
+</style>
 </head>
-<body>
-  <header>
-    <h1>Sk Khorrum Project Store</h1>
-  </header>
-  <nav>
-    <a href="#">Web Project</a>
-    <a href="#">Developer</a>
-    <a href="#">Telegram</a>
-    <a href="#">Contact Us</a>
-    <a href="#" onclick="document.getElementById('anthem').play()">Play Anthem</a>
-  </nav><audio id="anthem" src="https://cdn.pixabay.com/audio/2022/10/30/audio_6e00e08973.mp3"></audio>
-
-  <section class="projects">
-    <div class="project-card">
-    <img src="Ass/home/Screenshot_2025_0514_154111.png" alt="UltraSMS">
-   <h3>Facebook clone</h3></h3>
-      <p>"I have been working on building a website that mimics the interface and experience of Facebook, purely for educational purposes. </p>
-    </div>
-    <div class="project-card">
-      <img src="https://via.placeholder.com/80" alt="Temp Mailer">
-      <h3>Temp Mailer</h3>
-      <p>A Premium Temporary Mail Generator</p>
-    </div>
-    <div class="project-card">
-      <img src="https://via.placeholder.com/80" alt="SMS Bomber">
-      <h3>Sms Bomber</h3>
-      <p>A Powerful Sms And Email Bomber App</p>
-    </div>
-    <div class="project-card">
-      <img src="https://via.placeholder.com/80" alt="X S0 Phisher">
-      <h3>X S0 Phisher</h3>
-      <p>100+ All In All Social Phishing Generator</p>
-    </div>
-    <div class="project-card">
-      <img src="https://via.placeholder.com/80" alt="ChatGPT App">
-      <h3>ChatGPT App</h3>
-      <p>A Powerful Open AI Android App</p>
-    </div>
-    <div class="project-card">
-      <img src="https://via.placeholder.com/80" alt="Job Calculator">
-      <h3>Job Calculator</h3>
-      <p>Best Job Age calculator app</p>
-    </div>
-  </section>
+<body class="bg-gray-50 text-gray-800 font-sans opacity-0">
+<div class="loading-screen" id="loadingScreen">
+<div class="flex flex-col items-center justify-center gap-8">
+<div class="w-24 h-24 relative">
+<img src="https://readdy.ai/api/search-image?query=Modern%20minimalist%20X%20logo%20design%2C%20professional%20branding%2C%20clean%20and%20simple%2C%20isolated%20on%20white%20background%2C%20centered%20composition&width=100&height=100&seq=7&orientation=squarish" alt="Logo" class="w-full h-full object-contain animate-bounce">
+<div class="absolute inset-0 bg-primary opacity-20 rounded-full animate-ping"></div>
+</div>
+<div class="loading-dots">
+<div class="loading-dot"></div>
+<div class="loading-dot"></div>
+<div class="loading-dot"></div>
+</div>
+<div class="loading-text text-2xl">Team X</div>
+<div class="text-sm text-gray-500">Loading amazing projects...</div>
+</div>
+</div>
+<!-- Header & Search Section -->
+<header class="fixed top-0 w-full bg-white shadow-sm z-10">
+<div class="flex items-center justify-between p-4">
+<div class="w-8 h-8">
+<img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Sk Khorrum" class="w-full h-full object-contain">
+</div>
+<div class="flex-1 mx-3">
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<i class="ri-search-line ri-sm text-gray-400"></i>
+</div>
+<input type="text" id="searchInput" class="w-full py-2 pl-10 pr-4 rounded-full bg-gray-100 border-none text-sm" placeholder="অনুসন্ধান করুন...">
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-20 pb-20 px-4">
+<h1 class="text-2xl font-bold mb-6 text-center">Sk Khorrum Project Store</h1>
+<!-- Categories -->
+<div class="flex overflow-x-auto space-x-4 mb-6 pb-2">
+<a href="/apps" class="category-btn whitespace-nowrap px-4 py-2 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">এপস প্রকল্প</a>
+<a href="/developers" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-colors">ডেভেলপার</a>
+<a href="/premium" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-colors">প্রিমিয়াম</a>
+<a href="/contact" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-colors">যোগাযোগ করুন</a>
+</div>
+<!-- App Cards Grid -->
+<div class="grid grid-cols-2 gap-4 mb-6" id="appGrid">
+<!-- Card 1 -->
+<div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-md" data-keywords="আর্টিফিশিয়াল ইন্টেলিজেন্স AI চ্যাট">
+<a href="#" class="block relative">
+<div class="relative h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=AI%20chatbot%20interface%20with%20green%20glowing%20circuit%20background%2C%20digital%20technology%20concept%2C%20centered%20composition%2C%20minimalist%20design&width=400&height=300&seq=1&orientation=squarish" alt="AI App" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-bold text-lg mb-1">আর্টিফিশিয়ালইনটেলিজেন্স</h3>
+<p class="text-xs text-gray-300">সর্বনিম্ন মূল্যে সবার জন্যের সেবার</p>
+</div>
+<div class="loading-spinner"></div>
+</a>
+</div>
+<!-- Card 2 -->
+<div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-md" data-keywords="ইমেইল মেসেঞ্জার">
+<a href="#" class="block relative">
+<div class="relative h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Email%20messenger%20app%20interface%20with%20gradient%20purple%20and%20blue%20background%2C%20@%20symbol%20centered%2C%20digital%20communication%20concept&width=400&height=300&seq=2&orientation=squarish" alt="Email App" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-bold text-lg mb-1">ইমেইল মেসেঞ্জার</h3>
+<p class="text-xs text-gray-300">প্রিমিয়াম অর্জারী মেইল জেনারেটর</p>
+</div>
+<div class="loading-spinner"></div>
+</a>
+</div>
+<!-- Card 3 -->
+<div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-md" data-keywords="এস এস এস ব্যবার">
+<a href="#" class="block relative">
+<div class="relative h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Cybersecurity%20app%20with%20wolf%20logo%20on%20blue%20digital%20circuit%20background%2C%20security%20concept%2C%20centered%20composition%2C%20tech%20aesthetic&width=400&height=300&seq=3&orientation=squarish" alt="Security App" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-bold text-lg mb-1">এস.এস.এস ব্যবার</h3>
+<p class="text-xs text-gray-300">একটি মাল্টিলাইন এস.এস.এস এবং ইমেইল</p>
+</div>
+<div class="loading-spinner"></div>
+</a>
+</div>
+<!-- Card 4 -->
+<div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-md" data-keywords="X SD কিপার">
+<a href="#" class="block relative">
+<div class="relative h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Secure%20digital%20vault%20with%20red%20envelope%20and%20gold%20stars%2C%20lock%20icon%2C%20security%20concept%20on%20blue%20circuit%20background&width=400&height=300&seq=4&orientation=squarish" alt="Security App" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-bold text-lg mb-1">X SD কিপার</h3>
+<p class="text-xs text-gray-300">১০০+ সামাজিক নিরাপত্তা জেনারেটর</p>
+</div>
+<div class="loading-spinner"></div>
+</a>
+</div>
+<!-- Card 5 -->
+<div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-md" data-keywords="ডিজিটাল মার্কেটিং">
+<a href="#" class="block relative">
+<div class="relative h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Digital%20marketing%20dashboard%20with%20analytics%20charts%2C%20growth%20graph%2C%20marketing%20concept%2C%20professional%20business%20interface&width=400&height=300&seq=5&orientation=squarish" alt="Marketing App" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-bold text-lg mb-1">ডিজিটাল মার্কেটিং</h3>
+<p class="text-xs text-gray-300">সোশ্যাল মিডিয়া মার্কেটিং টুলস</p>
+</div>
+<div class="loading-spinner"></div>
+</a>
+</div>
+<!-- Card 6 -->
+<div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-md" data-keywords="ওয়েব ডেভেলপমেন্ট">
+<a href="#" class="block relative">
+<div class="relative h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Web%20development%20interface%20with%20code%20editor%2C%20programming%20concept%2C%20modern%20tech%20UI%2C%20clean%20design&width=400&height=300&seq=6&orientation=squarish" alt="Web Dev App" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-bold text-lg mb-1">ওয়েব ডেভেলপমেন্ট</h3>
+<p class="text-xs text-gray-300">ওয়েব ডিজাইন এবং ডেভেলপমেন্ট টুলস</p>
+</div>
+<div class="loading-spinner"></div>
+</a>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 z-10">
+<div class="grid grid-cols-3 h-16">
+<a href="/home" class="flex flex-col items-center justify-center space-y-1 cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-smile-line ri-lg text-primary"></i>
+</div>
+<span class="text-xs">হোম</span>
+</a>
+<a href="/projects" class="flex flex-col items-center justify-center space-y-1 cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-folder-shield-2-line ri-lg text-gray-500"></i>
+</div>
+<span class="text-xs">প্রোজেক্ট</span>
+</a>
+<a href="/creator" class="flex flex-col items-center justify-center space-y-1 cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-star-line ri-lg text-gray-500"></i>
+</div>
+<span class="text-xs">ক্রিয়েটর</span>
+</a>
+</div>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const loadingScreen = document.getElementById('loadingScreen');
+const body = document.body;
+setTimeout(() => {
+loadingScreen.classList.add('hide-loader');
+body.style.opacity = '1';
+body.classList.add('show-content');
+}, 2000);
+// Ripple effect
+document.querySelectorAll('.ripple').forEach(button => {
+button.addEventListener('click', function(e) {
+const x = e.clientX - e.target.getBoundingClientRect().left;
+const y = e.clientY - e.target.getBoundingClientRect().top;
+const ripple = document.createElement('span');
+ripple.classList.add('ripple-effect');
+ripple.style.left = `${x}px`;
+ripple.style.top = `${y}px`;
+this.appendChild(ripple);
+setTimeout(() => {
+ripple.remove();
+}, 600);
+});
+});
+// Loading animation when clicking on cards
+document.querySelectorAll('.card-item a').forEach(card => {
+card.addEventListener('click', function(e) {
+e.preventDefault();
+const spinner = this.querySelector('.loading-spinner');
+spinner.style.display = 'block';
+setTimeout(() => {
+spinner.style.display = 'none';
+window.open('#', '_blank');
+}, 1000);
+});
+});
+// Search functionality
+const searchInput = document.getElementById('searchInput');
+const appCards = document.querySelectorAll('.card-item');
+searchInput.addEventListener('input', function() {
+const searchTerm = this.value.toLowerCase();
+appCards.forEach(card => {
+const keywords = card.dataset.keywords.toLowerCase();
+const title = card.querySelector('h3').textContent.toLowerCase();
+const description = card.querySelector('p').textContent.toLowerCase();
+if (keywords.includes(searchTerm) || title.includes(searchTerm) || description.includes(searchTerm)) {
+card.style.display = 'block';
+card.classList.add('fade-in');
+} else {
+card.style.display = 'none';
+}
+});
+});
+// Category buttons
+const categoryButtons = document.querySelectorAll('.category-btn');
+categoryButtons.forEach(button => {
+button.addEventListener('click', function() {
+categoryButtons.forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('bg-gray-200', 'text-gray-800');
+});
+this.classList.remove('bg-gray-200', 'text-gray-800');
+this.classList.add('bg-primary', 'text-white');
+// Here you would filter cards based on category
+const category = this.textContent.toLowerCase();
+// Implement category filtering logic here
+});
+});
+// Add animation to cards on page load
+appCards.forEach((card, index) => {
+setTimeout(() => {
+card.classList.add('slide-up');
+}, 100 * index);
+});
+});
+</script>
 </body>
 </html>
