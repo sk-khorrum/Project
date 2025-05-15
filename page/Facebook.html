@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#1877F2',secondary:'#E4E6EB'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F0F2F5;
+            padding-top: 56px;
+            padding-bottom: 56px;
+        }
+        .story-container::-webkit-scrollbar {
+            display: none;
+        }
+        .story-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full bg-white border-b border-gray-200 z-50">
+        <div class="flex items-center justify-between px-4 h-14">
+            <div class="text-primary text-2xl font-['Pacifico']">Facebook</div>
+            <div class="flex items-center space-x-4">
+                <div class="w-8 h-8 flex items-center justify-center bg-secondary rounded-full cursor-pointer">
+                    <i class="ri-search-line ri-lg"></i>
+                </div>
+                <div class="w-8 h-8 flex items-center justify-center bg-secondary rounded-full cursor-pointer">
+                    <i class="ri-messenger-line ri-lg"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="px-4 pb-4">
+        <!-- Stories Section -->
+        <section class="mt-4">
+            <div class="story-container flex overflow-x-auto space-x-2 pb-2">
+                <!-- Add Story -->
+                <div class="flex-shrink-0 w-28 h-48 bg-white rounded-lg overflow-hidden shadow-sm relative cursor-pointer">
+                    <div class="h-3/4 bg-gray-100 flex items-center justify-center">
+                        <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Add Story" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-full border-4 border-white flex items-center justify-center">
+                        <i class="ri-add-line ri-lg text-white"></i>
+                    </div>
+                    <div class="h-1/4 flex items-center justify-center">
+                        <p class="text-xs font-medium text-center">Add Story</p>
+                    </div>
+                </div>
+                <!-- Story 1 -->
+                <div class="flex-shrink-0 w-28 h-48 bg-white rounded-lg overflow-hidden shadow-sm relative cursor-pointer">
+                    <img src="https://readdy.ai/api/search-image?query=young%20woman%20smiling%20outdoors%2C%20natural%20lighting%2C%20casual%20style%2C%20lifestyle%20photography&width=112&height=192&seq=2&orientation=portrait" alt="Story 1" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 w-10 h-10 rounded-full border-4 border-primary overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=portrait%20of%20young%20woman%2C%20professional%20headshot%2C%20neutral%20background&width=40&height=40&seq=3&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute bottom-2 left-2 right-2">
+                        <p class="text-xs font-medium text-white">Emma Wilson</p>
+                    </div>
+                </div>
+
+                <!-- Story 2 -->
+                <div class="flex-shrink-0 w-28 h-48 bg-white rounded-lg overflow-hidden shadow-sm relative cursor-pointer">
+                    <img src="https://readdy.ai/api/search-image?query=man%20hiking%20in%20mountains%2C%20adventure%2C%20outdoor%20activity%2C%20scenic%20view&width=112&height=192&seq=4&orientation=portrait" alt="Story 2" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 w-10 h-10 rounded-full border-4 border-primary overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=portrait%20of%20young%20man%2C%20professional%20headshot%2C%20neutral%20background&width=40&height=40&seq=5&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute bottom-2 left-2 right-2">
+                        <p class="text-xs font-medium text-white">James Parker</p>
+                    </div>
+                </div>
+
+                <!-- Story 3 -->
+                <div class="flex-shrink-0 w-28 h-48 bg-white rounded-lg overflow-hidden shadow-sm relative cursor-pointer">
+                    <img src="https://readdy.ai/api/search-image?query=couple%20at%20beach%20sunset%2C%20romantic%20moment%2C%20silhouette&width=112&height=192&seq=6&orientation=portrait" alt="Story 3" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 w-10 h-10 rounded-full border-4 border-primary overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=portrait%20of%20woman%20with%20glasses%2C%20professional%20headshot%2C%20neutral%20background&width=40&height=40&seq=7&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute bottom-2 left-2 right-2">
+                        <p class="text-xs font-medium text-white">Olivia Chen</p>
+                    </div>
+                </div>
+
+                <!-- Story 4 -->
+                <div class="flex-shrink-0 w-28 h-48 bg-white rounded-lg overflow-hidden shadow-sm relative cursor-pointer">
+                    <img src="https://readdy.ai/api/search-image?query=dog%20playing%20in%20park%2C%20pet%20photography%2C%20sunny%20day&width=112&height=192&seq=8&orientation=portrait" alt="Story 4" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 w-10 h-10 rounded-full border-4 border-primary overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=portrait%20of%20man%20with%20beard%2C%20professional%20headshot%2C%20neutral%20background&width=40&height=40&seq=9&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute bottom-2 left-2 right-2">
+                        <p class="text-xs font-medium text-white">Michael Brown</p>
+                    </div>
+                </div>
+
+                <!-- Story 5 -->
+                <div class="flex-s
+                    hrink-0 w-28 h-48 bg-white rounded-lg overflow-hidden shadow-sm relative cursor-pointer">
+                    <img src="https://readdy.ai/api/search-image?query=city%20skyline%20at%20night%2C%20urban%20photography%2C%20lights&width=112&height=192&seq=10&orientation=portrait" alt="Story 5" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 w-10 h-10 rounded-full border-4 border-primary overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=portrait%20of%20young%20woman%20with%20curly%20hair%2C%20professional%20headshot%2C%20neutral%20background&width=40&height=40&seq=11&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute bottom-2 left-2 right-2">
+                        <p class="text-xs font-medium text-white">Sophia Martinez</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Post Creation -->
+        <section class="mt-4 bg-white rounded-lg shadow-sm p-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                    <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg"=12&orientation=squarish" alt="Your Profile" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-grow bg-secondary rounded-full px-4 py-2 cursor-pointer">
+                    <p class="text-gray-600 text-sm">What's on your mind?</p>
+                </div>
+            </div>
+            <div class="h-px bg-gray-200 my-3"></div>
+            <div class="flex justify-between">
+                <button class="flex items-center justify-center space-x-2 py-2 flex-1 cursor-pointer !rounded-button">
+                    <div class="w-6 h-6 flex items-center justify-center text-red-500">
+                        <i class="ri-video-line"></i>
+                    </div>
+                    <span class="text-sm text-gray-600">Live Video</span>
+                </button>
+                <div class="w-px h-6 bg-gray-200 self-center"></div>
+                <button class="flex items-center justify-center space-x-2 py-2 flex-1 cursor-pointer !rounded-button">
+                    <div class="w-6 h-6 flex items-center justify-center text-green-500">
+                        <i class="ri-image-line"></i>
+                    </div>
+                    <span class="text-sm text-gray-600">Photo/Video</span>
+                </button>
+                <div class="w-px h-6 bg-gray-200 self-center"></div>
+                <button class="flex items-center justify-center space-x-2 py-2 flex-1 cursor-pointer !rounded-button">
+                    <div class="w-6 h-6 flex items-center justify-center text-yellow-500">
+                        <i class="ri-emotion-line"></i>
+                    </div>
+                    <span class="text-sm text-gray-600">Feeling</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- News Feed -->
+        <!-- Post 1 -->
+        <section class="mt-4 bg-white rounded-lg shadow-sm">
+            <div class="p-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full overflow-hidden">
+                        <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Sk Khorrum</p>
+                        <p class="text-xs text-gray-500">May 14 at 9:45 AM</p>
+                    </div>
+                    <div class="ml-auto w-8 h-8 flex items-center justify-center cursor-pointer">
+                        <i class="ri-more-fill"></i>
+                    </div>
+                </div>
+                <p class="mt-2 text-sm">Just finished my morning hike and the view was absolutely breathtaking! Nothing beats starting your day with fresh air and nature. Who else loves hiking? 🏞️ #MorningHike #NatureLover</p>
+            </div>
+            <div class="w-full">
+                <img src="Ass/Jpg/FB_IMG_1747208364399.jpg" alt="Hiking Post" class="w-full h-auto">
+            </div>
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center space-x-1">
+                        <div class="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+                            <i class="ri-thumb-up-fill text-white ri-xs"></i>
+                        </div>
+                        <span>128</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <span>43 comments</span>
+                        <span>12 shares</span>
+                    </div>
+                </div>
+                <div class="h-px bg-gray-200 my-2"></div>
+                <div class="flex justify-between">
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-thumb-up-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Like</span>
+                    </button>
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-chat-1-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Comment</span>
+                    </button>
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-share-forward-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Share</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Post 2 -->
+        <section class="mt-4 bg-white rounded-lg shadow-sm">
+            <div class="p-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=portrait%20of%20man%20in%20business%20attire%2C%20professional%20headshot%2C%20neutral%20background&width=40&height=40&seq=15&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Robert Anderson</p>
+                        <p class="text-xs text-gray-500">May 13 at 7:30 PM</p>
+                    </div>
+                    <div class="ml-auto w-8 h-8 flex items-center justify-center cursor-pointer">
+                        <i class="ri-more-fill"></i>
+                    </div>
+                </div>
+                <p class="mt-2 text-sm">Just got the keys to our new office space! Excited for this new chapter in our company's journey. Thanks to everyone who helped make this happen. #NewBeginnings #Entrepreneurship</p>
+            </div>
+            <div class="w-full">
+                <img src="https://readdy.ai/api/search-image?query=modern%20office%20space%2C%20business%20interior%2C%20person%20holding%20keys%2C%20bright%20and%20clean%20workspace&width=375&height=250&seq=16&orientation=landscape" alt="Office Post" class="w-full h-auto">
+            </div>
+            <div class="px-3 py-2">
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center space-x-1">
+                        <div class="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+                            <i class="ri-thumb-up-fill text-white ri-xs"></i>
+                        </div>
+                        <span>243</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <span>78 comments</span>
+                        <span>32 shares</span>
+                    </div>
+                </div>
+                <div class="h-px bg-gray-200 my-2"></div>
+                <div class="flex justify-between">
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-thumb-up-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Like</span>
+                    </button>
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-chat-1-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Comment</span>
+                    </button>
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-share-forward-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Share</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Post 3 -->
+        <section class="mt-4 bg-white rounded-lg shadow-sm">
+            <div class="p-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=portrait%20of%20young%20woman%20with%20colorful%20background%2C%20creative%20professional&width=40&height=40&seq=17&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Jessica Thompson</p>
+                        <p class="text-xs text-gray-500">May 12 at 3:15 PM</p>
+                    </div>
+                    <div class="ml-auto w-8 h-8 flex items-center justify-center cursor-pointer">
+                        <i class="ri-more-fill"></i>
+                    </div>
+                </div>
+                <p class="mt-2 text-sm">After months of hard work, I'm thrilled to announce the launch of my new art exhibition! Join me this weekend for the opening reception. Can't wait to share my latest creations with all of you! 🎨 #ArtExhibition #CreativeJourney</p>
+            </div>
+            <div class="w-full">
+                <img src="https://readdy.ai/api/search-image?query=art%20gallery%20exhibition%2C%20colorful%20paintings%20on%20wall%2C%20elegant%20space%2C%20opening%20reception%2C%20people%20viewing%20artwork&width=375&height=250&seq=18&orientation=landscape" alt="Art Exhibition Post" class="w-full h-auto">
+            </div>
+            <div class="px-3 py-2">
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center space-x-1">
+                        <div class="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+                            <i class="ri-thumb-up-fill text-white ri-xs"></i>
+                        </div>
+                        <span>312</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <span>96 comments</span>
+                        <span>54 shares</span>
+                    </div>
+                </div>
+                <div class="h-px bg-gray-200 my-2"></div>
+                <div class="flex justify-between">
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-thumb-up-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Like</span>
+                    </button>
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-chat-1-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Comment</span>
+                    </button>
+                    <button class="flex items-center justify-center space-x-1 py-1 flex-1 cursor-pointer !rounded-button">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-share-forward-line"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Share</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-50">
+        <div class="grid grid-cols-5 h-14">
+            <button class="flex flex-col items-center justify-center cursor-pointer !rounded-button">
+                <div class="w-6 h-6 flex items-center justify-center text-primary">
+                    <i class="ri-home-fill ri-lg"></i>
+                </div>
+                <span class="text-xs text-primary mt-0.5">Home</span>
+            </button>
+            <button class="flex flex-col items-center justify-center cursor-pointer !rounded-button">
+                <div class="w-6 h-6 flex items-center justify-center text-gray-600">
+                    <i class="ri-user-line ri-lg"></i>
+                </div>
+                <span class="text-xs text-gray-600 mt-0.5">Friends</span>
+            </button>
+            <button class="flex flex-col items-center justify-center cursor-pointer !rounded-button">
+                <div class="w-6 h-6 flex items-center justify-center text-gray-600">
+                    <i class="ri-tv-line ri-lg"></i>
+                </div>
+                <span class="text-xs text-gray-600 mt-0.5">Watch</span>
+            </button>
+            <button class="flex flex-col items-center justify-center cursor-pointer !rounded-button">
+                <div class="w-6 h-6 flex items-center justify-center text-gray-600">
+                    <i class="ri-store-line ri-lg"></i>
+                </div>
+                <span class="text-xs text-gray-600 mt-0.5">Market</span>
+            </button>
+            <button class="flex flex-col items-center justify-center cursor-pointer !rounded-button">
+                <div class="w-6 h-6 flex items-center justify-center text-gray-600">
+                    <i class="ri-menu-line ri-lg"></i>
+                </div>
+                <span class="text-xs text-gray-600 mt-0.5">Menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add active class to bottom navigation items on click
+            const navButtons = document.querySelectorAll('nav button');
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    navButtons.forEach(btn => {
+                        const icon = btn.querySelector('i');
+                        const text = btn.querySelector('span');
+                        icon.classList.remove('text-primary');
+                        icon.classList.add('text-gray-600');
+                        text.classList.remove('text-primary');
+                        text.classList.add('text-gray-600');
+                        
+                        // Change filled icons to line icons
+                        if (icon.classList.contains('ri-home-fill')) {
+                            icon.classList.remove('ri-home-fill');
+                            icon.classList.add('ri-home-line');
+                        }
+                        if (icon.classList.contains('ri-user-fill')) {
+                            icon.classList.remove('ri-user-fill');
+                            icon.classList.add('ri-user-line');
+                        }
+                        if (icon.classList.contains('ri-tv-fill')) {
+                            icon.classList.remove('ri-tv-fill');
+                            icon.classList.add('ri-tv-line');
+                        }
+                        if (icon.classList.contains('ri-store-fill')) {
+                            icon.classList.remove('ri-store-fill');
+                            icon.classList.add('ri-store-line');
+                        }
+                        if (icon.classList.contains('ri-menu-fill')) {
+                            icon.classList.remove('ri-menu-fill');
+                            icon.classList.add('ri-menu-line');
+                        }
+                    });
+                    
+                    // Add active class to clicked button
+                    const icon = this.querySelector('i');
+                    const text = this.querySelector('span');
+                    icon.classList.remove('text-gray-600');
+                    icon.classList.add('text-primary');
+                    text.classList.remove('text-gray-600');
+                    text.classList.add('text-primary');
+                    
+                    // Change line icons to filled icons
+                    if (icon.classList.contains('ri-home-line')) {
+                        icon.classList.remove('ri-home-line');
+                        icon.classList.add('ri-home-fill');
+                    }
+                    if (icon.classList.contains('ri-user-line')) {
+                        icon.classList.remove('ri-user-line');
+                        icon.classList.add('ri-user-fill');
+                    }
+                    if (icon.classList.contains('ri-tv-line')) {
+                        icon.classList.remove('ri-tv-line');
+                        icon.classList.add('ri-tv-fill');
+                    }
+                    if (icon.classList.contains('ri-store-line')) {
+                        icon.classList.remove('ri-store-line');
+                        icon.classList.add('ri-store-fill');
+                    }
+                    if (icon.classList.contains('ri-menu-line')) {
+                        icon.classList.remove('ri-menu-line');
+                        icon.classList.add('ri-menu-fill');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
