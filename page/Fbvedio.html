@@ -1,0 +1,1411 @@
+<!-- Font Awesome CDN (Latest Version) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://smallseotools.com/css/app.css" rel="stylesheet">
+    <link href="https://smallseotools.com/css/templates.css" rel="stylesheet">
+    <link href="https://smallseotools.com/css/feedback-form.css" rel="stylesheet">
+    <link href="https://smallseotools.com/css/facebook-to-mp4.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/videojs-video-element/+esm"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/player.style/sutro/+esm"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<style>
+        .button_blink {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .button_blink:hover {
+            opacity: 0.8;
+        }
+        #video_url_wrapper {
+            position: relative;
+        }
+        #down_icon {
+            position: absolute;
+            left: -9px;
+            top: 25px;
+            transform: translateY(-50%);
+            transition: opacity 0.3s ease;
+        }
+        .form-control.tool_inp_sty {
+            transition: padding-left 0.3s ease;
+        }
+        .margin-bg {
+            margin-top: 30px;
+        }    
+        .px-on {
+            width: 55px;
+            height: 55px;
+        }
+        .video-player-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 2rem;
+            background: #000;
+            display: flex;
+        }
+        .video-player-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), var(--glow);
+        }
+        .video-player {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            border-radius: 5px;
+        }
+        .video-player:fullscreen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+        }
+        .video-player:-webkit-full-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+        }
+        .video-player:-moz-full-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+        }
+        .url-error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .tool_btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        #video-info {
+            display: none;
+        }
+        #video-history {
+            display: none;
+        }
+        #main_down_btn .fa-spin {
+            display: none;
+            margin-right: 5px;
+        }
+        #videoPlayerContainer video {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Advanced History List Styles */
+        .history-list-container {
+            margin-top: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: #ffffff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9ecef;
+        }
+
+        .history-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #dee2e6;
+        }
+
+        .history-item.active {
+            background: #f0f7ff;
+            border-left: 4px solid #1976d2;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+        }
+
+        .history-thumbnail-container {
+            position: relative;
+            width: 90px;
+            height: 60px;
+            flex-shrink: 0;
+            margin-right: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .history-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .history-thumbnail.loaded {
+            opacity: 1;
+        }
+
+        .history-thumbnail-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            color: #9e9e9e;
+            font-size: 20px;
+        }
+
+        .history-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .history-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #2d3748;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 14px;
+        }
+
+        .history-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .history-date {
+            font-size: 12px;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .history-duration {
+            font-size: 11px;
+            color: #4a5568;
+            background: #edf2f7;
+            padding: 3px 8px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .history-duration i {
+            margin-right: 4px;
+            font-size: 10px;
+            color: #718096;
+        }
+
+        .history-number {
+            font-weight: bold;
+            color: #4a5568;
+            margin-right: 12px;
+            font-size: 14px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .history-delete {
+            position: absolute;
+            top: 13%;
+            right: 5px;
+            transform: translateY(-50%);
+            color: #e53e3e;
+            background: rgba(229, 62, 62, 0.1);
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            opacity: 1;
+            font-size: 14px;
+        }
+
+        .history-delete:hover {
+            background: rgba(229, 62, 62, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .history-chevron {
+            margin-left: 10px;
+            color: #a0aec0;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .history-item:hover .history-chevron {
+            color: #4a5568;
+            transform: translateX(3px);
+        }
+
+        .no-history {
+            text-align: center;
+            padding: 30px 20px;
+            color: #a0aec0;
+            font-style: italic;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .no-history i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #cbd5e0;
+        }
+
+        .no-history p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid #dee2e6;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .pagination button.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Advanced Confirmation Modal */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        .confirmation-modal.show {
+            opacity: 1;
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .confirmation-content {
+            background: white;
+            padding: 25px;
+            top: 30%;
+            left: 15px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .confirmation-modal.show .confirmation-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .confirmation-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4d4d, #dc3545);
+        }
+        .confirmation-content h4 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.3rem;
+        }
+        .confirmation-content p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .confirmation-icon {
+            font-size: 3rem;
+            color: #dc3545;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite;
+        }
+        .confirmation-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        .confirmation-buttons button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+        .confirmation-cancel {
+            background: #f8f9fa;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+        .confirmation-cancel:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .confirmation-ok {
+            background: linear-gradient(135deg, #ff4d4d, #dc3545);
+            color: white;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+        .confirmation-ok:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+            background: linear-gradient(135deg, #ff5a5a, #e63946);
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .toast.success i {
+            color: #28a745;
+        }
+        .toast.error i {
+            color: #dc3545;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+<div class="pt-4">
+    <div class="justify_content_center mb-3 d-mobile-block">
+        <div class="main_area text-center">
+            <div class="col bg-white p-0 border1">
+                <div class="mx-auto my-2" id="b_t__sst"><div class="dola__a_est_ bq"></div></div>
+                <h1 class="col-12 sub_headings heading_border p-3 m-0">Facebook Video Downloader</h1>
+                <div class="col px-4 pb-4 mps">
+                    <p class="sub_text mx-auto my-4 px-4">Facebook video downloader allows its users to download Facebook video in HD quality. Paste the URL and press the button to start the process.</p>
+                    <div class="mx-auto my-2" id="a_t__sst"><div class="dola__a_est_ sq"></div></div>
+
+                    <form accept-charset="UTF-8" id="video-downloader-form">
+                        <div class="row m-0 input_section mt-4 justify-content-center align-items-center mps">
+                            <div class="inp_w400">
+                                <div class="tool_heading mb-2">Enter Video URL</div>
+                                <div id="video_url_wrapper">
+                                    <input style="padding-left: 40px" class="form-control tool_inp_sty rounded-0" id="url" placeholder="Enter Facebook Video URL" name="url" type="url" value="">
+                                    <img class="px-3 px-on" id="down_icon" src="https://smallseotools.com/webimages/downloaders/fb-video.svg" alt="instagram Video Downloader Icon">
+                                    <span id="dwn_btn" style="display: inline" class="button_blink">Paste</span>
+                                </div>
+                                <div id="url-error" class="url-error">Please enter a valid Facebook video URL</div>
+                            <div class="margin-bg">
+                                <button class="tool_btn px-3 text-white border-0 m-1" id="main_down_btn" type="button" disabled>
+                                    <i class="fas fa-circle-notch fa-spin"></i> Download Video
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                    
+                    <!--Video Information-->
+                    <div id="video-info">     
+                        <h1 class="col-12 sub_headings heading_border p-3 m-0">Video Information</h1>   
+                        <div class="m-0 mt-4 justify-content-center align-items-center mps">
+                            <div class="video-player-container">
+                                <media-theme-sutro>
+                                    <videojs-video
+                                        slot="media"
+                                        class="video-player"
+                                        id="videoPlayer"
+                                        playsinline
+                                        crossorigin="anonymous"
+                                        poster="">
+                                    </videojs-video>
+                                </media-theme-sutro>
+                            </div>
+
+                            <div id="available-download">
+                                <h5>Available downloads</h5>
+                                <div id="av_d">
+                                    <a id="high" href="#" target="_blank" style="height: 40px;width: 200px" class="tool_btn text-white border-0 d-inline-flex align-items-center justify-content-center">Download High Quality</a>
+                                    <a id="low" href="#" target="_blank" style="height: 40px;width: 200px" class="tool_btn text-white border-0 mt-1 d-inline-flex align-items-center justify-content-center">Download Low Quality</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Video History-->
+                    <div id="video-history">     
+                        <h1 class="col-12 sub_headings heading_border p-3 m-0">Video History</h1>   
+                        <div class="m-0 mt-4 justify-content-center align-items-center mps">
+                            <div id="history-list"></div>
+                            <div id="pagination-controls" class="pagination"></div>
+                        </div>
+                    </div>
+                    
+                <div class="creator-container">
+        <div class="creator-text">
+            <span class="created-by">CREATED BY</span>
+            <span class="hasan">HASAN</span>
+        </div>
+    </div>
+        <canvas class="particles"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Advanced Confirmation Modal -->
+    <div id="confirmation-modal" class="confirmation-modal">
+        <div class="confirmation-content">
+            <div class="confirmation-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h4>Delete Video?</h4>
+            <p>This video will be permanently removed from your history. This action cannot be undone.</p>
+            <div class="confirmation-buttons">
+                <button id="confirmation-cancel" class="confirmation-cancel">Cancel</button>
+                <button id="confirmation-ok" class="confirmation-ok">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message"></span>
+    </div>
+
+<script>
+    $(document).ready(function() {
+        // Constants
+        const ITEMS_PER_PAGE = 5;
+        
+        // State variables
+        let currentPage = 1;
+        let videoHistory = JSON.parse(localStorage.getItem('fbVideoHistory')) || [];
+        let itemToDelete = null;
+        let timeUpdateInterval = null;
+        let lazyImageObserver = null;
+        let currentVideoPlayer = null;
+        
+        // Initialize IntersectionObserver for lazy loading if available
+        if ('IntersectionObserver' in window) {
+            lazyImageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const image = entry.target;
+                        image.src = image.dataset.src;
+                        lazyImageObserver.unobserve(image);
+                    }
+                });
+            });
+        }
+        
+        // Initially hide sections
+        $('#video-info').hide();
+        updateHistoryVisibility();
+        
+        // Function to validate Facebook URL
+        function isValidFacebookUrl(url) {
+            if (!url) return false;
+            return /^(https?:\/\/)?(www\.)?facebook\.com\/.+$/i.test(url) || 
+                   /^(https?:\/\/)?(www\.)?fb\.watch\/.+$/i.test(url);
+        }
+
+        // Function to format time ago (updated for real-time updates)
+        function timeAgo(timestamp) {
+            const seconds = Math.floor((Date.now() - timestamp) / 1000);
+            
+            if (seconds < 1) return "0s ago";
+            if (seconds < 60) return seconds + "s ago";
+            
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return minutes + "m ago";
+            
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return hours + "h ago";
+            
+            const days = Math.floor(hours / 24);
+            if (days < 7) return days + "d ago";
+            
+            const weeks = Math.floor(days / 7);
+            if (weeks < 4) return weeks + "w ago";
+            
+            const months = Math.floor(days / 30);
+            if (months < 12) return months + "mo ago";
+            
+            const years = Math.floor(days / 365);
+            return years + "y ago";
+        }
+
+        // Function to format video duration
+        function formatDuration(seconds) {
+            if (!seconds) return '--:--';
+            
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = Math.floor(seconds % 60);
+            
+            if (hours > 0) {
+                return `${hours}h ${minutes}m ${secs}s`;
+            } else if (minutes > 0) {
+                return `${minutes}m ${secs}s`;
+            } else {
+                return `${secs}s`;
+            }
+        }
+
+        // Function to show toast notification
+        function showToast(message, type = 'success') {
+            const toast = $('#toast');
+            const toastMessage = $('#toast-message');
+            
+            toast.removeClass('success error').addClass(type);
+            toast.find('i').remove();
+            
+            if (type === 'success') {
+                toast.prepend('<i class="fas fa-check-circle"></i>');
+            } else {
+                toast.prepend('<i class="fas fa-exclamation-circle"></i>');
+            }
+            
+            toastMessage.text(message);
+            toast.addClass('show');
+            
+            setTimeout(() => {
+                toast.removeClass('show');
+            }, 3000);
+        }
+
+        // Function to check input and toggle button text and icon visibility
+        function checkInput() {
+            var inputVal = $('#url').val().trim();
+            var isValid = isValidFacebookUrl(inputVal);
+            
+            if (inputVal.length > 0) {
+                $('#dwn_btn').text('Close');
+                $('#down_icon').css('opacity', '0');
+                $('#url').css('padding-left', '10px');
+                
+                if (!isValid) {
+                    $('#url-error').show();
+                    $('#main_down_btn').prop('disabled', true);
+                } else {
+                    $('#url-error').hide();
+                    $('#main_down_btn').prop('disabled', false);
+                }
+            } else {
+                $('#dwn_btn').text('Paste');
+                $('#down_icon').css('opacity', '1');
+                $('#url').css('padding-left', '40px');
+                $('#url-error').hide();
+                $('#main_down_btn').prop('disabled', true);
+                $('#main_down_btn').html('<i class="fa fa-circle-notch fa-spin" style="display: none;"></i> Download Video');
+            }
+        }
+
+        // Function to update history visibility
+        function updateHistoryVisibility() {
+            if (videoHistory.length > 0) {
+                $('#video-history').show();
+                renderHistoryList();
+                startTimeUpdateInterval();
+            } else {
+                $('#video-history').hide();
+                stopTimeUpdateInterval();
+            }
+        }
+
+        // Function to start time update interval
+        function startTimeUpdateInterval() {
+            stopTimeUpdateInterval(); // Clear any existing interval
+            
+            timeUpdateInterval = setInterval(() => {
+                $('.history-date').each(function() {
+                    const timestamp = $(this).data('timestamp');
+                    if (timestamp) {
+                        $(this).text(timeAgo(timestamp));
+                    }
+                });
+            }, 1000); // Update every second
+        }
+
+        // Function to stop time update interval
+        function stopTimeUpdateInterval() {
+            if (timeUpdateInterval) {
+                clearInterval(timeUpdateInterval);
+                timeUpdateInterval = null;
+            }
+        }
+
+        // Function to render history list with pagination
+        function renderHistoryList() {
+            const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+            const endIndex = startIndex + ITEMS_PER_PAGE;
+            const paginatedHistory = videoHistory.slice(startIndex, endIndex);
+            const totalPages = Math.ceil(videoHistory.length / ITEMS_PER_PAGE);
+            
+            // Clear previous content
+            $('#history-list').empty();
+            
+            if (paginatedHistory.length === 0) {
+                $('#history-list').html(`
+                    <div class="no-history">
+                        <i class="far fa-clock"></i>
+                        <p>No video history found</p>
+                    </div>
+                `);
+            } else {
+                // Create container
+                const $listContainer = $('<div class="history-list-container"></div>');
+                
+                // Add history items
+                paginatedHistory.forEach((item, index) => {
+                    const globalIndex = startIndex + index;
+                    const timeAgoText = timeAgo(item.timestamp);
+                    const durationText = item.duration ? formatDuration(item.duration) : '--:--';
+                    
+                    const historyItem = $(`
+                        <div class="history-item" data-index="${globalIndex}">
+                            <span class="history-number">${globalIndex + 1}</span>
+                            <div class="history-thumbnail-container">
+                                <div class="history-thumbnail-placeholder">
+                                    <i class="fas fa-photo-video"></i>
+                                </div>
+                                <img 
+                                    src="" 
+                                    data-src="${item.thumbnail}" 
+                                    class="history-thumbnail" 
+                                    alt="Thumbnail"
+                                    loading="lazy"
+                                    onload="this.classList.add('loaded'); this.parentNode.querySelector('.history-thumbnail-placeholder').style.display='none';"
+                                    onerror="this.parentNode.querySelector('.history-thumbnail-placeholder').style.display='flex';"
+                                >
+                            </div>
+                            <div class="history-details">
+                                <div class="history-title">${'Facebook Video #' + (globalIndex + 1)}</div>
+                                <div class="history-meta">
+                                    <span class="history-date" data-timestamp="${item.timestamp}">${timeAgoText}</span>
+                                    <span class="history-duration">
+                                        <i class="fas fa-clock"></i>${durationText}
+                                    </span>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-right history-chevron"></i>
+                            <button class="history-delete" data-index="${globalIndex}">
+                                <i style="font-size: 10px;" class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    `);
+
+                    // Lazy load image
+                    const lazyImage = historyItem.find('.history-thumbnail')[0];
+                    if (lazyImageObserver) {
+                        lazyImageObserver.observe(lazyImage);
+                    } else {
+                        // Fallback: load after a small delay
+                        setTimeout(() => {
+                            lazyImage.src = lazyImage.dataset.src;
+                        }, 100);
+                    }
+                    
+                    historyItem.click(function(e) {
+                        if (!$(e.target).closest('.history-delete').length) {
+                            loadHistoryItem(globalIndex);
+                            $('html, body').animate({
+                                scrollTop: $('#video-info').offset().top - 20
+                            }, 500);
+                            
+                            $('.history-item').removeClass('active');
+                            $(this).addClass('active');
+                        }
+                    });
+                    
+                    historyItem.find('.history-delete').click(function(e) {
+                        e.stopPropagation();
+                        itemToDelete = parseInt($(this).data('index'));
+                        showConfirmationModal();
+                    });
+                    
+                    $listContainer.append(historyItem);
+                });
+                
+                $('#history-list').append($listContainer);
+            }
+            
+            renderPaginationControls(totalPages);
+        }
+        
+        // Function to show confirmation modal with animation
+        function showConfirmationModal() {
+            const modal = $('#confirmation-modal');
+            modal.fadeIn(200, function() {
+                $(this).addClass('show');
+            });
+        }
+        
+        // Function to hide confirmation modal with animation
+        function hideConfirmationModal() {
+            const modal = $('#confirmation-modal');
+            modal.removeClass('show');
+            setTimeout(() => {
+                modal.fadeOut(200);
+            }, 300);
+        }
+        
+        // Function to render pagination controls
+        function renderPaginationControls(totalPages) {
+            const $pagination = $('#pagination-controls');
+            $pagination.empty();
+            
+            if (totalPages <= 1) return;
+            
+            // Previous button
+            $pagination.append(`
+                <button id="prev-page" ${currentPage === 1 ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            `);
+            
+            // Page numbers
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            if (startPage > 1) {
+                $pagination.append('<button data-page="1">1</button>');
+                if (startPage > 2) {
+                    $pagination.append('<span>...</span>');
+                }
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                $pagination.append(`
+                    <button data-page="${i}" ${i === currentPage ? 'class="active"' : ''}>${i}</button>
+                `);
+            }
+            
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    $pagination.append('<span>...</span>');
+                }
+                $pagination.append(`<button data-page="${totalPages}">${totalPages}</button>`);
+            }
+            
+            // Next button
+            $pagination.append(`
+                <button id="next-page" ${currentPage === totalPages ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            `);
+            
+            // Attach event handlers
+            $pagination.find('button[data-page]').click(function() {
+                currentPage = parseInt($(this).data('page'));
+                renderHistoryList();
+            });
+            
+            $('#prev-page').click(function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderHistoryList();
+                }
+            });
+            
+            $('#next-page').click(function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderHistoryList();
+                }
+            });
+        }
+        
+        // Function to get video duration
+        async function getVideoDuration(url) {
+            return new Promise((resolve) => {
+                const video = document.createElement('video');
+                video.src = url;
+                
+                video.addEventListener('loadedmetadata', () => {
+                    resolve(Math.floor(video.duration));
+                });
+                
+                video.addEventListener('error', () => {
+                    resolve(null);
+                });
+            });
+        }
+        
+        // Function to load a history item
+        async function loadHistoryItem(index) {
+            if (index >= 0 && index < videoHistory.length) {
+                const item = videoHistory[index];
+                
+                // Clear any existing video player
+                if (currentVideoPlayer) {
+                    currentVideoPlayer.pause();
+                    currentVideoPlayer = null;
+                }
+                
+                // Get the video container
+                const videoContainer = document.querySelector('media-theme-sutro');
+                
+                // Create new video element
+                const newVideoElement = document.createElement('videojs-video');
+                newVideoElement.setAttribute('slot', 'media');
+                newVideoElement.className = 'video-player';
+                newVideoElement.id = 'videoPlayer';
+                newVideoElement.setAttribute('playsinline', '');
+                newVideoElement.setAttribute('crossorigin', 'anonymous');
+                newVideoElement.setAttribute('poster', item.thumbnail);
+                
+                // Create source element
+                const sourceElement = document.createElement('source');
+                sourceElement.src = item.links['Download High Quality'];
+                sourceElement.type = 'video/mp4';
+                
+                // Add source to video element
+                newVideoElement.appendChild(sourceElement);
+                
+                // Replace the video element
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideoElement);
+                
+                // Set download links
+                $('#high').attr('href', item.links['Download High Quality']);
+                $('#low').attr('href', item.links['Download Low Quality']);
+                
+                // Show the video info section
+                $('#video-info').show();
+                
+                // Store current video player reference
+                currentVideoPlayer = newVideoElement;
+                
+                // Load the video
+                newVideoElement.load();
+                
+                // Adjust video height after metadata is loaded
+                newVideoElement.onloadedmetadata = function() {
+                    this.style.height = this.videoHeight + 'px';
+                };
+            }
+        }
+        
+        // Function to add video to history
+        async function addToHistory(videoData) {
+            // Get video duration
+            const duration = await getVideoDuration(videoData.links['Download High Quality']);
+            
+            // Check if this URL already exists in history
+            const existingIndex = videoHistory.findIndex(item => item.url === videoData.url);
+            
+            if (existingIndex >= 0) {
+                // Update existing entry
+                videoHistory[existingIndex] = {
+                    ...videoData,
+                    duration: duration,
+                    timestamp: Date.now()
+                };
+            } else {
+                // Add new entry
+                videoHistory.unshift({
+                    ...videoData,
+                    duration: duration,
+                    timestamp: Date.now()
+                });
+            }
+            
+            // Limit history to 50 items
+            if (videoHistory.length > 50) {
+                videoHistory = videoHistory.slice(0, 50);
+            }
+            
+            // Save to local storage
+            localStorage.setItem('fbVideoHistory', JSON.stringify(videoHistory));
+            
+            // Update UI
+            updateHistoryVisibility();
+            
+            // Show toast notification
+            showToast('Video added to history');
+        }
+
+        // Function to delete video from history
+        function deleteFromHistory(index) {
+            if (index >= 0 && index < videoHistory.length) {
+                videoHistory.splice(index, 1);
+                localStorage.setItem('fbVideoHistory', JSON.stringify(videoHistory));
+                updateHistoryVisibility();
+                showToast('Video removed from history', 'error');
+                
+                // Hide video info if we deleted the currently shown video
+                if ($('.history-item.active').data('index') === index) {
+                    $('#video-info').hide();
+                }
+                
+                // Adjust current page if needed
+                const totalPages = Math.ceil(videoHistory.length / ITEMS_PER_PAGE);
+                if (currentPage > totalPages && totalPages > 0) {
+                    currentPage = totalPages;
+                }
+            }
+        }
+
+        // Function to display fetched video
+        async function displayFetchedVideo(result) {
+            // Add to history
+            await addToHistory({
+                url: $('#url').val().trim(),
+                thumbnail: result.thumbnail,
+                links: result.links,
+                title: result.title || 'Facebook Video'
+            });
+            
+            // Get the video container
+            const videoContainer = document.querySelector('media-theme-sutro');
+            
+            // Create new video element
+            const newVideoElement = document.createElement('videojs-video');
+            newVideoElement.setAttribute('slot', 'media');
+            newVideoElement.className = 'video-player';
+            newVideoElement.id = 'videoPlayer';
+            newVideoElement.setAttribute('playsinline', '');
+            newVideoElement.setAttribute('crossorigin', 'anonymous');
+            newVideoElement.setAttribute('poster', result.thumbnail);
+            
+            // Create source element
+            const sourceElement = document.createElement('source');
+            sourceElement.src = result.links['Download High Quality'];
+            sourceElement.type = 'video/mp4';
+            
+            // Add source to video element
+            newVideoElement.appendChild(sourceElement);
+            
+            // Replace the video element
+            videoContainer.innerHTML = '';
+            videoContainer.appendChild(newVideoElement);
+            
+            // Set download links
+            $('#high').attr('href', result.links['Download High Quality']);
+            $('#low').attr('href', result.links['Download Low Quality']);
+            
+            // Show the video info section
+            $('#video-info').show();
+            
+            // Store current video player reference
+            currentVideoPlayer = newVideoElement;
+            
+            // Load the video
+            newVideoElement.load();
+            
+            // Adjust video height after metadata is loaded
+            newVideoElement.onloadedmetadata = function() {
+                this.style.height = this.videoHeight + 'px';
+            };
+            
+            // Scroll to video info section
+            $('html, body').animate({
+                scrollTop: $('#video-info').offset().top - 20
+            }, 500);
+        }
+
+        // Initial check
+        checkInput();
+
+        // Check input on keyup, paste, change events
+        $('#url').on('input paste keyup change', function() {
+            checkInput();
+        });
+
+        // Handle paste button click
+        $('#dwn_btn').click(function() {
+            var buttonText = $(this).text();
+            
+            if (buttonText === 'Close') {
+                // Clear the input
+                $('#url').val('').trigger('input');
+                $('#video-info').hide();
+            } else if (buttonText === 'Paste') {
+                // Paste from clipboard
+                navigator.clipboard.readText()
+                    .then(text => {
+                        $('#url').val(text).trigger('input');
+                    })
+                    .catch(err => {
+                        console.error('Failed to read clipboard contents: ', err);
+                        // Fallback method for browsers that don't support clipboard API
+                        $('#url').focus();
+                        document.execCommand('paste');
+                        checkInput();
+                    });
+            }
+        });
+        
+        // Handle download button click
+        $('#main_down_btn').click(async function() {
+            var inputVal = $('#url').val().trim();
+            if (inputVal && isValidFacebookUrl(inputVal)) {
+                // Show loading state
+                $(this).find('.fa-spin').show();
+                $(this).html('<i class="fas fa-circle-notch fa-spin"></i> Loading...');
+                
+                try {
+                    // Encode the URL for API call
+                    const encodedUrl = encodeURIComponent(inputVal);
+                    const apiUrl = `https://facebook-reel-and-video-downloader.p.rapidapi.com/app/main.php?url=${encodedUrl}`;
+                    
+                    const options = {
+                        method: 'GET',
+                        headers: {
+                            'x-rapidapi-key': 'YOUR_API_KEY',
+                            'x-rapidapi-host': 'facebook-reel-and-video-downloader.p.rapidapi.com'
+                        }
+                    };
+                    
+                    // Make API call
+                    const response = await fetch(apiUrl, options);
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        await displayFetchedVideo(result);
+                    } else {
+                        showToast('Failed to fetch video information', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showToast('An error occurred while fetching the video', 'error');
+                } finally {
+                    // Reset button state
+                    $('#main_down_btn').find('.fa-spin').hide();
+                    $('#main_down_btn').html('Download Video');
+                }
+            }
+        });
+        
+        // Confirmation modal handlers
+        $('#confirmation-cancel').click(function() {
+            hideConfirmationModal();
+            itemToDelete = null;
+        });
+        
+        $('#confirmation-ok').click(function() {
+            if (itemToDelete !== null) {
+                deleteFromHistory(itemToDelete);
+                hideConfirmationModal();
+                itemToDelete = null;
+            }
+        });
+        
+        // Close modal when clicking outside
+        $('#confirmation-modal').click(function(e) {
+            if (e.target === this) {
+                hideConfirmationModal();
+                itemToDelete = null;
+            }
+        });
+        
+        // Clean up when page is closed
+        $(window).on('beforeunload', function() {
+            stopTimeUpdateInterval();
+            if (lazyImageObserver) {
+                lazyImageObserver.disconnect();
+            }
+        });
+    });
+</script>
+        <script>
+        $(document).ready(function() {
+            // Add Google Fonts
+            $('head').append('<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">');
+           
+            // Style the creator container
+            $('.creator-container').css({
+                'position': 'relative',
+                'text-align': 'center',
+                'perspective': '1000px'
+            });
+            
+            // Style the creator text
+            $('.creator-text').css({
+                'display': 'inline-block',
+                'font-size': '4rem',
+                'font-weight': '300',
+                'letter-spacing': '2px',
+                'text-transform': 'uppercase',
+                'position': 'relative',
+                'color': '#333'
+            });
+            
+            // Style "CREATED BY"
+            $('.created-by').css({
+                'font-family': "'Montserrat', sans-serif",
+                'font-weight': '300',
+                'color': '#6c757d',
+                'position': 'relative',
+                'display': 'inline-block',
+                'transition': 'all 0.5s ease',
+                'transform-style': 'preserve-3d'
+            });
+            
+            // Style "HASAN"
+            $('.hasan').css({
+                'font-family': "'Playfair Display', serif",
+                'font-weight': '700',
+                'background': 'linear-gradient(90deg, #ff8a00, #e52e71)',
+                '-webkit-background-clip': 'text',
+                'background-clip': 'text',
+                'color': 'transparent',
+                'display': 'inline-block',
+                'position': 'relative',
+                'padding': '0 10px',
+                'transition': 'all 0.5s ease',
+                'transform-style': 'preserve-3d'
+            });
+            
+            // Create pseudo-elements for HASAN
+            $('.hasan').append('<style>.hasan::before, .hasan::after { content: ""; position: absolute; top: 50%; width: 50px; height: 3px; background: linear-gradient(90deg, #ff8a00, #e52e71); transform: translateY(-50%); opacity: 0; transition: all 0.3s ease; } .hasan::before { right: 100%; } .hasan::after { left: 100%; }</style>');
+            
+            // Hover effects
+            $('.creator-container').hover(
+                function() {
+                    $('.created-by', this).css({
+                        'transform': 'rotateY(15deg)',
+                        'color': '#495057'
+                    });
+                    $('.hasan', this).css({
+                        'transform': 'rotateY(-15deg) scale(1.05)',
+                        'text-shadow': '0 5px 15px rgba(229, 46, 113, 0.4)'
+                    });
+                    $('.hasan', this).append('<style>.hasan::before, .hasan::after { opacity: 1; width: 70px; }</style>');
+                },
+                function() {
+                    $('.created-by', this).css({
+                        'transform': '',
+                        'color': '#6c757d'
+                    });
+                    $('.hasan', this).css({
+                        'transform': '',
+                        'text-shadow': 'none'
+                    });
+                    $('.hasan', this).append('<style>.hasan::before, .hasan::after { opacity: 0; width: 50px; }</style>');
+                }
+            );
+            
+            // Click effect
+            $('.creator-container').click(function() {
+                $('.hasan', this).css({
+                    'transform': 'rotateY(-360deg) scale(1.1)'
+                }).delay(500).queue(function(next) {
+                    $(this).css({
+                        'transform': 'rotateY(-15deg) scale(1.05)'
+                    });
+                    next();
+                });
+            });
+            
+            // Responsive design
+            function handleResize() {
+                if ($(window).width() <= 768) {
+                    $('.creator-text').css('font-size', '2.5rem');
+                } else {
+                    $('.creator-text').css('font-size', '4rem');
+                }
+            }
+            
+            $(window).resize(handleResize);
+            handleResize();
+            
+            // Initialize particles.js
+            particlesJS("particles", {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": ["#ff8a00", "#e52e71", "#6c757d"]
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#cccccc",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+    </script>
