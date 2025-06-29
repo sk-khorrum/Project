@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Daraz Style Ecommerce Demo</title>
+  <title>Professional Daraz Style Ecommerce</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Custom scrollbar for cart */
     #cart-sidebar::-webkit-scrollbar {
       width: 8px;
     }
@@ -22,115 +21,107 @@
     }
   </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-50 font-sans">
 
-  <!-- Header / Navbar -->
+  <!-- Navbar -->
   <header class="bg-white shadow fixed top-0 left-0 right-0 z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-      <div class="text-3xl font-bold text-red-600 cursor-pointer">YourDaraz</div>
+      <div class="text-3xl font-bold text-red-600 cursor-pointer select-none">YourDaraz</div>
       <nav class="hidden md:flex space-x-6 font-semibold text-gray-700">
-        <a href="#" class="hover:text-red-600">Home</a>
-        <a href="#" class="hover:text-red-600">Mobile Phones</a>
-        <a href="#" class="hover:text-red-600">Electronics</a>
-        <a href="#" class="hover:text-red-600">Fashion</a>
-        <a href="#" class="hover:text-red-600">Health & Beauty</a>
-        <a href="#" class="hover:text-red-600">Home & Living</a>
-        <a href="#" class="hover:text-red-600">Sports</a>
+        <a href="#" class="hover:text-red-600 transition">Home</a>
+        <a href="#" class="hover:text-red-600 transition">Mobile Phones</a>
+        <a href="#" class="hover:text-red-600 transition">Electronics</a>
+        <a href="#" class="hover:text-red-600 transition">Fashion</a>
+        <a href="#" class="hover:text-red-600 transition">Health & Beauty</a>
+        <a href="#" class="hover:text-red-600 transition">Home & Living</a>
+        <a href="#" class="hover:text-red-600 transition">Sports</a>
       </nav>
       <div class="flex items-center space-x-4">
-        <button id="cart-btn" aria-label="Cart" class="relative">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-700 hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button id="cart-btn" aria-label="Cart" class="relative focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-700 hover:text-red-600 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
             <circle cx="7" cy="21" r="2" />
             <circle cx="17" cy="21" r="2" />
           </svg>
-          <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full px-1.5">0</span>
+          <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full px-1.5 select-none">0</span>
         </button>
-        <button class="text-gray-700 hover:text-red-600 font-semibold hidden md:block">Login</button>
+        <button class="text-gray-700 hover:text-red-600 font-semibold hidden md:block select-none">Login</button>
       </div>
     </div>
   </header>
 
-  <!-- Spacer for fixed header -->
+  <!-- Spacer -->
   <div class="h-20"></div>
 
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 pb-16">
+  <!-- Hero -->
+  <section class="bg-gradient-to-r from-red-600 to-pink-600 rounded-lg p-12 text-white mb-12 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+    <div class="max-w-xl">
+      <h1 class="text-4xl font-extrabold mb-4">Shop the Best Deals on YourDaraz!</h1>
+      <p class="text-lg mb-6">Discover millions of products from top brands with amazing discounts.</p>
+      <button class="bg-white text-red-600 font-bold px-6 py-3 rounded shadow hover:bg-gray-100 transition">Shop Now</button>
+    </div>
+    <img src="https://cdn.dribbble.com/users/39595/screenshots/13925672/media/c02df154fce8e8f57f31d2f8d3e5822e.png" alt="Shopping hero" class="w-64 mt-8 md:mt-0" />
+  </section>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-red-600 to-pink-600 rounded-lg p-12 text-white mb-12 flex flex-col md:flex-row items-center justify-between">
-      <div class="max-w-xl">
-        <h1 class="text-4xl font-extrabold mb-4">Shop the Best Deals on YourDaraz!</h1>
-        <p class="text-lg mb-6">Discover millions of products from top brands with amazing discounts.</p>
-        <button class="bg-white text-red-600 font-bold px-6 py-3 rounded shadow hover:bg-gray-100 transition">Shop Now</button>
+  <!-- Categories -->
+  <section class="mb-10 max-w-7xl mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-6">Shop by Category</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
+      <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center select-none">
+        <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-mobile-technology-flat-flat-juicy-fish.png" alt="Mobile Phones" class="mx-auto mb-2" />
+        <p class="font-semibold">Mobile Phones</p>
       </div>
-      <img src="https://cdn.dribbble.com/users/39595/screenshots/13925672/media/c02df154fce8e8f57f31d2f8d3e5822e.png" alt="Shopping hero" class="w-64 mt-8 md:mt-0" />
-    </section>
-
-    <!-- Categories -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-6">Shop by Category</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
-        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-mobile-technology-flat-flat-juicy-fish.png" alt="Mobile Phones" class="mx-auto mb-2" />
-          <p class="font-semibold">Mobile Phones</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-laptop-technology-flat-flat-juicy-fish.png" alt="Laptops" class="mx-auto mb-2" />
-          <p class="font-semibold">Laptops</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-tv-electronics-flat-flat-juicy-fish.png" alt="TV & Audio" class="mx-auto mb-2" />
-          <p class="font-semibold">TV & Audio</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-shoes-fashion-flat-flat-juicy-fish.png" alt="Fashion" class="mx-auto mb-2" />
-          <p class="font-semibold">Fashion</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-cosmetics-beauty-flat-flat-juicy-fish.png" alt="Beauty" class="mx-auto mb-2" />
-          <p class="font-semibold">Beauty</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-sports-sport-flat-flat-juicy-fish.png" alt="Sports" class="mx-auto mb-2" />
-          <p class="font-semibold">Sports</p>
-        </div>
+      <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center select-none">
+        <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-laptop-technology-flat-flat-juicy-fish.png" alt="Laptops" class="mx-auto mb-2" />
+        <p class="font-semibold">Laptops</p>
       </div>
-    </section>
-
-    <!-- Products Grid -->
-    <section>
-      <h2 class="text-2xl font-bold mb-6">Featured Products</h2>
-      <div id="products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        <!-- Product cards inserted by JS -->
+      <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center select-none">
+        <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-tv-electronics-flat-flat-juicy-fish.png" alt="TV & Audio" class="mx-auto mb-2" />
+        <p class="font-semibold">TV & Audio</p>
       </div>
-    </section>
+      <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center select-none">
+        <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-shoes-fashion-flat-flat-juicy-fish.png" alt="Fashion" class="mx-auto mb-2" />
+        <p class="font-semibold">Fashion</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center select-none">
+        <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-cosmetics-beauty-flat-flat-juicy-fish.png" alt="Beauty" class="mx-auto mb-2" />
+        <p class="font-semibold">Beauty</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center select-none">
+        <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-sports-sport-flat-flat-juicy-fish.png" alt="Sports" class="mx-auto mb-2" />
+        <p class="font-semibold">Sports</p>
+      </div>
+    </div>
+  </section>
 
-  </main>
+  <!-- Products -->
+  <section class="max-w-7xl mx-auto px-4 mb-16">
+    <h2 class="text-2xl font-bold mb-6">Featured Products</h2>
+    <div id="products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <!-- Product cards inserted here -->
+    </div>
+  </section>
 
   <!-- Cart Sidebar -->
   <aside id="cart-sidebar" class="fixed top-0 right-0 w-96 h-full bg-white shadow-lg p-6 overflow-auto transform translate-x-full transition-transform z-50">
     <h2 class="text-xl font-bold mb-4 flex justify-between items-center">
       Shopping Cart
-      <button id="close-cart-btn" aria-label="Close cart" class="text-red-600 hover:text-red-800 text-2xl font-bold">×</button>
+      <button id="close-cart-btn" aria-label="Close cart" class="text-red-600 hover:text-red-800 text-2xl font-bold select-none">×</button>
     </h2>
-    <div id="cart-items" class="space-y-4 min-h-[150px]">
-      <!-- Cart items -->
-    </div>
+    <div id="cart-items" class="space-y-4 min-h-[150px]"></div>
     <hr class="my-4" />
     <p class="font-semibold text-lg flex justify-between">
       <span>Total:</span>
       <span>৳<span id="cart-total">0</span></span>
     </p>
-    <button id="checkout-btn" class="mt-4 w-full bg-red-600 text-white py-3 rounded hover:bg-red-700 transition">Proceed to Checkout</button>
+    <button id="checkout-btn" class="mt-4 w-full bg-red-600 text-white py-3 rounded hover:bg-red-700 transition select-none">Proceed to Checkout</button>
   </aside>
 
   <!-- Footer -->
-  <footer class="bg-white mt-16 py-8 text-center text-gray-600 text-sm">
+  <footer class="bg-white mt-16 py-8 text-center text-gray-600 text-sm select-none">
     &copy; 2025 YourDaraz. All rights reserved.
   </footer>
 
-  <!-- JavaScript -->
   <script>
     const products = [
       {
@@ -167,4 +158,94 @@
         id: 6,
         name: "Canon EOS R6 Camera",
         price: 220000,
-        image:
+        image: "https://cdn.mos.cms.futurecdn.net/jlEGJ3rfQ7SUqDVEV4pJAb0.jpg",
+      },
+      {
+        id: 7,
+        name: "Adidas Running Shoes",
+        price: 12000,
+        image: "https://assets.adidas.com/images/w_600,f_auto,q_auto/6f96b37c9a4e4a0e8f12ab6e00f81a64_9366/Ultraboost_22_Shoes_Black_S23873_01_standard.jpg",
+      },
+      {
+        id: 8,
+        name: "MacBook Pro 16-inch",
+        price: 230000,
+        image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16-spacegray-select-202110?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1632799176000",
+      },
+    ];
+
+    let cart = [];
+
+    function renderStars(rating = 4) {
+      let stars = "";
+      for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+          stars += `<svg class="w-4 h-4 inline-block text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.962a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.962c.3.921-.755 1.688-1.54 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.784.57-1.838-.197-1.539-1.118l1.286-3.962a1 1 0 00-.364-1.118L2.037 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.962z"/></svg>`;
+        } else {
+          stars += `<svg class="w-4 h-4 inline-block text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0"/></svg>`;
+        }
+      }
+      return stars;
+    }
+
+    function renderProducts() {
+      const container = document.getElementById("products");
+      container.innerHTML = "";
+      products.forEach((p) => {
+        const card = document.createElement("div");
+        card.className =
+          "bg-white rounded-lg shadow-md hover:shadow-xl transition p-4 flex flex-col";
+        card.innerHTML = `
+          <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover rounded mb-4" />
+          <h3 class="font-semibold text-lg truncate" title="${p.name}">${p.name}</h3>
+          <div class="flex items-center mt-1 mb-3 space-x-2">
+            ${renderStars(4)}
+            <span class="text-gray-600 text-sm">(1200+)</span>
+          </div>
+          <p class="text-red-600 font-bold text-xl mb-4">৳${p.price.toLocaleString()}</p>
+          <button class="bg-red-600 text-white py-2 rounded hover:bg-red-700 transition mt-auto">Add to Cart</button>
+        `;
+        card.querySelector("button").addEventListener("click", () => addToCart(p));
+        container.appendChild(card);
+      });
+    }
+
+    function updateCartCount() {
+      document.getElementById("cart-count").textContent = cart.length;
+    }
+
+    function addToCart(product) {
+      cart.push(product);
+      updateCartCount();
+      renderCart();
+      alert(`Added "${product.name}" to cart`);
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartCount();
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, idx) => {
+        total += item.price;
+        const itemDiv = document.createElement("div");
+        itemDiv.className =
+          "flex justify-between items-center bg-gray-100 p-2 rounded shadow";
+        itemDiv.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded" />
+            <p class="truncate max-w-xs">${item.name}</p>
+          </div>
+          <div class="flex items-center space-x-3">
+            <p class="font-semibold">৳${item.price.toLocaleString()}</p>
+            <button class="text-red-600 font-bold hover:text-red-800 select-none">×</button>
+          </div>
+        `;
+        itemDiv.querySelector("button").addEventListener("click", () => removeFromCart(idx));
+        cartItems.appendChild(itemDiv);
+      });
