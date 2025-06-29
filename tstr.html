@@ -3,189 +3,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Simple Ecommerce Demo</title>
+  <title>Daraz Style Ecommerce Demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scrollbar for cart */
+    #cart-sidebar::-webkit-scrollbar {
+      width: 8px;
+    }
+    #cart-sidebar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    #cart-sidebar::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    #cart-sidebar::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-sans">
 
-  <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold">YourShop</h1>
-    <button id="cart-btn" class="bg-blue-800 px-4 py-2 rounded hover:bg-blue-900">
-      Cart (<span id="cart-count">0</span>)
-    </button>
-  </nav>
-
-  <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-12 text-center">
-    <h2 class="text-4xl font-extrabold mb-2">Welcome to YourShop</h2>
-    <p>Find the best products at amazing prices!</p>
+  <!-- Header / Navbar -->
+  <header class="bg-white shadow fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="text-3xl font-bold text-red-600 cursor-pointer">YourDaraz</div>
+      <nav class="hidden md:flex space-x-6 font-semibold text-gray-700">
+        <a href="#" class="hover:text-red-600">Home</a>
+        <a href="#" class="hover:text-red-600">Mobile Phones</a>
+        <a href="#" class="hover:text-red-600">Electronics</a>
+        <a href="#" class="hover:text-red-600">Fashion</a>
+        <a href="#" class="hover:text-red-600">Health & Beauty</a>
+        <a href="#" class="hover:text-red-600">Home & Living</a>
+        <a href="#" class="hover:text-red-600">Sports</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button id="cart-btn" aria-label="Cart" class="relative">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-700 hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+            <circle cx="7" cy="21" r="2" />
+            <circle cx="17" cy="21" r="2" />
+          </svg>
+          <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full px-1.5">0</span>
+        </button>
+        <button class="text-gray-700 hover:text-red-600 font-semibold hidden md:block">Login</button>
+      </div>
+    </div>
   </header>
 
-  <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="product-list">
-    <!-- Products will be inserted here -->
+  <!-- Spacer for fixed header -->
+  <div class="h-20"></div>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 pb-16">
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-red-600 to-pink-600 rounded-lg p-12 text-white mb-12 flex flex-col md:flex-row items-center justify-between">
+      <div class="max-w-xl">
+        <h1 class="text-4xl font-extrabold mb-4">Shop the Best Deals on YourDaraz!</h1>
+        <p class="text-lg mb-6">Discover millions of products from top brands with amazing discounts.</p>
+        <button class="bg-white text-red-600 font-bold px-6 py-3 rounded shadow hover:bg-gray-100 transition">Shop Now</button>
+      </div>
+      <img src="https://cdn.dribbble.com/users/39595/screenshots/13925672/media/c02df154fce8e8f57f31d2f8d3e5822e.png" alt="Shopping hero" class="w-64 mt-8 md:mt-0" />
+    </section>
+
+    <!-- Categories -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-6">Shop by Category</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
+        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
+          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-mobile-technology-flat-flat-juicy-fish.png" alt="Mobile Phones" class="mx-auto mb-2" />
+          <p class="font-semibold">Mobile Phones</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
+          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-laptop-technology-flat-flat-juicy-fish.png" alt="Laptops" class="mx-auto mb-2" />
+          <p class="font-semibold">Laptops</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
+          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-tv-electronics-flat-flat-juicy-fish.png" alt="TV & Audio" class="mx-auto mb-2" />
+          <p class="font-semibold">TV & Audio</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
+          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-shoes-fashion-flat-flat-juicy-fish.png" alt="Fashion" class="mx-auto mb-2" />
+          <p class="font-semibold">Fashion</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
+          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-cosmetics-beauty-flat-flat-juicy-fish.png" alt="Beauty" class="mx-auto mb-2" />
+          <p class="font-semibold">Beauty</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer text-center">
+          <img src="https://img.icons8.com/external-flat-juicy-fish/60/000000/external-sports-sport-flat-flat-juicy-fish.png" alt="Sports" class="mx-auto mb-2" />
+          <p class="font-semibold">Sports</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section>
+      <h2 class="text-2xl font-bold mb-6">Featured Products</h2>
+      <div id="products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Product cards inserted by JS -->
+      </div>
+    </section>
+
   </main>
 
-  <div id="cart-sidebar" class="fixed top-0 right-0 w-96 h-full bg-white shadow-lg p-6 overflow-auto transform translate-x-full transition-transform">
-    <h2 class="text-xl font-bold mb-4">Shopping Cart</h2>
-    <div id="cart-items" class="space-y-4">
-      <!-- Cart items here -->
+  <!-- Cart Sidebar -->
+  <aside id="cart-sidebar" class="fixed top-0 right-0 w-96 h-full bg-white shadow-lg p-6 overflow-auto transform translate-x-full transition-transform z-50">
+    <h2 class="text-xl font-bold mb-4 flex justify-between items-center">
+      Shopping Cart
+      <button id="close-cart-btn" aria-label="Close cart" class="text-red-600 hover:text-red-800 text-2xl font-bold">×</button>
+    </h2>
+    <div id="cart-items" class="space-y-4 min-h-[150px]">
+      <!-- Cart items -->
     </div>
     <hr class="my-4" />
-    <p class="font-bold text-lg">Total: ৳<span id="cart-total">0</span></p>
-    <button id="checkout-btn" class="mt-4 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
-      Proceed to Payment
-    </button>
-    <button id="close-cart-btn" class="mt-2 w-full bg-red-600 text-white py-2 rounded hover:bg-red-700">
-      Close
-    </button>
-  </div>
+    <p class="font-semibold text-lg flex justify-between">
+      <span>Total:</span>
+      <span>৳<span id="cart-total">0</span></span>
+    </p>
+    <button id="checkout-btn" class="mt-4 w-full bg-red-600 text-white py-3 rounded hover:bg-red-700 transition">Proceed to Checkout</button>
+  </aside>
 
+  <!-- Footer -->
+  <footer class="bg-white mt-16 py-8 text-center text-gray-600 text-sm">
+    &copy; 2025 YourDaraz. All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
   <script>
     const products = [
       {
         id: 1,
-        name: 'Wireless Headphones',
-        price: 2500,
-        image: 'https://via.placeholder.com/300x200?text=Headphones',
-        reviews: [
-          { user: 'Alice', rating: 5, comment: 'Great sound quality!' },
-          { user: 'Bob', rating: 4, comment: 'Comfortable and stylish.' }
-        ]
+        name: "Apple iPhone 14 Pro Max",
+        price: 135000,
+        image: "https://m.media-amazon.com/images/I/61njZKqUgaL._AC_SL1500_.jpg",
       },
       {
         id: 2,
-        name: 'Smart Watch',
-        price: 3500,
-        image: 'https://via.placeholder.com/300x200?text=Smart+Watch',
-        reviews: [
-          { user: 'Charlie', rating: 4, comment: 'Good value for money.' }
-        ]
+        name: "Samsung Galaxy S23 Ultra",
+        price: 120000,
+        image: "https://images.samsung.com/is/image/samsung/p6pim/bd/galaxy-s23-ultra/gallery/bd-galaxy-s23-ultra-5g-s918-425604-sm-s918ezkhbdl-533687238?$720_576_PNG$",
       },
       {
         id: 3,
-        name: 'Gaming Mouse',
-        price: 1500,
-        image: 'https://via.placeholder.com/300x200?text=Gaming+Mouse',
-        reviews: [
-          { user: 'David', rating: 5, comment: 'Excellent precision!' },
-          { user: 'Eva', rating: 4, comment: 'Good for FPS games.' }
-        ]
-      }
-    ];
-
-    let cart = [];
-
-    // Utility to render star rating
-    function renderStars(rating) {
-      let stars = '';
-      for(let i=1; i<=5; i++) {
-        if(i <= rating) {
-          stars += '<svg class="w-4 h-4 inline-block text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.962a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.962c.3.921-.755 1.688-1.54 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.784.57-1.838-.197-1.539-1.118l1.286-3.962a1 1 0 00-.364-1.118L2.037 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.962z"/></svg>';
-        } else {
-          stars += '<svg class="w-4 h-4 inline-block text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.962a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.962c.3.921-.755 1.688-1.54 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.784.57-1.838-.197-1.539-1.118l1.286-3.962a1 1 0 00-.364-1.118L2.037 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.962z"/></svg>';
-        }
-      }
-      return stars;
-    }
-
-    // Render products
-    function renderProducts() {
-      const container = document.getElementById('product-list');
-      container.innerHTML = '';
-      products.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'bg-white rounded-lg shadow p-4 flex flex-col';
-
-        card.innerHTML = `
-          <img src="${p.image}" alt="${p.name}" class="rounded mb-4 object-cover h-40" />
-          <h3 class="font-semibold text-lg">${p.name}</h3>
-          <p class="text-green-600 font-bold mt-2">৳${p.price}</p>
-          <button class="mt-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Add to Cart</button>
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Reviews:</h4>
-            ${p.reviews.map(r => `
-              <div class="bg-gray-100 rounded p-2 mb-2">
-                <div class="flex justify-between items-center">
-                  <p class="font-semibold">${r.user}</p>
-                  <div>${renderStars(r.rating)}</div>
-                </div>
-                <p class="mt-1 text-gray-700">${r.comment}</p>
-              </div>
-            `).join('')}
-          </div>
-        `;
-
-        // Add to cart button click
-        card.querySelector('button').addEventListener('click', () => {
-          addToCart(p);
-        });
-
-        container.appendChild(card);
-      });
-    }
-
-    function updateCartCount() {
-      document.getElementById('cart-count').textContent = cart.length;
-    }
-
-    function addToCart(product) {
-      cart.push(product);
-      updateCartCount();
-      alert(`${product.name} added to cart`);
-      renderCart();
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartCount();
-      renderCart();
-    }
-
-    function renderCart() {
-      const cartSidebar = document.getElementById('cart-sidebar');
-      const cartItems = document.getElementById('cart-items');
-      cartItems.innerHTML = '';
-      let total = 0;
-      cart.forEach((item, idx) => {
-        total += item.price;
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'flex justify-between items-center bg-gray-100 p-2 rounded';
-
-        itemDiv.innerHTML = `
-          <p>${item.name}</p>
-          <p>৳${item.price}</p>
-          <button class="text-red-600 font-bold hover:text-red-800">×</button>
-        `;
-
-        itemDiv.querySelector('button').addEventListener('click', () => {
-          removeFromCart(idx);
-        });
-
-        cartItems.appendChild(itemDiv);
-      });
-      document.getElementById('cart-total').textContent = total;
-    }
-
-    // Show/hide cart sidebar
-    document.getElementById('cart-btn').addEventListener('click', () => {
-      document.getElementById('cart-sidebar').classList.remove('translate-x-full');
-    });
-
-    document.getElementById('close-cart-btn').addEventListener('click', () => {
-      document.getElementById('cart-sidebar').classList.add('translate-x-full');
-    });
-
-    // Checkout button (just alert for demo)
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-      if(cart.length === 0) {
-        alert('Your cart is empty!');
-        return;
-      }
-      alert('Proceeding to payment gateway simulation...');
-    });
-
-    // Initial render
-    renderProducts();
-    updateCartCount();
-  </script>
-</body>
-</html>
+        name: "Sony WH-1000XM5 Wireless Headphones",
+        price: 32000,
+        image: "https://cdn.mos.cms.futurecdn.net/RL6e6xEbq42zTfJH7qB3LD.jpg",
+      },
+      {
+        id: 4,
+        name: "Dell XPS 15 Laptop",
+        price: 150000,
+        image: "https://i.dell.com/sites/imagecontent/products/PublishingImages/xps-15-9520-laptop/spi/ng/notebook-xps-15-9520-laptop-pdp-polaris-504x350.png",
+      },
+      {
+        id: 5,
+        name: "Nike Air Max 270",
+        price: 15000,
+        image: "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/45e5486d-1a08-44a7-8948-3e62ca5b7f47/air-max-270-shoe-KkLcGR.png",
+      },
+      {
+        id: 6,
+        name: "Canon EOS R6 Camera",
+        price: 220000,
+        image:
