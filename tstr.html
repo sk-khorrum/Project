@@ -1,82 +1,191 @@
-<!-- Professional Portfolio: skkhorrum.dev --><!-- Tailwind CSS CDN Link --><!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SK Khorrum — Web Developer, Firebase & Google Sheet Expert" />
-  <title>SK Khorrum - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Ecommerce Demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-gray-800 font-sans"><!-- ========== Hero Section ========== --><section class="min-h-screen flex flex-col justify-center items-center text-center p-6 bg-gradient-to-br from-blue-100 to-purple-200">
-  <img src="https://via.placeholder.com/150" alt="SK Khorrum" class="rounded-full w-32 h-32 mb-4 border-4 border-white shadow-xl">
-  <h1 class="text-4xl font-bold">SK Khorrum</h1>
-  <p class="text-lg mt-2">Frontend Developer | Firebase & Spreadsheet App Specialist</p>
-  <p class="text-sm mt-2">Founder of DRT | Passionate about creative and secure digital experiences</p>
-  <a href="#contact" class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700">Hire Me</a>
-</section><!-- ========== About Me ========== --><section id="about" class="p-8 bg-white">
-  <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
-  <p class="text-center max-w-3xl mx-auto">I'm SK Khorrum from Sirajganj, Bangladesh. I specialize in creating powerful front-end websites with custom backend solutions using Firebase and Google Spreadsheets. With a passion for design and automation, I strive to build user-friendly apps that thousands use daily. I also lead DRT and work as a Designer at WOOD Communication.</p>
-</section><!-- ========== Skills Section ========== --><section id="skills" class="p-8 bg-gray-50">
-  <h2 class="text-3xl font-bold mb-6 text-center">My Skills</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-    <div><p class="font-semibold">HTML/CSS</p></div>
-    <div><p class="font-semibold">JavaScript</p></div>
-    <div><p class="font-semibold">Tailwind CSS</p></div>
-    <div><p class="font-semibold">Firebase</p></div>
-    <div><p class="font-semibold">Google Sheets API</p></div>
-    <div><p class="font-semibold">Formspree</p></div>
-    <div><p class="font-semibold">Sketchware</p></div>
-    <div><p class="font-semibold">SEO & Blogger</p></div>
+<body class="bg-gray-100">
+
+  <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">YourShop</h1>
+    <button id="cart-btn" class="bg-blue-800 px-4 py-2 rounded hover:bg-blue-900">
+      Cart (<span id="cart-count">0</span>)
+    </button>
+  </nav>
+
+  <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-12 text-center">
+    <h2 class="text-4xl font-extrabold mb-2">Welcome to YourShop</h2>
+    <p>Find the best products at amazing prices!</p>
+  </header>
+
+  <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="product-list">
+    <!-- Products will be inserted here -->
+  </main>
+
+  <div id="cart-sidebar" class="fixed top-0 right-0 w-96 h-full bg-white shadow-lg p-6 overflow-auto transform translate-x-full transition-transform">
+    <h2 class="text-xl font-bold mb-4">Shopping Cart</h2>
+    <div id="cart-items" class="space-y-4">
+      <!-- Cart items here -->
+    </div>
+    <hr class="my-4" />
+    <p class="font-bold text-lg">Total: ৳<span id="cart-total">0</span></p>
+    <button id="checkout-btn" class="mt-4 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+      Proceed to Payment
+    </button>
+    <button id="close-cart-btn" class="mt-2 w-full bg-red-600 text-white py-2 rounded hover:bg-red-700">
+      Close
+    </button>
   </div>
-</section><!-- ========== Projects Section ========== --><section id="projects" class="p-8 bg-white">
-  <h2 class="text-3xl font-bold text-center mb-6">Projects</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-gray-100 p-4 rounded-xl shadow">
-      <h3 class="text-xl font-bold">Cinevista BD</h3>
-      <p class="text-sm mb-2">Movie & Entertainment platform. Built with HTML, Firebase, and Tailwind.</p>
-      <a href="https://cinevista-bd.vercel.app/" class="text-blue-600 hover:underline">Visit Site</a>
-    </div>
-    <div class="bg-gray-100 p-4 rounded-xl shadow">
-      <h3 class="text-xl font-bold">AI Image Generator</h3>
-      <p class="text-sm mb-2">Image generator using OpenAI DALL·E API in Sketchware app.</p>
-      <a href="#" class="text-blue-600 hover:underline">Preview</a>
-    </div>
-    <div class="bg-gray-100 p-4 rounded-xl shadow">
-      <h3 class="text-xl font-bold">WOOD Communication Website</h3>
-      <p class="text-sm mb-2">Expo-based portfolio site with red-blue theme.</p>
-      <a href="#" class="text-blue-600 hover:underline">Coming Soon</a>
-    </div>
-  </div>
-</section><!-- ========== Services Section ========== --><section id="services" class="p-8 bg-gray-50">
-  <h2 class="text-3xl font-bold text-center mb-6">My Services</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-white p-4 shadow rounded-xl">
-      <h4 class="font-bold text-lg">Custom Website Development</h4>
-      <p class="text-sm">Responsive, modern websites with HTML, CSS, JS & Tailwind.</p>
-    </div>
-    <div class="bg-white p-4 shadow rounded-xl">
-      <h4 class="font-bold text-lg">Firebase & Backend Automation</h4>
-      <p class="text-sm">Realtime database integration with Google Sheets or Firestore.</p>
-    </div>
-    <div class="bg-white p-4 shadow rounded-xl">
-      <h4 class="font-bold text-lg">SEO & Blogger Setup</h4>
-      <p class="text-sm">Optimized Blogger design and Google ranking setup.</p>
-    </div>
-  </div>
-</section><!-- ========== Contact Section ========== --><section id="contact" class="p-8 bg-white">
-  <h2 class="text-3xl font-bold text-center mb-6">Contact Me</h2>
-  <form action="https://formspree.io/f/movwlopy" method="POST" class="max-w-xl mx-auto space-y-4">
-    <input type="text" name="name" placeholder="Your Name" class="w-full p-2 border rounded">
-    <input type="email" name="email" placeholder="Your Email" class="w-full p-2 border rounded">
-    <textarea name="message" rows="5" placeholder="Your Message" class="w-full p-2 border rounded"></textarea>
-    <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded">Send</button>
-  </form>
-</section><!-- ========== Footer ========== --><footer class="bg-black text-white text-center p-6">
-  <p class="text-sm">© 2025 SK Khorrum — All Rights Reserved</p>
-  <div class="mt-2 flex justify-center space-x-4 text-blue-400">
-    <a href="https://github.com/sk-khorrum" target="_blank">GitHub</a>
-    <a href="https://linkedin.com/in/sk-khorrum-36107a263" target="_blank">LinkedIn</a>
-    <a href="https://facebook.com/drt.ceo" target="_blank">Facebook</a>
-    <a href="https://instagram.com/sk_khorrum" target="_blank">Instagram</a>
-  </div>
-</footer></body>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: 'Wireless Headphones',
+        price: 2500,
+        image: 'https://via.placeholder.com/300x200?text=Headphones',
+        reviews: [
+          { user: 'Alice', rating: 5, comment: 'Great sound quality!' },
+          { user: 'Bob', rating: 4, comment: 'Comfortable and stylish.' }
+        ]
+      },
+      {
+        id: 2,
+        name: 'Smart Watch',
+        price: 3500,
+        image: 'https://via.placeholder.com/300x200?text=Smart+Watch',
+        reviews: [
+          { user: 'Charlie', rating: 4, comment: 'Good value for money.' }
+        ]
+      },
+      {
+        id: 3,
+        name: 'Gaming Mouse',
+        price: 1500,
+        image: 'https://via.placeholder.com/300x200?text=Gaming+Mouse',
+        reviews: [
+          { user: 'David', rating: 5, comment: 'Excellent precision!' },
+          { user: 'Eva', rating: 4, comment: 'Good for FPS games.' }
+        ]
+      }
+    ];
+
+    let cart = [];
+
+    // Utility to render star rating
+    function renderStars(rating) {
+      let stars = '';
+      for(let i=1; i<=5; i++) {
+        if(i <= rating) {
+          stars += '<svg class="w-4 h-4 inline-block text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.962a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.962c.3.921-.755 1.688-1.54 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.784.57-1.838-.197-1.539-1.118l1.286-3.962a1 1 0 00-.364-1.118L2.037 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.962z"/></svg>';
+        } else {
+          stars += '<svg class="w-4 h-4 inline-block text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.962a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.962c.3.921-.755 1.688-1.54 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.784.57-1.838-.197-1.539-1.118l1.286-3.962a1 1 0 00-.364-1.118L2.037 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.962z"/></svg>';
+        }
+      }
+      return stars;
+    }
+
+    // Render products
+    function renderProducts() {
+      const container = document.getElementById('product-list');
+      container.innerHTML = '';
+      products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow p-4 flex flex-col';
+
+        card.innerHTML = `
+          <img src="${p.image}" alt="${p.name}" class="rounded mb-4 object-cover h-40" />
+          <h3 class="font-semibold text-lg">${p.name}</h3>
+          <p class="text-green-600 font-bold mt-2">৳${p.price}</p>
+          <button class="mt-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Add to Cart</button>
+          <div class="mt-4">
+            <h4 class="font-semibold mb-2">Reviews:</h4>
+            ${p.reviews.map(r => `
+              <div class="bg-gray-100 rounded p-2 mb-2">
+                <div class="flex justify-between items-center">
+                  <p class="font-semibold">${r.user}</p>
+                  <div>${renderStars(r.rating)}</div>
+                </div>
+                <p class="mt-1 text-gray-700">${r.comment}</p>
+              </div>
+            `).join('')}
+          </div>
+        `;
+
+        // Add to cart button click
+        card.querySelector('button').addEventListener('click', () => {
+          addToCart(p);
+        });
+
+        container.appendChild(card);
+      });
+    }
+
+    function updateCartCount() {
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    function addToCart(product) {
+      cart.push(product);
+      updateCartCount();
+      alert(`${product.name} added to cart`);
+      renderCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartCount();
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartSidebar = document.getElementById('cart-sidebar');
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, idx) => {
+        total += item.price;
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'flex justify-between items-center bg-gray-100 p-2 rounded';
+
+        itemDiv.innerHTML = `
+          <p>${item.name}</p>
+          <p>৳${item.price}</p>
+          <button class="text-red-600 font-bold hover:text-red-800">×</button>
+        `;
+
+        itemDiv.querySelector('button').addEventListener('click', () => {
+          removeFromCart(idx);
+        });
+
+        cartItems.appendChild(itemDiv);
+      });
+      document.getElementById('cart-total').textContent = total;
+    }
+
+    // Show/hide cart sidebar
+    document.getElementById('cart-btn').addEventListener('click', () => {
+      document.getElementById('cart-sidebar').classList.remove('translate-x-full');
+    });
+
+    document.getElementById('close-cart-btn').addEventListener('click', () => {
+      document.getElementById('cart-sidebar').classList.add('translate-x-full');
+    });
+
+    // Checkout button (just alert for demo)
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      if(cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      alert('Proceeding to payment gateway simulation...');
+    });
+
+    // Initial render
+    renderProducts();
+    updateCartCount();
+  </script>
+</body>
 </html>
