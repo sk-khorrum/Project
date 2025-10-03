@@ -1,517 +1,268 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en" >
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="Sk Khorrum Project: A collection of modern, responsive web and app projects including Facebook Clone, FB Video Downloader, AI Photo Maker, and e-commerce demos by Team DRT.">
-<meta name="keywords" content="Sk Khorrum, Team DRT, Facebook Clone, FB Video Downloader, Age Calculator, AI Photo Maker, Web Projects, Apps, E-commerce, Flow Eight Sigma">
-<meta name="author" content="Sk Khorrum / Team DRT">
-<meta name="robots" content="index, follow">
-
-<meta property="og:title" content="Sk Khorrum Project | Team DRT's Portfolio">
-<meta property="og:description" content="Discover modern, responsive web and app projects like Facebook Clone, FB Video Downloader, and AI tools by Sk Khorrum and Team DRT.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://skkhorrumproject.vercel.app/"> 
-<meta property="og:image" content="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg">
-<meta property="og:site_name" content="Sk Khorrum Project">
-<meta property="og:locale" content="bn_BD">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sk Khorrum Project | Team DRT's Portfolio">
-<meta name="twitter:description" content="Discover modern, responsive web and app projects like Facebook Clone, FB Video Downloader, and AI tools by Sk Khorrum and Team DRT.">
-<meta name="twitter:image" content="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg">
-
-<title>Sk Khorrum Project - Team DRT</title>
-
-<script src="https://cdn.tailwindcss.com/3.4.16"></script>
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    primary: '#0066ff',
-                    secondary: '#6b21a8'
-                },
-                borderRadius: {
-                    'button': '8px'
-                }
-            }
-        }
-    }
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <meta charset="UTF-8">
+  <title>404</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-/* CSS FİX: The incorrect generic content for ri- classes has been removed to allow Remixicon to function correctly. */
-/* :where([class^="ri-"])::before { content: "\f3c2"; } */ 
+/* Reset and General Styles */
+@import url(//fonts.googleapis.com/css?family=Quicksand:400,700);
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  vertical-align: baseline;
+}
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+body {
+  line-height: 1;
+  background-color: white; /* Changed from #333 to white */
+  font-family: "Quicksand", sans-serif;
+  overflow: hidden;
 }
-@keyframes floatingBubbles {
-    0% { transform: translateY(0) translateX(0); opacity: 0; }
-    50% { opacity: 0.5; }
-    100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+
+ol, ul {
+  list-style: none;
 }
-.animated-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(-45deg, #f0f4ff, #ffffff, #e6f0ff, #ffffff);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    overflow: hidden;
+
+/* Helper Classes (Keep for structure) */
+.u-srOnly {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
-.bubble {
-    position: absolute;
-    background: linear-gradient(45deg, rgba(0, 102, 255, 0.05), rgba(107, 33, 168, 0.05));
-    border-radius: 50%;
-    pointer-events: none;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
-@keyframes loadingAnimation {
-    0% { transform: scale(0.3); opacity: 0.2; }
-    50% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(0.3); opacity: 0.2; }
+
+/* 404 Character Styles */
+.error404page {
+  width: 400px;
+  height: 800px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-@keyframes fadeOutLoader {
-    from { opacity: 1; visibility: visible; }
-    to { opacity: 0; visibility: hidden; }
+
+.body404,
+.head404,
+.eyes404,
+.leftarm404,
+.rightarm404,
+.chair404,
+.leftshoe404,
+.rightshoe404,
+.legs404,
+.laptop404 {
+  /* IMPORTANT: REPLACE THE URL BELOW WITH YOUR CUSTOM SPRITE SHEET */
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/15979/404-character-new.png) 0 0 no-repeat;
+  width: 200px;
+  height: 200px;
 }
-@keyframes slideInContent {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+
+.newcharacter404,
+.torso404,
+.body404,
+.head404,
+.eyes404,
+.leftarm404,
+.rightarm404,
+.chair404,
+.leftshoe404,
+.rightshoe404,
+.legs404,
+.laptop404 {
+  background-size: 750px;
+  position: absolute;
+  display: block;
 }
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+
+.newcharacter404 {
+  width: 400px;
+  height: 800px;
+  left: 50%;
+  top: 20px;
+  margin-left: -200px;
 }
-.loading-dots {
-    display: flex;
-    gap: 8px;
+
+.torso404 {
+  position: absolute;
+  display: block;
+  top: 138px;
+  left: 0px;
+  width: 389px;
+  height: 252px;
+  animation: sway 20s ease infinite;
+  transform-origin: 50% 100%;
 }
-.loading-dot {
-    width: 12px;
-    height: 12px;
-    background: #0066ff;
-    border-radius: 50%;
-    animation: loadingAnimation 1.4s infinite;
+
+.body404 {
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 0px;
+  width: 389px;
+  height: 253px;
 }
-.loading-dot:nth-child(2) { animation-delay: 0.2s; }
-.loading-dot:nth-child(3) { animation-delay: 0.4s; }
-.loading-text {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #0066ff;
-    font-family: 'Pacifico', serif;
+
+.head404 {
+  position: absolute;
+  top: -148px;
+  left: 106px;
+  width: 160px;
+  height: 194px;
+  /* Adjust this position if your new face is in a different spot */
+  background-position: 0px -265px;
+  transform-origin: 50% 85%;
+  animation: headTilt 20s ease infinite;
 }
-.hide-loader {
-    animation: fadeOutLoader 0.5s forwards;
+
+.eyes404 {
+  position: absolute;
+  top: 92px;
+  left: 34px;
+  width: 73px;
+  height: 18px;
+  /* Adjust this position if your new eyes are in a different spot */
+  background-position: -162px -350px;
+  animation: blink404 10s steps(1) infinite, pan 10s ease-in-out infinite;
 }
-.show-content {
-    animation: slideInContent 0.8s forwards;
+
+.leftarm404 {
+  position: absolute;
+  top: 159px;
+  left: 0;
+  width: 165px;
+  height: 73px;
+  background-position: -265px -341px;
+  transform-origin: 9% 35%;
+  transform: rotateZ(0deg);
+  animation: typeLeft 0.4s linear infinite;
 }
-@keyframes ripple {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(2.5); opacity: 0; }
+
+.rightarm404 {
+  position: absolute;
+  top: 148px;
+  left: 231px;
+  width: 157px;
+  height: 91px;
+  background-position: -442px -323px;
+  transform-origin: 90% 25%;
+  animation: typeLeft 0.4s linear infinite;
 }
-.ripple {
-    position: relative;
-    overflow: hidden;
+
+.chair404 {
+  position: absolute;
+  top: 430px;
+  left: 55px;
+  width: 260px;
+  height: 365px;
+  background-position: -12px -697px;
 }
-.ripple-effect {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.4);
-    animation: ripple 0.6s linear;
-    transform: scale(0);
+
+.legs404 {
+  position: absolute;
+  top: 378px;
+  left: 4px;
+  width: 370px;
+  height: 247px;
+  background-position: -381px -443px;
 }
-.card-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+.leftshoe404 {
+  position: absolute;
+  top: 591px;
+  left: 54px;
+  width: 130px;
+  height: 92px;
+  background-position: -315px -749px;
 }
-.card-hover:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+.rightshoe404 {
+  position: absolute;
+  top: 594px;
+  left: 187px;
+  width: 135px;
+  height: 81px;
+  background-position: -453px -749px;
+  transform-origin: 35% 12%;
+  animation: tapRight 1s linear infinite;
 }
-.loading-spinner {
-    display: none;
-    width: 30px;
-    height: 30px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 3s ease-in-out infinite;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+.laptop404 {
+  position: absolute;
+  top: 186px;
+  left: 9px;
+  width: 365px;
+  height: 216px;
+  /* Adjust this position if your new laptop is in a different spot */
+  background-position: -2px -466px;
+  transform-origin: 50% 100%;
+  animation: tapWobble 0.4s linear infinite;
 }
-@keyframes spin {
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+
+/* Animations (Keep as is) */
+@keyframes sway {
+  0% { transform: rotateZ(0deg); } 20% { transform: rotateZ(0deg); } 25% { transform: rotateZ(4deg); } 45% { transform: rotateZ(4deg); } 50% { transform: rotateZ(0deg); } 70% { transform: rotateZ(0deg); } 75% { transform: rotateZ(-4deg); } 90% { transform: rotateZ(-4deg); } 100% { transform: rotateZ(0deg); }
 }
-.fade-in {
-    animation: fadeIn 0.5s ease-in forwards;
+@keyframes headTilt {
+  0% { transform: rotateZ(0deg); } 20% { transform: rotateZ(0deg); } 25% { transform: rotateZ(-4deg); } 35% { transform: rotateZ(-4deg); } 38% { transform: rotateZ(2deg); } 42% { transform: rotateZ(2deg); } 45% { transform: rotateZ(-4deg); } 50% { transform: rotateZ(0deg); } 70% { transform: rotateZ(0deg); } 82% { transform: rotateZ(0deg); } 85% { transform: rotateZ(4deg); } 90% { transform: rotateZ(4deg); } 100% { transform: rotateZ(0deg); }
 }
-.slide-up {
-    animation: slideUp 0.5s ease-out forwards;
+@keyframes typeLeft {
+  0% { transform: rotateZ(0deg); } 25% { transform: rotateZ(7deg); } 75% { transform: rotateZ(-6deg); } 100% { transform: rotateZ(0deg); }
 }
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes typeRight {
+  0% { transform: rotateZ(0deg); } 25% { transform: rotateZ(-6deg); } 75% { transform: rotateZ(7deg); } 100% { transform: rotateZ(0deg); }
 }
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+@keyframes tapWobble {
+  0% { transform: rotateZ(-0.2deg); } 50% { transform: rotateZ(0.2deg); } 100% { transform: rotateZ(-0.2deg); }
 }
-.skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 4.5s infinite;
+@keyframes tapRight {
+  0% { transform: rotateZ(0deg); } 90% { transform: rotateZ(-6deg); } 100% { transform: rotateZ(0deg); }
 }
-@keyframes loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+@keyframes blink404 {
+  0% { background-position: -162px -350px; } 94% { background-position: -162px -350px; } 98% { background-position: -162px -368px; } 100% { background-position: -162px -350px; }
 }
-/* Utility for hiding scrollbar on categories but keeping scrolling */
-.scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-.scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+@keyframes pan {
+  0% { transform: translateX(-2px); } 49% { transform: translateX(-2px); } 50% { transform: translateX(2px); } 99% { transform: translateX(2px); } 100% { transform: translateX(-2px); }
 }
 </style>
 </head>
-<body class="text-gray-800 font-sans opacity-0">
-<div class="animated-bg" id="animatedBg"></div>
-<div class="loading-screen" id="loadingScreen">
-    <div class="flex flex-col items-center justify-center gap-8">
-        <div class="w-24 h-24 relative">
-            <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Sk Khorrum" class="w-full h-full object-contain animate-bounce">
-            <div class="absolute inset-0 bg-primary opacity-20 rounded-full animate-ping"></div>
+<body>
+<div class="container">
+    <div class="error404page">
+        <div class="newcharacter404">
+            <div class="chair404"></div>
+            <div class="leftshoe404"></div>
+            <div class="rightshoe404"></div>
+            <div class="legs404"></div>
+            <div class="torso404">
+                <div class="body404"></div>
+                <div class="leftarm404"></div>
+                <div class="rightarm404"></div>
+                <div class="head404">
+                    <div class="eyes404"></div>
+                </div>
+            </div>
+            <div class="laptop404"></div>
         </div>
-        <div class="loading-dots">
-            <div class="loading-dot"></div>
-            <div class="loading-dot"></div>
-            <div class="loading-dot"></div>
-        </div>
-        <div class="loading-text text-2xl">Team DRT</div>
-        <div class="text-sm text-gray-500">Loading amazing projects...</div>
     </div>
 </div>
-
-<header class="fixed top-0 w-full bg-white shadow-md z-20">
-    <div class="flex items-center justify-between p-4 max-w-7xl mx-auto">
-        <div class="w-8 h-8 flex-shrink-0">
-            <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Logo" class="w-full h-full object-contain">
-        </div>
-        <div class="flex-1 mx-3 md:max-w-md">
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i class="ri-search-line ri-sm text-gray-400"></i>
-                </div>
-                <input type="text" id="searchInput" class="w-full py-2 pl-10 pr-4 rounded-full bg-gray-100 border-none text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition duration-150" placeholder="অনুসন্ধান করুন...">
-            </div>
-        </div>
-    </div>
-</header>
-
-<main class="pt-20 pb-20 px-4 max-w-7xl mx-auto">
-    <h1 class="text-3xl font-extrabold mb-8 text-center text-gray-900">Sk Khorrum Project</h1>
-    
-    <div class="flex overflow-x-auto space-x-4 mb-8 pb-2 scrollbar-hide">
-        <a href="/apps" class="category-btn whitespace-nowrap px-4 py-2 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary/90 transition-all shadow-md flex-shrink-0">এপস প্রকল্প</a>
-        <a href="https://sk-khorrum-ceo.vercel.app/" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-all flex-shrink-0">ডেভেলপার</a>
-        <a href="/premium" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-all flex-shrink-0">প্রিমিয়াম</a>
-        <a href="/Contact.html" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-all flex-shrink-0">যোগাযোগ করুন</a>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6" id="appGrid">
-        
-        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="facebook clone,best site like facebook" data-link="page/Facebook.html">
-            <a href="dk.com" class="block relative">
-                <div class="relative h-36 overflow-hidden">
-                    <img src="/Ass/home/Screenshot_2025_0514_154111.png" alt="Facebook Clone" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
-                </div>
-                <div class="p-3">
-                    <h3 class="font-bold text-lg mb-1">Facebook Clone</h3>
-                    <p class="text-xs text-gray-300 line-clamp-2">I have been working on building a website that mimics the interface and experience of Facebook, purely for educational purposes</p>
-                </div>
-                <div class="loading-spinner"></div>
-            </a>
-        </div>
-        
-        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="ইমেইল মেসেঞ্জার" data-link="https://skkhorrumproject.vercel.app/page/age.html">
-            <a href="https://skkhorrumproject.vercel.app/page/age.html" class="block relative">
-                <div class="relative h-36 overflow-hidden">
-                    <img src="Ass/home/Screenshot_2025_0514_205908.png" alt="age calculator" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
-                </div>
-                <div class="p-3">
-                    <h3 class="font-bold text-lg mb-1">Age calculator</h3>
-                    <p class="text-xs text-gray-300 line-clamp-2">just one click, you can instantly view your current age, the number of days until your next birthday, and the total number of days since you were born.</p>
-                </div>
-                <div class="loading-spinner"></div>
-            </a>
-        </div>
-        
-        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="Facebook Video Downloader, Download Facebook Videos Online, FB Video Downloader HD, Facebook Reels Download, Free Facebook Video Saver, Facebook MP4 Video Download, Facebook Private Video Downloader, Fast FB Video Downloader Tool" data-link="https://skkhorrumproject.vercel.app/page/Fbvedio.html">
-            <a href="https://skkhorrumproject.vercel.app/page/Fbvedio.html" class="block relative">
-                <div class="relative h-36 overflow-hidden">
-                    <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" alt="FB Video downloder" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
-                </div>
-                <div class="p-3">
-                    <h3 class="font-bold text-lg mb-1">FB Video downloder</h3>
-                    <p class="text-xs text-gray-300 line-clamp-2">Download any Facebook video in just one click.Fast, secure, and HD-quality downloads supported.No login required — paste the link and get your video instantly!</p>
-                </div>
-                <div class="loading-spinner"></div>
-            </a>
-        </div>
-        
-        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="X SD কিপার" data-link="https://text-to-images-by-sk-khorrum.vercel.app/">
-            <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="block relative">
-                <div class="relative h-36 overflow-hidden">
-                    <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" alt="ai photo maker" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
-                </div>
-                <div class="p-3">
-                    <h3 class="font-bold text-lg mb-1">ai photo maker</h3>
-                    <p class="text-xs text-gray-300 line-clamp-2">unlimited free photo making toll</p>
-                </div>
-                <div class="loading-spinner"></div>
-            </a>
-        </div>
-        
-        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="secure file website" data-link="https://dark-access-bot444.vercel.app/">
-            <a href="https://dark-access-bot444.vercel.app/" class="block relative">
-                <div class="relative h-36 overflow-hidden">
-                    <img src="Ass/home/Screenshot_2025_0628_184058.png" alt="Secure File" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
-                </div>
-                <div class="p-3">
-                    <h3 class="font-bold text-lg mb-1">Secure File</h3>
-                    <p class="text-xs text-gray-300 line-clamp-2">Secure and Protect your file form hacker</p>
-                </div>
-                <div class="loading-spinner"></div>
-            </a>
-        </div>
-        
-        <div class="card-item ripple card-hover slide-up rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50 relative" data-keywords="demo, portfolio, featured" data-link="https://flow-eight-sigma.vercel.app/index.html">
-            <a href="https://flow-eight-sigma.vercel.app/index.html" class="block relative">
-                <div class="relative h-36 overflow-hidden">
-                    <img src="Ass/home/file_00000000b90c622f8b3c4feb5045cafe.png" alt="Flow Eight Sigma" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
-                </div>
-                <div class="p-3">
-                    <h3 class="font-bold text-lg mb-1 flex items-center gap-2">
-                        Flow Eight Sigma 
-                        <i class="ri-star-fill text-yellow-400 text-sm animate-pulse"></i>
-                    </h3>
-                    <p class="text-xs text-gray-300 line-clamp-2">This tool is for educational & ethical hacking purposes only. Do not use without proper permission Using it wrongly may be considered illegal</p>
-                </div>
-                <div class="loading-spinner"></div>
-            </a>
-        </div>
-        
-        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="E-commerce" data-link="https://skkhorrumproject.vercel.app/page/e-commerce.html">
-            <a href="https://skkhorrumproject.vercel.app/page/e-commerce.html" class="block relative">
-                <div class="relative h-36 overflow-hidden">
-                    <img src="Ass/home/Screenshot_2025_0629_193122.png" alt="YourDaraz" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
-                </div>
-                <div class="p-3">
-                    <h3 class="font-bold text-lg mb-1">YourDaraz</h3>
-                    <p class="text-xs text-gray-300 line-clamp-2">YourDaraz is a demo e-commerce website** built for showcasing modern product layouts.</p>
-                </div>
-                <div class="loading-spinner"></div>
-            </a>
-        </div>
-        
-        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="E-commerce" data-link="https://khela-dakhbo.vercel.app/">
-            <a href="https://khela-dakhbo.vercel.app/" class="block relative">
-                <div class="relative h-36 overflow-hidden">
-                    <img src="Ass/home/Screenshot_2025_0710_075636.png" alt="Khela Dakhbo" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
-                </div>
-                <div class="p-3">
-                    <h3 class="font-bold text-lg mb-1 flex items-center gap-2">
-                        Khela Dakhbo
-                        <i class="ri-star-fill text-yellow-400 text-sm animate-pulse"></i>
-                    </h3>
-                    <p class="text-xs text-gray-300 line-clamp-2">Watch Your Favorite Cricket Channels</p>
-                </div>
-                <div class="loading-spinner"></div>
-            </a>
-        </div>
-
-    </div>
-</main>
-
-<nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 z-20 md:hidden">
-    <div class="grid grid-cols-3 h-16 max-w-lg mx-auto">
-        <a href="/home" class="flex flex-col items-center justify-center space-y-1 cursor-pointer hover:bg-gray-50 transition-colors">
-            <div class="w-6 h-6 flex items-center justify-center">
-                <i class="ri-home-smile-fill ri-lg text-primary"></i>
-            </div>
-            <span class="text-xs font-semibold text-primary">হোম</span>
-        </a>
-        <a href="/projects" class="flex flex-col items-center justify-center space-y-1 cursor-pointer hover:bg-gray-50 transition-colors">
-            <div class="w-6 h-6 flex items-center justify-center">
-                <i class="ri-folder-shield-2-line ri-lg text-gray-500"></i>
-            </div>
-            <span class="text-xs text-gray-500">প্রোজেক্ট</span>
-        </a>
-        <a href="/creator" class="flex flex-col items-center justify-center space-y-1 cursor-pointer hover:bg-gray-50 transition-colors">
-            <div class="w-6 h-6 flex items-center justify-center">
-                <i class="ri-user-star-line ri-lg text-gray-500"></i>
-            </div>
-            <span class="text-xs text-gray-500">ক্রিয়েটর</span>
-        </a>
-    </div>
-</nav>
-
-<script>
-    // Helper function to check if an element is visible
-    function isElementVisible(el) {
-        return window.getComputedStyle(el).display !== 'none';
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        // Background Bubbles Animation
-        const animatedBg = document.getElementById('animatedBg');
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            const size = Math.random() * 100 + 50;
-            bubble.style.width = `${size}px`;
-            bubble.style.height = `${size}px`;
-            bubble.style.left = `${Math.random() * 100}%`;
-            bubble.style.bottom = '-100px';
-            bubble.style.animation = `floatingBubbles ${Math.random() * 10 + 15}s linear infinite`;
-            animatedBg.appendChild(bubble);
-            
-            bubble.addEventListener('animationend', () => {
-                bubble.remove();
-            });
-        }
-
-        // Initialize bubbles and set interval
-        for(let i = 0; i < 10; i++) {
-            setTimeout(createBubble, 300 * i);
-        }
-        setInterval(createBubble, 3000);
-
-
-        // Loading Screen & Initial Content Fade-in
-        const loadingScreen = document.getElementById('loadingScreen');
-        const body = document.body;
-        setTimeout(() => {
-            loadingScreen.classList.add('hide-loader');
-            // Ensure content is visible after loader hides
-            body.style.opacity = '1'; 
-            body.classList.add('show-content');
-        }, 2000);
-
-        // Ripple effect
-        document.querySelectorAll('.ripple').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const rect = e.target.closest('.ripple').getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple-effect');
-                
-                const maxDim = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = `${maxDim * 2.5}px`;
-
-                ripple.style.left = `${x - maxDim * 1.25}px`;
-                ripple.style.top = `${y - maxDim * 1.25}px`;
-
-                this.appendChild(ripple);
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-
-        // Loading animation when clicking on cards
-        document.querySelectorAll('.card-item').forEach(card => {
-            const link = card.dataset.link;
-            const cardLink = card.querySelector('a');
-            
-            cardLink.addEventListener('click', function(e) {
-                if (link && link !== '#' && !e.metaKey && !e.ctrlKey) { // Prevent default action for link, unless ctrl/cmd is pressed
-                    e.preventDefault();
-                    const spinner = this.querySelector('.loading-spinner');
-                    spinner.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        spinner.style.display = 'none';
-                        window.open(link, '_blank');
-                    }, 1000);
-                }
-            });
-        });
-
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const appCards = document.querySelectorAll('.card-item');
-
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            
-            appCards.forEach(card => {
-                const keywords = card.dataset.keywords.toLowerCase();
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                
-                if (searchTerm === "" || keywords.includes(searchTerm) || title.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                    card.classList.add('fade-in');
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Category buttons
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                categoryButtons.forEach(btn => {
-                    // Reset all buttons to default style
-                    btn.classList.remove('bg-primary', 'text-white', 'text-gray-800');
-                    btn.classList.add('bg-gray-200', 'text-gray-800');
-                });
-                // Set the clicked button to active style
-                this.classList.remove('bg-gray-200', 'text-gray-800');
-                this.classList.add('bg-primary', 'text-white');
-                
-                // Add your filtering logic here if needed
-                // e.g., filter cards based on a data-category attribute.
-            });
-        });
-        
-        // Add initial slide-up animation to cards
-        let initialCards = Array.from(appCards);
-        initialCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.classList.add('slide-up');
-            }, 100 * index);
-        });
-    });
-</script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
 </html>
