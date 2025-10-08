@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Sk Khorrum Project: A collection of modern, responsive web and app projects including Facebook Clone, FB Video Downloader, AI Photo Maker, and e-commerce demos by Team DRT.">
+<meta name="keywords" content="Sk Khorrum, Team DRT, Facebook Clone, FB Video Downloader, Age Calculator, AI Photo Maker, Web Projects, Apps, E-commerce, Flow Eight Sigma">
+<meta name="author" content="Sk Khorrum / Team DRT">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Sk Khorrum Project | Team DRT's Portfolio">
+<meta property="og:description" content="Discover modern, responsive web and app projects like Facebook Clone, FB Video Downloader, and AI tools by Sk Khorrum and Team DRT.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://skkhorrumproject.vercel.app/"> 
+<meta property="og:image" content="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg">
+<meta property="og:site_name" content="Sk Khorrum Project">
+<meta property="og:locale" content="bn_BD">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sk Khorrum Project | Team DRT's Portfolio">
+<meta name="twitter:description" content="Discover modern, responsive web and app projects like Facebook Clone, FB Video Downloader, and AI tools by Sk Khorrum and Team DRT.">
+<meta name="twitter:image" content="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg">
+
+<title>Sk Khorrum Project - Team DRT</title>
+
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#0066ff',
+                    secondary: '#6b21a8'
+                },
+                borderRadius: {
+                    'button': '8px'
+                }
+            }
+        }
+    }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+/* CSS FİX: The incorrect generic content for ri- classes has been removed to allow Remixicon to function correctly. */
+/* :where([class^="ri-"])::before { content: "\f3c2"; } */ 
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes floatingBubbles {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(-45deg, #f0f4ff, #ffffff, #e6f0ff, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    overflow: hidden;
+}
+.bubble {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(0, 102, 255, 0.05), rgba(107, 33, 168, 0.05));
+    border-radius: 50%;
+    pointer-events: none;
+}
+@keyframes loadingAnimation {
+    0% { transform: scale(0.3); opacity: 0.2; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.3); opacity: 0.2; }
+}
+@keyframes fadeOutLoader {
+    from { opacity: 1; visibility: visible; }
+    to { opacity: 0; visibility: hidden; }
+}
+@keyframes slideInContent {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.loading-dots {
+    display: flex;
+    gap: 8px;
+}
+.loading-dot {
+    width: 12px;
+    height: 12px;
+    background: #0066ff;
+    border-radius: 50%;
+    animation: loadingAnimation 1.4s infinite;
+}
+.loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.loading-dot:nth-child(3) { animation-delay: 0.4s; }
+.loading-text {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #0066ff;
+    font-family: 'Pacifico', serif;
+}
+.hide-loader {
+    animation: fadeOutLoader 0.5s forwards;
+}
+.show-content {
+    animation: slideInContent 0.8s forwards;
+}
+@keyframes ripple {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    animation: ripple 0.6s linear;
+    transform: scale(0);
+}
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.loading-spinner {
+    display: none;
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 3s ease-in-out infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.fade-in {
+    animation: fadeIn 0.5s ease-in forwards;
+}
+.slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 4.5s infinite;
+}
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+/* Utility for hiding scrollbar on categories but keeping scrolling */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+</style>
+</head>
+<body class="text-gray-800 font-sans opacity-0">
+<div class="animated-bg" id="animatedBg"></div>
+<div class="loading-screen" id="loadingScreen">
+    <div class="flex flex-col items-center justify-center gap-8">
+        <div class="w-24 h-24 relative">
+            <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Sk Khorrum" class="w-full h-full object-contain animate-bounce">
+            <div class="absolute inset-0 bg-primary opacity-20 rounded-full animate-ping"></div>
+        </div>
+        <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+        <div class="loading-text text-2xl">Team DRT</div>
+        <div class="text-sm text-gray-500">Loading amazing projects...</div>
+    </div>
+</div>
+
+<header class="fixed top-0 w-full bg-white shadow-md z-20">
+    <div class="flex items-center justify-between p-4 max-w-7xl mx-auto">
+        <div class="w-8 h-8 flex-shrink-0">
+            <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Logo" class="w-full h-full object-contain">
+        </div>
+        <div class="flex-1 mx-3 md:max-w-md">
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="ri-search-line ri-sm text-gray-400"></i>
+                </div>
+                <input type="text" id="searchInput" class="w-full py-2 pl-10 pr-4 rounded-full bg-gray-100 border-none text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition duration-150" placeholder="অনুসন্ধান করুন...">
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="pt-20 pb-20 px-4 max-w-7xl mx-auto">
+    <h1 class="text-3xl font-extrabold mb-8 text-center text-gray-900">Sk Khorrum Project</h1>
+    
+    <div class="flex overflow-x-auto space-x-4 mb-8 pb-2 scrollbar-hide">
+        <a href="/apps" class="category-btn whitespace-nowrap px-4 py-2 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary/90 transition-all shadow-md flex-shrink-0">এপস প্রকল্প</a>
+        <a href="https://sk-khorrum-ceo.vercel.app/" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-all flex-shrink-0">ডেভেলপার</a>
+        <a href="/premium" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-all flex-shrink-0">প্রিমিয়াম</a>
+        <a href="/Contact.html" class="category-btn whitespace-nowrap px-4 py-2 bg-gray-200 rounded-full text-sm font-medium hover:bg-gray-300 transition-all flex-shrink-0">যোগাযোগ করুন</a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6" id="appGrid">
+        
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="facebook clone,best site like facebook" data-link="page/Facebook.html">
+            <a href="dk.com" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="/Ass/home/Screenshot_2025_0514_154111.png" alt="Facebook Clone" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1">Facebook Clone</h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">I have been working on building a website that mimics the interface and experience of Facebook, purely for educational purposes</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+        
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="ইমেইল মেসেঞ্জার" data-link="https://skkhorrumproject.vercel.app/page/age.html">
+            <a href="https://skkhorrumproject.vercel.app/page/age.html" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/Screenshot_2025_0514_205908.png" alt="age calculator" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1">Age calculator</h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">just one click, you can instantly view your current age, the number of days until your next birthday, and the total number of days since you were born.</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+        
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="Facebook Video Downloader, Download Facebook Videos Online, FB Video Downloader HD, Facebook Reels Download, Free Facebook Video Saver, Facebook MP4 Video Download, Facebook Private Video Downloader, Fast FB Video Downloader Tool" data-link="https://drt-downloader.vercel.app/">
+            <a href="https://drt-downloader.vercel.app/" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" alt="FB Video downloder" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1">FB Video downloder</h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">Download any Facebook video in just one click.Fast, secure, and HD-quality downloads supported.No login required — paste the link and get your video instantly!</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+        
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="X SD কিপার" data-link="https://text-to-images-by-sk-khorrum.vercel.app/">
+            <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" alt="ai photo maker" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1">ai photo maker</h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">unlimited free photo making toll</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+        
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="secure file website" data-link="https://dark-access-bot444.vercel.app/">
+            <a href="https://dark-access-bot444.vercel.app/" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/Screenshot_2025_0628_184058.png" alt="Secure File" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1">Secure File</h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">Secure and Protect your file form hacker</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+        
+        <div class="card-item ripple card-hover slide-up rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50 relative" data-keywords="demo, portfolio, featured" data-link="https://flow-eight-sigma.vercel.app/index.html">
+            <a href="https://flow-eight-sigma.vercel.app/index.html" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/file_00000000b90c622f8b3c4feb5045cafe.png" alt="Flow Eight Sigma" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1 flex items-center gap-2">
+                        Flow Eight Sigma 
+                        <i class="ri-star-fill text-yellow-400 text-sm animate-pulse"></i>
+                    </h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">This tool is for educational & ethical hacking purposes only. Do not use without proper permission Using it wrongly may be considered illegal</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+        
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="E-commerce" data-link="https://skkhorrumproject.vercel.app/page/e-commerce.html">
+            <a href="https://skkhorrumproject.vercel.app/page/e-commerce.html" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/Screenshot_2025_0629_193122.png" alt="YourDaraz" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1">YourDaraz</h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">YourDaraz is a demo e-commerce website** built for showcasing modern product layouts.</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+        
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="E-commerce" data-link="https://khela-dakhbo.vercel.app/">
+            <a href="https://khela-dakhbo.vercel.app/" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/Screenshot_2025_0710_075636.png" alt="Khela Dakhbo" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1 flex items-center gap-2">
+                        Khela Dakhbo
+                        <i class="ri-star-fill text-yellow-400 text-sm animate-pulse"></i>
+                    </h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">Watch Your Favorite Cricket Channels</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="Note" data-link="https://enote-gamma.vercel.app/">
+            <a href="https://enote-gamma.vercel.app/" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/file_0000000083c861f48d0390134a2ad31a.png" alt="Khela Dakhbo" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1 flex items-center gap-2">
+                        E NOTE
+                        <i class="ri-star-fill text-yellow-400 text-sm animate-pulse"></i>
+                    </h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">Online Note</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+
+        <div class="card-item ripple card-hover rounded-lg overflow-hidden bg-gray-800 text-white shadow-xl hover:shadow-primary/50" data-keywords="love" data-link="https://obakchowdhory.vercel.app/">
+            <a href="https://obakchowdhory.vercel.app/" class="block relative">
+                <div class="relative h-36 overflow-hidden">
+                    <img src="Ass/home/Screenshot_2025_1003_164820.png" alt="ai photo maker" class="w-full h-full object-cover object-top transition duration-500 hover:scale-110">
+                </div>
+                <div class="p-3">
+                    <h3 class="font-bold text-lg mb-1">Proposed web</h3>
+                    <p class="text-xs text-gray-300 line-clamp-2">Wanna be my Valentine</p>
+                </div>
+                <div class="loading-spinner"></div>
+            </a>
+        </div>
+        </div>
+</main>
+
+<nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 z-20 md:hidden">
+    <div class="grid grid-cols-3 h-16 max-w-lg mx-auto">
+        <a href="/home" class="flex flex-col items-center justify-center space-y-1 cursor-pointer hover:bg-gray-50 transition-colors">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-home-smile-fill ri-lg text-primary"></i>
+            </div>
+            <span class="text-xs font-semibold text-primary">হোম</span>
+        </a>
+        <a href="/projects" class="flex flex-col items-center justify-center space-y-1 cursor-pointer hover:bg-gray-50 transition-colors">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-folder-shield-2-line ri-lg text-gray-500"></i>
+            </div>
+            <span class="text-xs text-gray-500">প্রোজেক্ট</span>
+        </a>
+        <a href="/creator" class="flex flex-col items-center justify-center space-y-1 cursor-pointer hover:bg-gray-50 transition-colors">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-user-star-line ri-lg text-gray-500"></i>
+            </div>
+            <span class="text-xs text-gray-500">ক্রিয়েটর</span>
+        </a>
+    </div>
+</nav>
+
+<script>
+    // Helper function to check if an element is visible
+    function isElementVisible(el) {
+        return window.getComputedStyle(el).display !== 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Background Bubbles Animation
+        const animatedBg = document.getElementById('animatedBg');
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = Math.random() * 100 + 50;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.bottom = '-100px';
+            bubble.style.animation = `floatingBubbles ${Math.random() * 10 + 15}s linear infinite`;
+            animatedBg.appendChild(bubble);
+            
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+            });
+        }
+
+        // Initialize bubbles and set interval
+        for(let i = 0; i < 10; i++) {
+            setTimeout(createBubble, 300 * i);
+        }
+        setInterval(createBubble, 3000);
+
+
+        // Loading Screen & Initial Content Fade-in
+        const loadingScreen = document.getElementById('loadingScreen');
+        const body = document.body;
+        // ⭐⭐ Changed to 5000ms for 5 seconds loading animation ⭐⭐
+        setTimeout(() => {
+            loadingScreen.classList.add('hide-loader');
+            // Ensure content is visible after loader hides
+            body.style.opacity = '1'; 
+            body.classList.add('show-content');
+        }, 5000); // 5 seconds wait
+
+        // Ripple effect
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const rect = e.target.closest('.ripple').getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                
+                const maxDim = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = `${maxDim * 2.5}px`;
+
+                ripple.style.left = `${x - maxDim * 1.25}px`;
+                ripple.style.top = `${y - maxDim * 1.25}px`;
+
+                this.appendChild(ripple);
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Loading animation when clicking on cards
+        document.querySelectorAll('.card-item').forEach(card => {
+            const link = card.dataset.link;
+            const cardLink = card.querySelector('a');
+            
+            cardLink.addEventListener('click', function(e) {
+                if (link && link !== '#' && !e.metaKey && !e.ctrlKey) { // Prevent default action for link, unless ctrl/cmd is pressed
+                    e.preventDefault();
+                    const spinner = this.querySelector('.loading-spinner');
+                    spinner.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        spinner.style.display = 'none';
+                        window.open(link, '_blank');
+                    }, 1000);
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const appCards = document.querySelectorAll('.card-item');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            
+            appCards.forEach(card => {
+                const keywords = card.dataset.keywords.toLowerCase();
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (searchTerm === "" || keywords.includes(searchTerm) || title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    card.classList.add('fade-in');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Category buttons
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                categoryButtons.forEach(btn => {
+                    // Reset all buttons to default style
+                    btn.classList.remove('bg-primary', 'text-white', 'text-gray-800');
+                    btn.classList.add('bg-gray-200', 'text-gray-800');
+                });
+                // Set the clicked button to active style
+                this.classList.remove('bg-gray-200', 'text-gray-800');
+                this.classList.add('bg-primary', 'text-white');
+                
+                // Add your filtering logic here if needed
+                // e.g., filter cards based on a data-category attribute.
+            });
+        });
+        
+        // Add initial slide-up animation to cards
+        let initialCards = Array.from(appCards);
+        initialCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('slide-up');
+            }, 100 * index);
+        });
+    });
+</script>
+</body>
+</html>
