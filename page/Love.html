@@ -3,39 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ভালোবাসার সুন্দর মুহূর্ত</title>
+    <title>Pure CSS Love UI</title>
     
     <style>
-        /* ফেইড ইন টেক্সট অ্যানিমেশন */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 0.9; transform: translateY(0); }
-        }
-
-        /* হার্ট পালস অ্যানিমেশন */
+        /* ১. অ্যানিমেশন কীফ্রেম: হার্ট স্পন্দন */
         @keyframes pulse {
-            0% { transform: scale(1) rotate(-45deg); opacity: 0.8; }
-            50% { transform: scale(1.15) rotate(-45deg); opacity: 1; }
-            100% { transform: scale(1) rotate(-45deg); opacity: 0.8; }
+            0% { transform: scale(1) rotate(-45deg); opacity: 0.7; }
+            50% { transform: scale(1.2) rotate(-45deg); opacity: 1; box-shadow: 0 0 25px rgba(255, 0, 100, 1); }
+            100% { transform: scale(1) rotate(-45deg); opacity: 0.7; }
         }
 
-        /* পাখির উড্ডয়ন অ্যানিমেশন */
-        @keyframes flyCircular {
-            0% { transform: translate(0, 0) scale(0.6); opacity: 0.8; }
-            25% { transform: translate(100px, -50px) scale(0.7); opacity: 1; }
-            50% { transform: translate(200px, 0) scale(0.6); opacity: 0.8; }
-            75% { transform: translate(100px, 50px) scale(0.7); opacity: 1; }
-            100% { transform: translate(0, 0) scale(0.6); opacity: 0.8; }
+        /* ২. অ্যানিমেশন কীফ্রেম: বৃষ্টি বা কণা ঝরে পড়া */
+        @keyframes rainFall {
+            0% { transform: translateY(-100vh) translateX(0); opacity: 0.1; }
+            100% { transform: translateY(100vh) translateX(50px); opacity: 0.5; }
         }
-        
-        @keyframes flyOpposite {
-            0% { transform: translate(0, 0) scale(0.6); opacity: 0.8; }
-            25% { transform: translate(-100px, 50px) scale(0.7); opacity: 1; }
-            50% { transform: translate(-200px, 0) scale(0.6); opacity: 0.8; }
-            75% { transform: translate(-100px, -50px) scale(0.7); opacity: 1; }
-            100% { transform: translate(0, 0) scale(0.6); opacity: 0.8; }
-        }
-
 
         body {
             margin: 0;
@@ -43,59 +25,50 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #fce4ec; /* ছবির সাথে মানানসই হালকা গোলাপী ব্যাকগ্রাউন্ড */
+            background: linear-gradient(135deg, #1f0714 0%, #4a1942 100%); /* গভীর গোলাপী-বেগুনি ব্যাকগ্রাউন্ড */
             overflow: hidden;
+            color: #ffcce5;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .love-scene {
-            background-image: url('https://skkhorrumproject.vercel.app/pngtree-cowherd-and-weaver-girl-express-their-love-on-qixi-festival-image_2114409.jpg'); 
-            background-size: cover;
-            background-position: center;
-            width: 900px; /* ছবির রেজোলিউশন অনুযায়ী সাইজ বাড়ানো হলো */
-            height: 600px; /* ছবির রেজোলিউশন অনুযায়ী সাইজ বাড়ানো হলো */
             position: relative;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-            border-radius: 15px;
-            overflow: hidden; /* ভেতরের অ্যানিমেশন যেন বাইরে না যায় */
         }
 
-        .message {
-            position: absolute;
-            top: 5%;
-            width: 100%;
+        .container {
+            position: relative;
+            z-index: 10;
             text-align: center;
-            color: #880e4f; /* ছবির সাথে মানানসই গাঢ় গোলাপী */
-            font-size: 2.5em;
-            font-weight: bold;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-            opacity: 0.9;
-            animation: fadeIn 2s ease-out forwards; 
-            animation-delay: 0.5s; /* কিছুক্ষণ পর টেক্সট আসবে */
         }
 
-        /* স্পন্দিত হার্ট (Pulsing Heart) তৈরি: */
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ৩. কেন্দ্রীয় স্পন্দিত হার্ট (CSS Art) */
         .pulsing-heart {
-            position: absolute;
-            top: 55%; /* ছবির মাঝের হার্টের পজিশনের কাছাকাছি */
-            left: 50%;
-            width: 50px; /* হার্টের সাইজ বাড়ানো হলো */
-            height: 50px;
-            background-color: #e91e63; /* আরও উজ্জ্বল গোলাপী */
+            width: 80px;
+            height: 80px;
+            background-color: #ff0064; /* উজ্জ্বল গোলাপী */
             transform: rotate(-45deg);
             border-radius: 50% 50% 0 0; 
-            box-shadow: 0 0 15px rgba(233, 30, 99, 0.7); /* হালকা গ্লো ইফেক্ট */
-            animation: pulse 1.8s infinite ease-in-out;
-            margin-left: -25px; /* হার্টকে কেন্দ্রে আনতে */
-            z-index: 10; /* যেন অন্য উপাদানের উপরে থাকে */
+            margin: 50px auto;
+            position: relative;
+            animation: pulse 2.5s infinite ease-in-out;
+            box-shadow: 0 0 15px rgba(255, 0, 100, 0.7);
         }
         .pulsing-heart::before,
         .pulsing-heart::after {
             content: '';
             position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: #e91e63;
+            width: 80px;
+            height: 80px;
+            background-color: #ff0064;
             border-radius: 50% 50% 0 0;
         }
         .pulsing-heart::before {
@@ -108,60 +81,67 @@
             transform: rotate(90deg);
         }
 
-        /* উড়ন্ত পাখি (Flying Birds) তৈরি ও অ্যানিমেশন: */
-        .bird-pair {
+        /* ৪. বৃষ্টির কণা বা লাভ ড্রপলেটস */
+        .rain {
             position: absolute;
-            top: 20%; /* ছবির উপরের দিকে */
-            left: 10%; /* বাম দিক থেকে শুরু */
-            width: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .drop {
+            position: absolute;
+            width: 2px;
             height: 20px;
-            background-color: #5d4037; /* ছবির সাথে মানানসই গাঢ় বাদামী */
+            background-color: rgba(255, 192, 203, 0.8); /* হালকা গোলাপী কণা */
             border-radius: 50%;
-            opacity: 0.8;
-            animation: flyCircular 8s infinite linear;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            animation: rainFall 10s linear infinite;
         }
-
-        .bird-2 {
-            top: 25%;
-            left: 80%; /* ডান দিক থেকে শুরু */
-            animation: flyOpposite 9s infinite linear reverse; /* উল্টো দিকে ওড়ে, ভিন্ন গতিতে */
-            animation-delay: 3s; /* দ্বিতীয় পাখি দেরিতে শুরু হবে */
-            width: 18px;
-            height: 18px;
-            background-color: #5d4037;
+        
+        /* প্রতিটি কণাকে ভিন্ন গতি ও অবস্থানে সেট করা */
+        .drop:nth-child(even) {
+            animation-duration: 8s;
+            left: 20%;
+            animation-delay: 1s;
         }
-
-        /* আরও একটি পাখির সেট যোগ করা হলো */
-        .bird-3 {
-            position: absolute;
-            top: 15%; 
-            left: 50%; 
-            width: 16px;
-            height: 16px;
-            background-color: #a1887f; /* হালকা বাদামী */
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: flyCircular 10s infinite linear;
+        .drop:nth-child(3n) {
+            animation-duration: 12s;
+            left: 50%;
             animation-delay: 5s;
-            box-shadow: 0 0 5px rgba(0,0,0,0.2);
         }
-
+        .drop:nth-child(4n + 1) {
+            animation-duration: 9s;
+            left: 70%;
+            animation-delay: 2s;
+        }
+        .drop:nth-child(5n) {
+            animation-duration: 15s;
+            left: 90%;
+            animation-delay: 4s;
+            height: 30px;
+        }
     </style>
 </head>
 <body>
-    <div class="love-scene">
-        <div class="animated-elements">
-            <div class="bird-pair bird-1"></div>
-            
-            <div class="bird-pair bird-2"></div>
+    <div class="rain">
+        <div class="drop" style="left: 10%; animation-duration: 11s;"></div>
+        <div class="drop" style="left: 25%; animation-duration: 7s; animation-delay: 3s;"></div>
+        <div class="drop" style="left: 40%; animation-duration: 13s; animation-delay: 6s;"></div>
+        <div class="drop" style="left: 55%; animation-duration: 9s; animation-delay: 1s;"></div>
+        <div class="drop" style="left: 75%; animation-duration: 14s; animation-delay: 5s;"></div>
+        <div class="drop" style="left: 5%; animation-duration: 10s; animation-delay: 2s;"></div>
+        <div class="drop" style="left: 65%; animation-duration: 8s; animation-delay: 4s;"></div>
+        <div class="drop" style="left: 85%; animation-duration: 12s; animation-delay: 7s;"></div>
+        <div class="drop" style="left: 35%; animation-duration: 9.5s; animation-delay: 0.5s;"></div>
+        <div class="drop" style="left: 95%; animation-duration: 11.5s; animation-delay: 8.5s;"></div>
+    </div>
 
-            <div class="bird-pair bird-3"></div>
-
-            <div class="pulsing-heart"></div>
-        </div>
-        
-        <h1 class="message">তোমাকে ছাড়া সব কিছুই বৃথা</h1>
+    <div class="container">
+        <h1>তুমি আমার হৃদয়ের আলো</h1>
+        <div class="pulsing-heart"></div>
+        <p style="font-size: 1.2em;">ভালোবাসা চিরন্তন</p>
     </div>
 </body>
 </html>
