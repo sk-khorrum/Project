@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   
   <title>WeatherNow | Live Weather Forecast | By Humayun Shariar Himu</title>
-  
   <meta name="description" content="See live weather updates with WeatherNow, an app by Humayun Shariar Himu. Get accurate 7-day forecasts for your location using GPS & IP.">
-  
   <meta name="author" content="Humayun Shariar Himu">
-  
   <meta name="keywords" content="weather, live weather, today's weather, weather forecast, Weather app, WeatherNow, Humayun Shariar Himu, GPS weather, weather report, Weather Bangladesh">
 
   <style>
-    /* Fonts for 3D and Stylish Design */
+    /* Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Orbitron:wght@400;700&display=swap');
 
     :root {
@@ -28,7 +25,6 @@
     }
     * { 
       box-sizing: border-box; 
-      /* Using 'Orbitron' as fallback for English characters */
       font-family: 'Orbitron', "Noto Sans Bengali", sans-serif; 
     }
     body {
@@ -41,22 +37,68 @@
       justify-content: flex-start;
       min-height: 100vh;
       padding: 10px;
+      perspective: 1500px;
       
-      /* (New) Animated Gradient Background */
+      /* ======================================================
+        * (পরিবর্তন) ডাইনামিক ব্যাকগ্রাউন্ড 
+        ======================================================
+      */
+      /* ডিফল্ট ব্যাকগ্রাউন্ড (পরিষ্কার আকাশ) */
       background: linear-gradient(-45deg, #0e172a, #1e293b, #0e172a, #334155);
       background-size: 400% 400%;
       animation: animatedBg 15s ease infinite;
       
-      /* For 3D Effect */
-      perspective: 1500px;
+      /* ব্যাকগ্রাউন্ড পরিবর্তনের সময় স্মুথ ট্রানজিশন */
+      transition: background 1s ease;
     }
 
-    /* (New) Background Animation */
+    /* ব্যাকগ্রাউন্ড অ্যানিমেশন */
     @keyframes animatedBg {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
+    /* (নতুন) বিভিন্ন আবহাওয়ার জন্য ব্যাকগ্রাউন্ড ক্লাস */
+    
+    /* ডিফল্ট / পরিষ্কার */
+    body.weather-clear {
+      background: linear-gradient(-45deg, #0e172a, #1e293b, #0e172a, #334155);
+      background-size: 400% 400%;
+      animation: animatedBg 15s ease infinite;
+    }
+    
+    /* মেঘলা */
+    body.weather-clouds {
+      background: linear-gradient(180deg, #334155 0%, #64748b 100%);
+      animation: none;
+    }
+    
+    /* বৃষ্টি */
+    body.weather-rain {
+      background: linear-gradient(180deg, #1e293b 0%, #475569 100%);
+      animation: none;
+    }
+    
+    /* ঝড় */
+    body.weather-storm {
+      background: linear-gradient(180deg, #0f172a 0%, #334155 100%);
+      animation: none;
+    }
+
+    /* কুয়াশা */
+    body.weather-fog {
+      background: linear-gradient(180deg, #64748b 0%, #94a3b8 100%);
+      animation: none;
+    }
+    
+    /* তুষার */
+    body.weather-snow {
+      background: linear-gradient(180deg, #94a3b8 0%, #e2e8f0 100%);
+      animation: none;
+    }
+    
+    /* =================== ব্যাকগ্রাউন্ড স্টাইল শেষ =================== */
 
     .app { 
       width: 100%; 
@@ -78,32 +120,8 @@
       font-size: 0.85rem; 
       margin: 4px 0; 
     }
-    .controls { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 8px; 
-      margin-bottom: 10px; 
-    }
-    button {
-      width: 100%;
-      background: var(--accent);
-      border: none;
-      padding: 12px; 
-      border-radius: 8px;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-      font-family: 'Orbitron', sans-serif; /* Buttons in English font */
-    }
-    button:hover { 
-      background: #0891b2; 
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
-    }
+
     .card {
-      /* Glassmorphism Design */
       background: var(--card-bg);
       backdrop-filter: blur(10px);
       border: 1px solid var(--card-border);
@@ -111,24 +129,18 @@
       padding: 15px;
       margin-bottom: 12px; 
       box-shadow: 0 8px 32px var(--shadow); 
-      
-      /* For 3D Hover Effect */
       transition: all 0.25s ease-out;
       transform-style: preserve-3d;
-
-      /* (New) Card Load Animation */
       animation: fadeIn 0.5s ease-out forwards;
       opacity: 0;
     }
     .card:nth-of-type(2) { animation-delay: 0.1s; }
 
-    /* (New) Card Load Animation */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* (Changed) 3D Effect on Card Hover */
     .card:hover {
       transform: rotateX(5deg) rotateY(3deg) scale(1.03);
       box-shadow: 0 12px 40px var(--shadow), 0 0 20px var(--accent-glow);
@@ -145,7 +157,6 @@
       font-size: 52px; 
       margin-bottom: 6px; 
       animation: pulseIcon 3s infinite ease-in-out;
-      /* (New) For 3D Hover */
       transform: translateZ(30px); 
       text-shadow: 0 0 15px var(--accent-glow);
     }
@@ -153,14 +164,12 @@
       font-size: 40px; 
       font-weight: 700; 
       font-family: 'Orbitron', sans-serif; 
-      /* (New) For 3D Hover */
       transform: translateZ(50px); 
       text-shadow: 0 0 10px var(--accent-glow);
     }
     .summary { 
       font-size: 1rem; 
       color: var(--muted); 
-      /* (New) For 3D Hover */
       transform: translateZ(20px);
     }
     .location { 
@@ -220,18 +229,14 @@
     }
   </style>
 </head>
-<body>
-  <div class="app">
+<body class="weather-clear"> <div class="app">
     <header>
       <h1>WeatherNow</h1>
-      <p>Live Weather Tracker Application with GPS & IP Location</p>
+      <p>Live Weather Tracker Application</p>
     </header>
 
-    <div class="controls">
-      <button id="useGps">📍 Use GPS Location</button>
-      <button id="useIp">🌐 Use IP Location</button>
-      <button id="refresh">🔄 Refresh</button>
-      <div id="status" style="text-align:center;color:var(--muted);font-size:0.85rem;">Processing...</div>
+    <div id="status" style="text-align:center;color:var(--muted);font-size:0.85rem; margin-bottom: 10px;">
+      Processing...
     </div>
 
     <div class="card">
@@ -260,7 +265,7 @@
   </div>
 
   <script>
-    // --- All JavaScript text is now in English ---
+    // --- JavaScript ---
     
     const weatherMap = {
       0:['Clear sky','☀️'],1:['Partly cloudy','🌤️'],2:['Cloudy','⛅'],3:['Overcast','☁️'],
@@ -271,21 +276,8 @@
     const $ = id => document.getElementById(id);
     const status = $('status');
 
-    async function reverseGeocode(lat, lon) {
-      try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
-        const j = await res.json();
-        return {
-          city: j.address.city || j.address.town || j.address.village || "Unknown location",
-          country: j.address.country || ""
-        };
-      } catch {
-        return { city: "Unknown", country: "" };
-      }
-    }
-
     async function getIpLocation() {
-      status.textContent = 'Getting IP location...';
+      status.textContent = 'Finding location via IP...'; 
       try {
         const res = await fetch('https://ipwho.is/');
         const j = await res.json();
@@ -302,6 +294,28 @@
       return r.json();
     }
 
+    // (নতুন) ব্যাকগ্রাউন্ড পরিবর্তন করার ফাংশন
+    function updateWeatherBackground(code) {
+      // প্রথমে সব ক্লাস মুছে ফেলা হচ্ছে
+      document.body.className = '';
+      
+      if (code === 0) { // পরিষ্কার
+        document.body.classList.add('weather-clear');
+      } else if (code >= 1 && code <= 3) { // মেঘলা
+        document.body.classList.add('weather-clouds');
+      } else if (code === 45) { // কুয়াশা
+        document.body.classList.add('weather-fog');
+      } else if (code === 61 || code === 63 || code === 65) { // বৃষ্টি
+        document.body.classList.add('weather-rain');
+      } else if (code === 71) { // তুষার
+        document.body.classList.add('weather-snow');
+      } else if (code === 95) { // বজ্রসহ ঝড়
+        document.body.classList.add('weather-storm');
+      } else {
+        document.body.classList.add('weather-clear'); // ডিফল্ট
+      }
+    }
+
     function showWeather(data, place) {
       const current = data.current_weather;
       const map = weatherMap[current.weathercode] || ['Unknown','❓'];
@@ -312,7 +326,11 @@
       $('location').textContent = `Location: ${place.city}, ${place.country}`;
       const todayPrecip = data.daily.precipitation_sum[0] || 0;
       $('precProb').textContent = todayPrecip > 0 ? todayPrecip.toFixed(1)+' mm' : '0 mm';
+      
       buildForecast(data.daily);
+      
+      // (পরিবর্তন) আবহাওয়া দেখানোর সাথে সাথে ব্যাকগ্রাউন্ড আপডেট করা হচ্ছে
+      updateWeatherBackground(current.weathercode);
     }
 
     function buildForecast(daily) {
@@ -332,34 +350,21 @@
       });
     }
 
-    async function locate(useGps=false){
+    async function locate(){
       try{
-        let loc;
-        if(useGps && navigator.geolocation){
-          status.textContent = 'Requesting GPS location...';
-          const coords = await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(
-            pos=>res(pos.coords),
-            err=>rej(err), {timeout:10000}
-          ));
-          const info = await reverseGeocode(coords.latitude, coords.longitude);
-          loc = { lat: coords.latitude, lon: coords.longitude, city: info.city, country: info.country };
-        } else {
-          loc = await getIpLocation();
-        }
+        const loc = await getIpLocation(); 
         const weather = await getWeather(loc.lat, loc.lon);
         showWeather(weather, loc);
         status.textContent = 'Update complete ✅';
       }catch(e){
         console.error(e);
         status.textContent = 'Error: Location not found ❌';
+        document.body.className = 'weather-clear'; // ত্রুটি হলে ডিফল্ট ব্যাকগ্রাউন্ড
       }
     }
 
-    $('useGps').onclick = ()=>locate(true);
-    $('useIp').onclick = ()=>locate(false);
-    $('refresh').onclick = ()=>locate(true); // Refresh button uses GPS by default
-
-    locate(true); // Initial load with GPS
+    // পেজ লোড হওয়ার সাথে সাথে IP লোকেশন কল করা হচ্ছে
+    locate(); 
   </script>
 </body>
 </html>
