@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  
+  <title>WeatherNow | Live Weather Forecast | By Humayun Shariar Himu</title>
+  
+  <meta name="description" content="See live weather updates with WeatherNow, an app by Humayun Shariar Himu. Get accurate 7-day forecasts for your location using GPS & IP.">
+  
+  <meta name="author" content="Humayun Shariar Himu">
+  
+  <meta name="keywords" content="weather, live weather, today's weather, weather forecast, Weather app, WeatherNow, Humayun Shariar Himu, GPS weather, weather report, Weather Bangladesh">
+
+  <style>
+    /* Fonts for 3D and Stylish Design */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Orbitron:wght@400;700&display=swap');
+
+    :root {
+      --bg: #0e172a;
+      --card-bg: rgba(30, 41, 59, 0.6); 
+      --card-border: rgba(226, 232, 240, 0.2); 
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #06b6d4;
+      --accent-glow: rgba(6, 182, 212, 0.5);
+      --shadow: rgba(0, 0, 0, 0.5);
+    }
+    * { 
+      box-sizing: border-box; 
+      /* Using 'Orbitron' as fallback for English characters */
+      font-family: 'Orbitron', "Noto Sans Bengali", sans-serif; 
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 10px;
+      
+      /* (New) Animated Gradient Background */
+      background: linear-gradient(-45deg, #0e172a, #1e293b, #0e172a, #334155);
+      background-size: 400% 400%;
+      animation: animatedBg 15s ease infinite;
+      
+      /* For 3D Effect */
+      perspective: 1500px;
+    }
+
+    /* (New) Background Animation */
+    @keyframes animatedBg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .app { 
+      width: 100%; 
+      max-width: 500px; 
+    }
+    header { 
+      text-align: center; 
+      margin-bottom: 10px; 
+    }
+    header h1 { 
+      font-size: 1.5rem; 
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+    header p { 
+      color: var(--muted); 
+      font-size: 0.85rem; 
+      margin: 4px 0; 
+    }
+    .controls { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 8px; 
+      margin-bottom: 10px; 
+    }
+    button {
+      width: 100%;
+      background: var(--accent);
+      border: none;
+      padding: 12px; 
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      font-family: 'Orbitron', sans-serif; /* Buttons in English font */
+    }
+    button:hover { 
+      background: #0891b2; 
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+    }
+    .card {
+      /* Glassmorphism Design */
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 12px; 
+      padding: 15px;
+      margin-bottom: 12px; 
+      box-shadow: 0 8px 32px var(--shadow); 
+      
+      /* For 3D Hover Effect */
+      transition: all 0.25s ease-out;
+      transform-style: preserve-3d;
+
+      /* (New) Card Load Animation */
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    .card:nth-of-type(2) { animation-delay: 0.1s; }
+
+    /* (New) Card Load Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* (Changed) 3D Effect on Card Hover */
+    .card:hover {
+      transform: rotateX(5deg) rotateY(3deg) scale(1.03);
+      box-shadow: 0 12px 40px var(--shadow), 0 0 20px var(--accent-glow);
+      border-color: var(--accent);
+    }
+
+    .current { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      text-align: center; 
+    }
+    .icon { 
+      font-size: 52px; 
+      margin-bottom: 6px; 
+      animation: pulseIcon 3s infinite ease-in-out;
+      /* (New) For 3D Hover */
+      transform: translateZ(30px); 
+      text-shadow: 0 0 15px var(--accent-glow);
+    }
+    .temp { 
+      font-size: 40px; 
+      font-weight: 700; 
+      font-family: 'Orbitron', sans-serif; 
+      /* (New) For 3D Hover */
+      transform: translateZ(50px); 
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+    .summary { 
+      font-size: 1rem; 
+      color: var(--muted); 
+      /* (New) For 3D Hover */
+      transform: translateZ(20px);
+    }
+    .location { 
+      font-size: 0.9rem; 
+      color: var(--muted); 
+    }
+    .meta { 
+      display: flex; 
+      justify-content: space-between; 
+      flex-wrap: wrap; 
+      margin-top: 8px; 
+      font-size: 0.9rem; 
+    }
+    .forecast { 
+      display: flex; 
+      overflow-x: auto; 
+      gap: 8px; 
+      margin-top: 10px; 
+      padding-bottom: 10px; 
+    }
+    .day { 
+      min-width: 80px; 
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 8px; 
+      padding: 8px; 
+      text-align: center; 
+    }
+    .day span { 
+      display: block; 
+      color: var(--muted); 
+      font-size: 0.8rem; 
+    }
+
+    @keyframes pulseIcon {
+      0%, 100% { transform: scale(1) translateZ(30px); }
+      50% { transform: scale(1.1) translateZ(30px); }
+    }
+
+    footer { 
+      text-align: center; 
+      font-size: 0.85rem; 
+      color: var(--muted); 
+      margin-top: 8px; 
+      padding-bottom: 10px;
+    }
+    
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-weight: 700;
+    }
+    footer a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>WeatherNow</h1>
+      <p>Live Weather Tracker Application with GPS & IP Location</p>
+    </header>
+
+    <div class="controls">
+      <button id="useGps">📍 Use GPS Location</button>
+      <button id="useIp">🌐 Use IP Location</button>
+      <button id="refresh">🔄 Refresh</button>
+      <div id="status" style="text-align:center;color:var(--muted);font-size:0.85rem;">Processing...</div>
+    </div>
+
+    <div class="card">
+      <div class="current">
+        <div class="icon" id="mainIcon">☀️</div>
+        <div class="temp" id="temp">--°C</div>
+        <div class="summary" id="summary">--</div>
+        <div class="location" id="location">Location: --</div>
+      </div>
+      <div class="meta">
+        <div>🌬️ Wind: <span id="wind">--</span></div>
+        <div>☔ Precipitation: <span id="precProb">--</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">7-Day Forecast</h3>
+      <div class="forecast" id="forecast"></div>
+    </div>
+
+    <footer>
+      <a href="https://www.google.com/search?q=Humayun+Shariar+Himu" target="_blank" rel="noopener noreferrer">
+        Design by Humayun Shariar Himu
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    // --- All JavaScript text is now in English ---
+    
+    const weatherMap = {
+      0:['Clear sky','☀️'],1:['Partly cloudy','🌤️'],2:['Cloudy','⛅'],3:['Overcast','☁️'],
+      45:['Fog','🌫️'],61:['Light rain','🌦️'],63:['Moderate rain','🌧️'],
+      65:['Heavy rain','⛈️'],71:['Snowfall','🌨️'],95:['Thunderstorm','⛈️⚡']
+    };
+
+    const $ = id => document.getElementById(id);
+    const status = $('status');
+
+    async function reverseGeocode(lat, lon) {
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+        const j = await res.json();
+        return {
+          city: j.address.city || j.address.town || j.address.village || "Unknown location",
+          country: j.address.country || ""
+        };
+      } catch {
+        return { city: "Unknown", country: "" };
+      }
+    }
+
+    async function getIpLocation() {
+      status.textContent = 'Getting IP location...';
+      try {
+        const res = await fetch('https://ipwho.is/');
+        const j = await res.json();
+        return { lat: j.latitude, lon: j.longitude, city: j.city, country: j.country };
+      } catch {
+        throw new Error("Could not find IP location");
+      }
+    }
+
+    async function getWeather(lat, lon) {
+      status.textContent = 'Loading weather data...';
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode&current_weather=true&timezone=auto`;
+      const r = await fetch(url);
+      return r.json();
+    }
+
+    function showWeather(data, place) {
+      const current = data.current_weather;
+      const map = weatherMap[current.weathercode] || ['Unknown','❓'];
+      $('mainIcon').textContent = map[1];
+      $('temp').textContent = `${current.temperature.toFixed(1)}°C`;
+      $('summary').textContent = map[0];
+      $('wind').textContent = `${current.windspeed} m/s`;
+      $('location').textContent = `Location: ${place.city}, ${place.country}`;
+      const todayPrecip = data.daily.precipitation_sum[0] || 0;
+      $('precProb').textContent = todayPrecip > 0 ? todayPrecip.toFixed(1)+' mm' : '0 mm';
+      buildForecast(data.daily);
+    }
+
+    function buildForecast(daily) {
+      const c = $('forecast');
+      c.innerHTML = '';
+      daily.time.forEach((t,i)=>{
+        const code = daily.weathercode[i];
+        const map = weatherMap[code] || ['--','❓'];
+        const div = document.createElement('div');
+        const date = new Date(t);
+        div.className = 'day';
+        div.innerHTML = `<div>${map[1]}</div>
+          <span>${date.toLocaleDateString('en-US',{weekday:'short'})}</span>
+          <span>Max: ${daily.temperature_2m_max[i].toFixed(0)}°</span>
+          <span>Min: ${daily.temperature_2m_min[i].toFixed(0)}°</span>`;
+        c.appendChild(div);
+      });
+    }
+
+    async function locate(useGps=false){
+      try{
+        let loc;
+        if(useGps && navigator.geolocation){
+          status.textContent = 'Requesting GPS location...';
+          const coords = await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(
+            pos=>res(pos.coords),
+            err=>rej(err), {timeout:10000}
+          ));
+          const info = await reverseGeocode(coords.latitude, coords.longitude);
+          loc = { lat: coords.latitude, lon: coords.longitude, city: info.city, country: info.country };
+        } else {
+          loc = await getIpLocation();
+        }
+        const weather = await getWeather(loc.lat, loc.lon);
+        showWeather(weather, loc);
+        status.textContent = 'Update complete ✅';
+      }catch(e){
+        console.error(e);
+        status.textContent = 'Error: Location not found ❌';
+      }
+    }
+
+    $('useGps').onclick = ()=>locate(true);
+    $('useIp').onclick = ()=>locate(false);
+    $('refresh').onclick = ()=>locate(true); // Refresh button uses GPS by default
+
+    locate(true); // Initial load with GPS
+  </script>
+</body>
+</html>
