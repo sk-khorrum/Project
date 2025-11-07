@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   
-  <title>WeatherNow | Live Weather Forecast | By Humayun Shariar Himu</title>
-  <meta name="description" content="See live weather updates with WeatherNow, an app by Humayun Shariar Himu. Get accurate 7-day forecasts for your location using GPS & IP.">
-  <meta name="author" content="Humayun Shariar Himu">
-  <meta name="keywords" content="weather, live weather, today's weather, weather forecast, Weather app, WeatherNow, Humayun Shariar Himu, GPS weather, weather report, Weather Bangladesh">
+  <title>WeatherNow | Live Weather Forecast | By Sk Khorrum</title>
+  <meta name="description" content="See live weather updates with WeatherNow, an app by Sk Khorrum. Get accurate 7-day forecasts for your location using GPS & IP.">
+  <meta name="author" content="Sk Khorrum">
+  <meta name="keywords" content="weather, live weather, today's weather, weather forecast, Weather app, WeatherNow, Sk Khorrum, GPS weather, weather report, Weather Bangladesh">
 
   <style>
     /* Fonts */
@@ -19,7 +19,7 @@
       --bg-rain: #1e293b;
       --bg-storm: #0f172a;
       --bg-fog: #64748b;
-      --bg-snow: #e2e8f0;
+      --bg-snow: #94a3b8; /* Changed for better contrast */
 
       --card-bg: rgba(30, 41, 59, 0.6); 
       --card-border: rgba(226, 232, 240, 0.2); 
@@ -36,7 +36,7 @@
     html, body {
         height: 100%;
         margin: 0;
-        overflow: hidden; /* ব্যাকগ্রাউন্ড ইফেক্ট যাতে স্ক্রল না করে */
+        overflow: hidden; 
     }
     body {
       color: var(--text);
@@ -46,23 +46,23 @@
       justify-content: flex-start;
       padding: 10px;
       perspective: 1500px;
-      position: relative; /* ব্যাকগ্রাউন্ড ইফেক্টের জন্য */
-      z-index: 1; /* কনটেন্ট যেন ব্যাকগ্রাউন্ডের উপরে থাকে */
-      background-color: var(--bg-clear); /* ডিফল্ট ব্যাকগ্রাউন্ড কালার */
-      transition: background-color 1s ease; /* ব্যাকগ্রাউন্ড কালার পরিবর্তনের ট্রানজিশন */
+      position: relative; 
+      z-index: 1; 
+      background-color: var(--bg-clear); 
+      transition: background-color 1s ease; 
     }
 
     /* ======================================================
-      * (নতুন) ডাইনামিক ওয়েদার ব্যাকগ্রাউন্ড ইফেক্টস
+      * (ফিক্সড) ডাইনামিক ওয়েদার ব্যাকগ্রাউন্ড ইফেক্টস
       ======================================================
     */
     .weather-background {
-        position: absolute;
+        position: fixed; /* (ফিক্সড) যাতে কনটেন্ট স্ক্রল হলেও ব্যাকগ্রাউন্ড স্থির থাকে */
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1; /* কনটেন্টের নিচে */
+        z-index: -1; 
         overflow: hidden;
     }
 
@@ -89,8 +89,8 @@
     .weather-clouds-bg .cloud:nth-child(4) { width: 100px; height: 100px; top: 70%; left: -10%; animation-delay: 45s; }
 
     @keyframes moveClouds {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(100vw + 200%)); } /* স্ক্রিনের বাইরে চলে যাবে */
+        0% { transform: translateX(-50vw); } /* (ফিক্সড) শুরু */
+        100% { transform: translateX(150vw); } /* (ফিক্সড) শেষ */
     }
 
     /* --- Rain --- */
@@ -106,9 +106,6 @@
         animation: fallRain 0.8s linear infinite;
         transform: rotate(15deg);
     }
-    .weather-rain-bg .rain-drop:nth-child(even) { animation-delay: 0.4s; }
-    .weather-rain-bg .rain-drop:nth-child(3n) { width: 1px; height: 10px; opacity: 0.8; }
-    .weather-rain-bg .rain-drop:nth-child(5n) { animation-duration: 0.6s; }
 
     @keyframes fallRain {
         0% { transform: translateY(-10vh) rotate(15deg); opacity: 0; }
@@ -155,7 +152,7 @@
     .weather-fog-bg .fog-layer:nth-child(3) { bottom: 0%; left: -5%; animation-delay: 20s; height: 40%; }
     @keyframes moveFog {
         0% { transform: translateX(0); }
-        100% { transform: translateX(calc(100vw - 100%)); }
+        100% { transform: translateX(-20vw); } /* (ফিক্সড) সামান্য নড়াচড়া */
     }
 
     /* --- Snow --- */
@@ -169,27 +166,21 @@
         animation: fallSnow 10s linear infinite;
         opacity: 0;
     }
-    .weather-snow-bg .snowflake:nth-child(1) { left: 5%; width: 5px; height: 5px; animation-delay: 0s; }
-    .weather-snow-bg .snowflake:nth-child(2) { left: 15%; width: 8px; height: 8px; animation-delay: 2s; }
-    .weather-snow-bg .snowflake:nth-child(3) { left: 25%; width: 6px; height: 6px; animation-delay: 4s; }
-    .weather-snow-bg .snowflake:nth-child(4) { left: 35%; width: 7px; height: 7px; animation-delay: 6s; }
-    .weather-snow-bg .snowflake:nth-child(5) { left: 45%; width: 5px; height: 5px; animation-delay: 8s; }
-    /* আরও স্নোফ্লেক যোগ করা যায় */
+
     @keyframes fallSnow {
         0% { transform: translateY(-10vh); opacity: 0; }
         20% { opacity: 1; }
         80% { opacity: 1; }
         100% { transform: translateY(110vh); opacity: 0; }
     }
-
-
+    
     /* =================== ওয়েদার ব্যাকগ্রাউন্ড স্টাইল শেষ =================== */
 
     .app { 
       width: 100%; 
       max-width: 500px; 
       position: relative;
-      z-index: 2; /* অ্যাপের কনটেন্ট ব্যাকগ্রাউন্ডের উপরে রাখতে */
+      z-index: 2; 
     }
     header { 
       text-align: center; 
@@ -317,7 +308,8 @@
   </style>
 </head>
 <body>
-  <div class="weather-background" id="weatherBackground"></div>
+  
+<div class="weather-background" id="weatherBackground"></div>
 
   <div class="app">
     <header>
@@ -348,8 +340,8 @@
     </div>
 
     <footer>
-      <a href="https://www.google.com/search?q=Humayun+Shariar+Himu" target="_blank" rel="noopener noreferrer">
-        Design by Humayun Shariar Himu
+      <a href="https://www.google.com/search?q=Sk+Khorrum" target="_blank" rel="noopener noreferrer">
+        Design by Sk Khorrum
       </a>
     </footer>
   </div>
@@ -363,7 +355,7 @@
 
     const $ = id => document.getElementById(id);
     const status = $('status');
-    const weatherBackground = $('weatherBackground'); // (নতুন) ব্যাকগ্রাউন্ড এলিমেন্ট
+    const weatherBackground = $('weatherBackground'); 
 
     async function getIpLocation() {
       status.textContent = 'Finding location via IP...'; 
@@ -383,14 +375,12 @@
       return r.json();
     }
 
-    // (পরিবর্তন) ব্যাকগ্রাউন্ড আপডেট ফাংশন
+    // (ফিক্সড) ব্যাকগ্রাউন্ড আপডেট ফাংশন - অ্যানিমেশন এলিমেন্ট তৈরি করবে
     function updateWeatherBackground(code) {
-        weatherBackground.className = 'weather-background'; // সব ক্লাস রিসেট
-
-        // পুরোনো অ্যানিমেশন এলিমেন্ট মুছে ফেলা (যদি থাকে)
+        weatherBackground.className = 'weather-background';
         weatherBackground.innerHTML = ''; 
 
-        if (code === 0) { // Clear sky
+        if (code === 0) { 
             document.body.style.backgroundColor = 'var(--bg-clear)';
             weatherBackground.classList.add('weather-clear-bg');
             // তারার মতো ইফেক্ট যোগ করা
@@ -399,4 +389,109 @@
                 star.style.position = 'absolute';
                 star.style.width = star.style.height = `${Math.random() * 3}px`;
                 star.style.background = 'white';
-                star.
+                star.style.borderRadius = '50%';
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.opacity = Math.random();
+                // (ফিক্সড) টুইঙ্কল অ্যানিমেশন CSS-এ যোগ করা হয়নি, তাই বাদ দেওয়া হলো বা CSS-এ যোগ করতে হবে। এখানে শুধু স্থির তারা রাখা হলো।
+                weatherBackground.appendChild(star);
+            }
+        } else if (code >= 1 && code <= 3) { // Clouds
+            document.body.style.backgroundColor = 'var(--bg-clouds)';
+            weatherBackground.classList.add('weather-clouds-bg');
+            for(let i = 0; i < 4; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                weatherBackground.appendChild(cloud);
+            }
+        } else if (code === 45) { // Fog
+            document.body.style.backgroundColor = 'var(--bg-fog)';
+            weatherBackground.classList.add('weather-fog-bg');
+            for(let i = 0; i < 3; i++) {
+                const fogLayer = document.createElement('div');
+                fogLayer.className = 'fog-layer';
+                weatherBackground.appendChild(fogLayer);
+            }
+        } else if (code >= 61 && code <= 65) { // Rain
+            document.body.style.backgroundColor = 'var(--bg-rain)';
+            weatherBackground.classList.add('weather-rain-bg');
+            for(let i = 0; i < 100; i++) { 
+                const drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.animationDelay = `${Math.random() * 2}s`;
+                weatherBackground.appendChild(drop);
+            }
+        } else if (code === 71) { // Snowfall
+            document.body.style.backgroundColor = 'var(--bg-snow)';
+            weatherBackground.classList.add('weather-snow-bg');
+            for(let i = 0; i < 50; i++) {
+                const flake = document.createElement('div');
+                flake.className = 'snowflake';
+                flake.style.left = `${Math.random() * 100}%`;
+                flake.style.animationDelay = `${Math.random() * 10}s`;
+                flake.style.width = flake.style.height = `${Math.random() * 5 + 3}px`;
+                weatherBackground.appendChild(flake);
+            }
+        } else if (code === 95) { // Thunderstorm
+            document.body.style.backgroundColor = 'var(--bg-storm)';
+            weatherBackground.classList.add('weather-storm-bg');
+            const lightning = document.createElement('div');
+            lightning.className = 'lightning';
+            weatherBackground.appendChild(lightning);
+        } else {
+            document.body.style.backgroundColor = 'var(--bg-clear)';
+            weatherBackground.classList.add('weather-clear-bg');
+        }
+    }
+
+    function showWeather(data, place) {
+      const current = data.current_weather;
+      const map = weatherMap[current.weathercode] || ['Unknown','❓'];
+      $('mainIcon').textContent = map[1];
+      $('temp').textContent = `${current.temperature.toFixed(1)}°C`;
+      $('summary').textContent = map[0];
+      $('wind').textContent = `${current.windspeed} m/s`;
+      $('location').textContent = `Location: ${place.city}, ${place.country}`;
+      const todayPrecip = data.daily.precipitation_sum[0] || 0;
+      $('precProb').textContent = todayPrecip > 0 ? todayPrecip.toFixed(1)+' mm' : '0 mm';
+      
+      buildForecast(data.daily);
+      
+      updateWeatherBackground(current.weathercode);
+    }
+
+    function buildForecast(daily) {
+      const c = $('forecast');
+      c.innerHTML = '';
+      daily.time.forEach((t,i)=>{
+        const code = daily.weathercode[i];
+        const map = weatherMap[code] || ['--','❓'];
+        const div = document.createElement('div');
+        const date = new Date(t);
+        div.className = 'day';
+        div.innerHTML = `<div>${map[1]}</div>
+          <span>${date.toLocaleDateString('en-US',{weekday:'short'})}</span>
+          <span>Max: ${daily.temperature_2m_max[i].toFixed(0)}°</span>
+          <span>Min: ${daily.temperature_2m_min[i].toFixed(0)}°</span>`;
+        c.appendChild(div);
+      });
+    }
+
+    async function locate(){
+      try{
+        const loc = await getIpLocation(); 
+        const weather = await getWeather(loc.lat, loc.lon);
+        showWeather(weather, loc);
+        status.textContent = 'Update complete ✅';
+      }catch(e){
+        console.error(e);
+        status.textContent = 'Error: Location not found ❌';
+        updateWeatherBackground(0); 
+      }
+    }
+
+    locate(); 
+  </script>
+</body>
+</html>
