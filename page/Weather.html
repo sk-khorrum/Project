@@ -14,7 +14,13 @@
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Orbitron:wght@400;700&display=swap');
 
     :root {
-      --bg: #0e172a;
+      --bg-clear: #0e172a;
+      --bg-clouds: #334155;
+      --bg-rain: #1e293b;
+      --bg-storm: #0f172a;
+      --bg-fog: #64748b;
+      --bg-snow: #e2e8f0;
+
       --card-bg: rgba(30, 41, 59, 0.6); 
       --card-border: rgba(226, 232, 240, 0.2); 
       --text: #e2e8f0;
@@ -27,82 +33,163 @@
       box-sizing: border-box; 
       font-family: 'Orbitron', "Noto Sans Bengali", sans-serif; 
     }
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; /* ব্যাকগ্রাউন্ড ইফেক্ট যাতে স্ক্রল না করে */
+    }
     body {
-      margin: 0;
-      padding: 0;
       color: var(--text);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      min-height: 100vh;
       padding: 10px;
       perspective: 1500px;
-      
-      /* ======================================================
-        * (পরিবর্তন) ডাইনামিক ব্যাকগ্রাউন্ড 
-        ======================================================
-      */
-      /* ডিফল্ট ব্যাকগ্রাউন্ড (পরিষ্কার আকাশ) */
-      background: linear-gradient(-45deg, #0e172a, #1e293b, #0e172a, #334155);
-      background-size: 400% 400%;
-      animation: animatedBg 15s ease infinite;
-      
-      /* ব্যাকগ্রাউন্ড পরিবর্তনের সময় স্মুথ ট্রানজিশন */
-      transition: background 1s ease;
+      position: relative; /* ব্যাকগ্রাউন্ড ইফেক্টের জন্য */
+      z-index: 1; /* কনটেন্ট যেন ব্যাকগ্রাউন্ডের উপরে থাকে */
+      background-color: var(--bg-clear); /* ডিফল্ট ব্যাকগ্রাউন্ড কালার */
+      transition: background-color 1s ease; /* ব্যাকগ্রাউন্ড কালার পরিবর্তনের ট্রানজিশন */
     }
 
-    /* ব্যাকগ্রাউন্ড অ্যানিমেশন */
-    @keyframes animatedBg {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* ======================================================
+      * (নতুন) ডাইনামিক ওয়েদার ব্যাকগ্রাউন্ড ইফেক্টস
+      ======================================================
+    */
+    .weather-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* কনটেন্টের নিচে */
+        overflow: hidden;
     }
 
-    /* (নতুন) বিভিন্ন আবহাওয়ার জন্য ব্যাকগ্রাউন্ড ক্লাস */
-    
-    /* ডিফল্ট / পরিষ্কার */
-    body.weather-clear {
-      background: linear-gradient(-45deg, #0e172a, #1e293b, #0e172a, #334155);
-      background-size: 400% 400%;
-      animation: animatedBg 15s ease infinite;
-    }
-    
-    /* মেঘলা */
-    body.weather-clouds {
-      background: linear-gradient(180deg, #334155 0%, #64748b 100%);
-      animation: none;
-    }
-    
-    /* বৃষ্টি */
-    body.weather-rain {
-      background: linear-gradient(180deg, #1e293b 0%, #475569 100%);
-      animation: none;
-    }
-    
-    /* ঝড় */
-    body.weather-storm {
-      background: linear-gradient(180deg, #0f172a 0%, #334155 100%);
-      animation: none;
+    /* --- Clear Sky / Default --- */
+    .weather-clear-bg {
+        background: radial-gradient(circle at top, #1e293b 0%, #0e172a 70%);
     }
 
-    /* কুয়াশা */
-    body.weather-fog {
-      background: linear-gradient(180deg, #64748b 0%, #94a3b8 100%);
-      animation: none;
+    /* --- Clouds --- */
+    .weather-clouds-bg {
+        background: linear-gradient(180deg, #334155 0%, #64748b 100%);
     }
-    
-    /* তুষার */
-    body.weather-snow {
-      background: linear-gradient(180deg, #94a3b8 0%, #e2e8f0 100%);
-      animation: none;
+    .weather-clouds-bg .cloud {
+        position: absolute;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        animation: moveClouds 60s linear infinite;
+        opacity: 0.7;
+        box-shadow: 0 0 30px rgba(0,0,0,0.3);
     }
-    
-    /* =================== ব্যাকগ্রাউন্ড স্টাইল শেষ =================== */
+    .weather-clouds-bg .cloud:nth-child(1) { width: 120px; height: 120px; top: 10%; left: -20%; animation-delay: 0s; }
+    .weather-clouds-bg .cloud:nth-child(2) { width: 180px; height: 180px; top: 30%; left: -40%; animation-delay: 15s; }
+    .weather-clouds-bg .cloud:nth-child(3) { width: 150px; height: 150px; top: 50%; left: -30%; animation-delay: 30s; }
+    .weather-clouds-bg .cloud:nth-child(4) { width: 100px; height: 100px; top: 70%; left: -10%; animation-delay: 45s; }
+
+    @keyframes moveClouds {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(100vw + 200%)); } /* স্ক্রিনের বাইরে চলে যাবে */
+    }
+
+    /* --- Rain --- */
+    .weather-rain-bg {
+        background: linear-gradient(180deg, #1e293b 0%, #475569 100%);
+    }
+    .weather-rain-bg .rain-drop {
+        position: absolute;
+        background: rgba(174, 194, 218, 0.6);
+        width: 2px;
+        height: 15px;
+        border-radius: 50%;
+        animation: fallRain 0.8s linear infinite;
+        transform: rotate(15deg);
+    }
+    .weather-rain-bg .rain-drop:nth-child(even) { animation-delay: 0.4s; }
+    .weather-rain-bg .rain-drop:nth-child(3n) { width: 1px; height: 10px; opacity: 0.8; }
+    .weather-rain-bg .rain-drop:nth-child(5n) { animation-duration: 0.6s; }
+
+    @keyframes fallRain {
+        0% { transform: translateY(-10vh) rotate(15deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(110vh) rotate(15deg); opacity: 0; }
+    }
+
+    /* --- Thunderstorm --- */
+    .weather-storm-bg {
+        background: linear-gradient(180deg, #0f172a 0%, #334155 100%);
+    }
+    .weather-storm-bg .lightning {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.8);
+        opacity: 0;
+        animation: lightningFlash 5s infinite;
+    }
+    @keyframes lightningFlash {
+        0%, 90%, 100% { opacity: 0; }
+        95% { opacity: 1; }
+    }
+
+    /* --- Fog --- */
+    .weather-fog-bg {
+        background: linear-gradient(180deg, #64748b 0%, #94a3b8 100%);
+    }
+    .weather-fog-bg .fog-layer {
+        position: absolute;
+        background: rgba(255,255,255,0.4);
+        height: 30%;
+        width: 120%;
+        border-radius: 50%;
+        filter: blur(50px);
+        animation: moveFog 40s linear infinite alternate;
+        z-index: -1;
+    }
+    .weather-fog-bg .fog-layer:nth-child(1) { top: 10%; left: -10%; animation-delay: 0s; }
+    .weather-fog-bg .fog-layer:nth-child(2) { top: 40%; right: -20%; animation-delay: 10s; height: 20%; }
+    .weather-fog-bg .fog-layer:nth-child(3) { bottom: 0%; left: -5%; animation-delay: 20s; height: 40%; }
+    @keyframes moveFog {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(100vw - 100%)); }
+    }
+
+    /* --- Snow --- */
+    .weather-snow-bg {
+        background: linear-gradient(180deg, #94a3b8 0%, #e2e8f0 100%);
+    }
+    .weather-snow-bg .snowflake {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: fallSnow 10s linear infinite;
+        opacity: 0;
+    }
+    .weather-snow-bg .snowflake:nth-child(1) { left: 5%; width: 5px; height: 5px; animation-delay: 0s; }
+    .weather-snow-bg .snowflake:nth-child(2) { left: 15%; width: 8px; height: 8px; animation-delay: 2s; }
+    .weather-snow-bg .snowflake:nth-child(3) { left: 25%; width: 6px; height: 6px; animation-delay: 4s; }
+    .weather-snow-bg .snowflake:nth-child(4) { left: 35%; width: 7px; height: 7px; animation-delay: 6s; }
+    .weather-snow-bg .snowflake:nth-child(5) { left: 45%; width: 5px; height: 5px; animation-delay: 8s; }
+    /* আরও স্নোফ্লেক যোগ করা যায় */
+    @keyframes fallSnow {
+        0% { transform: translateY(-10vh); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+    }
+
+
+    /* =================== ওয়েদার ব্যাকগ্রাউন্ড স্টাইল শেষ =================== */
 
     .app { 
       width: 100%; 
       max-width: 500px; 
+      position: relative;
+      z-index: 2; /* অ্যাপের কনটেন্ট ব্যাকগ্রাউন্ডের উপরে রাখতে */
     }
     header { 
       text-align: center; 
@@ -229,7 +316,10 @@
     }
   </style>
 </head>
-<body class="weather-clear"> <div class="app">
+<body>
+  <div class="weather-background" id="weatherBackground"></div>
+
+  <div class="app">
     <header>
       <h1>WeatherNow</h1>
       <p>Live Weather Tracker Application</p>
@@ -265,8 +355,6 @@
   </div>
 
   <script>
-    // --- JavaScript ---
-    
     const weatherMap = {
       0:['Clear sky','☀️'],1:['Partly cloudy','🌤️'],2:['Cloudy','⛅'],3:['Overcast','☁️'],
       45:['Fog','🌫️'],61:['Light rain','🌦️'],63:['Moderate rain','🌧️'],
@@ -275,6 +363,7 @@
 
     const $ = id => document.getElementById(id);
     const status = $('status');
+    const weatherBackground = $('weatherBackground'); // (নতুন) ব্যাকগ্রাউন্ড এলিমেন্ট
 
     async function getIpLocation() {
       status.textContent = 'Finding location via IP...'; 
@@ -294,77 +383,20 @@
       return r.json();
     }
 
-    // (নতুন) ব্যাকগ্রাউন্ড পরিবর্তন করার ফাংশন
+    // (পরিবর্তন) ব্যাকগ্রাউন্ড আপডেট ফাংশন
     function updateWeatherBackground(code) {
-      // প্রথমে সব ক্লাস মুছে ফেলা হচ্ছে
-      document.body.className = '';
-      
-      if (code === 0) { // পরিষ্কার
-        document.body.classList.add('weather-clear');
-      } else if (code >= 1 && code <= 3) { // মেঘলা
-        document.body.classList.add('weather-clouds');
-      } else if (code === 45) { // কুয়াশা
-        document.body.classList.add('weather-fog');
-      } else if (code === 61 || code === 63 || code === 65) { // বৃষ্টি
-        document.body.classList.add('weather-rain');
-      } else if (code === 71) { // তুষার
-        document.body.classList.add('weather-snow');
-      } else if (code === 95) { // বজ্রসহ ঝড়
-        document.body.classList.add('weather-storm');
-      } else {
-        document.body.classList.add('weather-clear'); // ডিফল্ট
-      }
-    }
+        weatherBackground.className = 'weather-background'; // সব ক্লাস রিসেট
 
-    function showWeather(data, place) {
-      const current = data.current_weather;
-      const map = weatherMap[current.weathercode] || ['Unknown','❓'];
-      $('mainIcon').textContent = map[1];
-      $('temp').textContent = `${current.temperature.toFixed(1)}°C`;
-      $('summary').textContent = map[0];
-      $('wind').textContent = `${current.windspeed} m/s`;
-      $('location').textContent = `Location: ${place.city}, ${place.country}`;
-      const todayPrecip = data.daily.precipitation_sum[0] || 0;
-      $('precProb').textContent = todayPrecip > 0 ? todayPrecip.toFixed(1)+' mm' : '0 mm';
-      
-      buildForecast(data.daily);
-      
-      // (পরিবর্তন) আবহাওয়া দেখানোর সাথে সাথে ব্যাকগ্রাউন্ড আপডেট করা হচ্ছে
-      updateWeatherBackground(current.weathercode);
-    }
+        // পুরোনো অ্যানিমেশন এলিমেন্ট মুছে ফেলা (যদি থাকে)
+        weatherBackground.innerHTML = ''; 
 
-    function buildForecast(daily) {
-      const c = $('forecast');
-      c.innerHTML = '';
-      daily.time.forEach((t,i)=>{
-        const code = daily.weathercode[i];
-        const map = weatherMap[code] || ['--','❓'];
-        const div = document.createElement('div');
-        const date = new Date(t);
-        div.className = 'day';
-        div.innerHTML = `<div>${map[1]}</div>
-          <span>${date.toLocaleDateString('en-US',{weekday:'short'})}</span>
-          <span>Max: ${daily.temperature_2m_max[i].toFixed(0)}°</span>
-          <span>Min: ${daily.temperature_2m_min[i].toFixed(0)}°</span>`;
-        c.appendChild(div);
-      });
-    }
-
-    async function locate(){
-      try{
-        const loc = await getIpLocation(); 
-        const weather = await getWeather(loc.lat, loc.lon);
-        showWeather(weather, loc);
-        status.textContent = 'Update complete ✅';
-      }catch(e){
-        console.error(e);
-        status.textContent = 'Error: Location not found ❌';
-        document.body.className = 'weather-clear'; // ত্রুটি হলে ডিফল্ট ব্যাকগ্রাউন্ড
-      }
-    }
-
-    // পেজ লোড হওয়ার সাথে সাথে IP লোকেশন কল করা হচ্ছে
-    locate(); 
-  </script>
-</body>
-</html>
+        if (code === 0) { // Clear sky
+            document.body.style.backgroundColor = 'var(--bg-clear)';
+            weatherBackground.classList.add('weather-clear-bg');
+            // তারার মতো ইফেক্ট যোগ করা
+            for(let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = star.style.height = `${Math.random() * 3}px`;
+                star.style.background = 'white';
+                star.
