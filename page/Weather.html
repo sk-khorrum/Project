@@ -14,15 +14,17 @@
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Orbitron:wght@400;700&display=swap');
 
     :root {
-      /* Realistc Base Colors */
-      --bg-clear: #070e1a; /* Deeper Night Blue */
-      --bg-clouds: #2d3748; 
-      --bg-rain: #17202e; /* Darker Rain */
-      --bg-storm: #0b1118; 
-      --bg-fog: #475569;
-      --bg-snow: #7a869a; 
+      /* Realistic Base Colors */
+      --bg-clear-night: #0a0d17;
+      --bg-clear-day: #60a5fa; /* A subtle blue for clear day if needed later */
 
-      --card-bg: rgba(30, 41, 59, 0.7); /* Slight increase in opacity for better readability */
+      --bg-clouds-base: #334155;
+      --bg-rain-base: #1c2a38;
+      --bg-storm-base: #0a0f14;
+      --bg-fog-base: #5a6b7d;
+      --bg-snow-base: #98a7bd;
+
+      --card-bg: rgba(30, 41, 59, 0.7); 
       --card-border: rgba(226, 232, 240, 0.2); 
       --text: #e2e8f0;
       --muted: #94a3b8;
@@ -49,7 +51,7 @@
       perspective: 1500px;
       position: relative; 
       z-index: 1; 
-      background-color: var(--bg-clear); 
+      background-color: var(--bg-clear-night); /* Default to clear night */
       transition: background-color 1s ease; 
     }
 
@@ -65,71 +67,106 @@
         height: 100%;
         z-index: -1; 
         overflow: hidden;
+        transition: background-color 1s ease; /* ব্যাকগ্রাউন্ডের মূল রঙ পরিবর্তনের ট্রানজিশন */
     }
 
-    /* --- Clear Sky / Night Sky (More realistic deep space) --- */
-    .weather-clear-bg {
-        background: radial-gradient(circle at top, #152238 0%, #070e1a 100%);
+    /* --- Clear Sky / Night Sky --- */
+    .clear-sky-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top, #1e293b 0%, #0a0d17 100%);
+    }
+    .star {
+        position: absolute;
+        background: rgba(255,255,255,0.8);
+        border-radius: 50%;
+        animation: twinkle 5s infinite alternate;
     }
     @keyframes twinkle {
         0%, 100% { opacity: 0.5; }
         50% { opacity: 1; }
     }
 
-    /* --- Clouds (Softer, more diffused) --- */
-    .weather-clouds-bg {
-        background: linear-gradient(180deg, #374151 0%, #4b5563 100%);
-    }
-    .weather-clouds-bg .cloud {
+    /* --- Clouds (Multiple layers for depth) --- */
+    .clouds-layer {
         position: absolute;
-        /* (সংশোধন) Opacity কমিয়ে আরও ঘোলাটে করা হয়েছে */
-        background: rgba(255,255,255,0.15); 
-        border-radius: 50%;
-        animation: moveClouds 120s linear infinite; /* Slowed down movement */
-        filter: blur(50px); /* More blur */
+        width: 300%; /* Wider than screen */
+        height: 100%;
+        top: 0;
+        left: -100%;
+        animation: moveClouds 100s linear infinite;
+        background: 
+            /* Lower, darker clouds */
+            radial-gradient(ellipse at 25% 60%, rgba(51,65,85,0.7) 0%, transparent 70%),
+            radial-gradient(ellipse at 75% 40%, rgba(51,65,85,0.7) 0%, transparent 70%),
+            /* Upper, lighter clouds */
+            radial-gradient(ellipse at 50% 20%, rgba(71,85,105,0.6) 0%, transparent 70%);
+        background-size: 50% 80%, 40% 70%, 60% 90%; /* Diff sizes */
+        background-repeat: no-repeat;
+        filter: blur(40px);
+        opacity: 0.9;
+        transform: scale(1.1); /* Ensure coverage */
+    }
+    /* Second cloud layer for more depth */
+    .clouds-layer.layer2 {
+        animation: moveClouds 150s linear infinite reverse; /* Different speed/direction */
+        filter: blur(60px);
+        opacity: 0.7;
+        background: 
+            radial-gradient(ellipse at 10% 30%, rgba(51,65,85,0.6) 0%, transparent 80%),
+            radial-gradient(ellipse at 90% 70%, rgba(51,65,85,0.6) 0%, transparent 80%);
+        background-size: 60% 90%, 50% 80%;
+        background-repeat: no-repeat;
     }
 
     @keyframes moveClouds {
-        0% { transform: translateX(-50vw); } 
-        100% { transform: translateX(150vw); } 
+        0% { transform: translateX(0) scale(1.1); } 
+        100% { transform: translateX(100vw) scale(1.1); } 
     }
 
-    /* --- Rain (Thin, fast lines) --- */
-    .weather-rain-bg {
-        background: linear-gradient(180deg, #17202e 0%, #324054 100%);
-    }
-    .weather-rain-bg .rain-drop {
+    /* --- Rain (Dense, subtle lines) --- */
+    .rain-layer {
         position: absolute;
-        /* (সংশোধন) রিয়ালিস্টিক ফোঁটার মতো Shadow ব্যবহার */
-        background: transparent;
-        width: 1px; /* Very thin */
-        height: 0;
-        box-shadow: 0 0 0 1px rgba(174, 194, 218, 0.4); /* Faint line */
-        animation: fallRain 0.5s linear infinite; /* Faster fall */
-        transform: rotate(10deg);
-        opacity: 0.7;
+        width: 100%;
+        height: 100%;
+        /* (সংশোধন) repeating-linear-gradient ব্যবহার করে রিয়ালিস্টিক বৃষ্টি */
+        background-image: 
+            repeating-linear-gradient(180deg, 
+                rgba(174, 194, 218, 0.08) 0px, 
+                rgba(174, 194, 218, 0.08) 1px, 
+                transparent 1px, 
+                transparent 100px
+            );
+        background-size: 2px 100%;
+        animation: fallRain 0.8s linear infinite;
     }
-    /* রিয়ালিস্টিক বৃষ্টির ইফেক্ট: বক্স শ্যাডো তৈরি করে */
-    .rain-drop::after {
-        content: '';
-        position: absolute;
-        top: -150px; /* ফোঁটার দৈর্ঘ্য */
-        left: 0;
-        width: 1px;
-        height: 150px;
-        background: linear-gradient(to bottom, rgba(174, 194, 218, 0.8) 0%, rgba(174, 194, 218, 0) 100%);
-    }
-
     @keyframes fallRain {
-        0% { transform: translateY(-10vh) rotate(10deg); }
-        100% { transform: translateY(110vh) rotate(10deg); }
+        0% { background-position: 0 -100vh; }
+        100% { background-position: 0 100vh; }
+    }
+    /* Adding a secondary, faster rain layer */
+    .rain-layer.layer2 {
+        background-image: 
+            repeating-linear-gradient(180deg, 
+                rgba(174, 194, 218, 0.12) 0px, 
+                rgba(174, 194, 218, 0.12) 1px, 
+                transparent 1px, 
+                transparent 80px
+            );
+        background-size: 1.5px 100%;
+        animation: fallRain 0.6s linear infinite;
+        opacity: 0.8;
     }
 
-    /* --- Thunderstorm (Darker and more dramatic flash) --- */
-    .weather-storm-bg {
-        background: linear-gradient(180deg, #0b1118 0%, #202c3d 100%);
+    /* --- Thunderstorm (Dramatic flash) --- */
+    .storm-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
     }
-    .weather-storm-bg .lightning {
+    .lightning-flash {
         position: absolute;
         top: 0;
         left: 0;
@@ -146,37 +183,42 @@
         98% { opacity: 0.4; }
     }
 
-    /* --- Fog (More diffused and pale) --- */
-    .weather-fog-bg {
-        background: linear-gradient(180deg, #515d6e 0%, #7a869a 100%);
-    }
-    .weather-fog-bg .fog-layer {
+    /* --- Fog (Soft, enveloping haze) --- */
+    .fog-layer {
         position: absolute;
-        /* (সংশোধন) সাদাটে রঙ এবং বেশি ঘোলাটে */
-        background: rgba(200, 200, 200, 0.3);
-        height: 30%;
-        width: 150%;
-        border-radius: 50%;
-        filter: blur(80px); 
-        animation: moveFog 80s linear infinite alternate; /* Slower */
-        z-index: -1;
+        width: 200%; 
+        height: 100%;
+        top: 0;
+        left: -50%;
+        background: 
+            radial-gradient(ellipse at 20% 50%, rgba(200,200,200,0.3) 0%, transparent 70%),
+            radial-gradient(ellipse at 80% 30%, rgba(200,200,200,0.2) 0%, transparent 70%),
+            radial-gradient(ellipse at 50% 80%, rgba(200,200,200,0.4) 0%, transparent 70%);
+        background-size: 60% 80%, 50% 70%, 70% 90%;
+        background-repeat: no-repeat;
+        filter: blur(70px);
+        animation: moveFog 60s linear infinite alternate;
+        opacity: 0.9;
     }
     @keyframes moveFog {
         0% { transform: translateX(0) scale(1.1); }
-        100% { transform: translateX(-30vw) scale(1.0); }
+        100% { transform: translateX(-50vw) scale(1.0); }
     }
 
-    /* --- Snow (Smaller, gentler fall) --- */
-    .weather-snow-bg {
-        background: linear-gradient(180deg, #7a869a 0%, #b8c3d3 100%);
-    }
-    .weather-snow-bg .snowflake {
+    /* --- Snow (Gentle, varied flakes) --- */
+    .snow-layer {
         position: absolute;
-        /* (সংশোধন) কম অপাসিটি এবং ছোট সাইজ */
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+    }
+    .snowflake {
+        position: absolute;
         background: rgba(255, 255, 255, 0.7);
         border-radius: 50%;
-        animation: fallSnow 20s linear infinite; /* Much slower fall */
+        animation: fallSnow var(--duration) linear infinite;
         opacity: 0;
+        filter: blur(0.5px); /* Soften edges */
     }
     @keyframes fallSnow {
         0% { transform: translateY(-10vh); opacity: 0; }
@@ -386,126 +428,31 @@
     }
 
     function updateWeatherBackground(code) {
-        weatherBackground.className = 'weather-background';
+        // সব আগের লেয়ার মুছে ফেলা
         weatherBackground.innerHTML = ''; 
 
-        if (code === 0) { // Clear sky
-            document.body.style.backgroundColor = 'var(--bg-clear)';
-            weatherBackground.classList.add('weather-clear-bg');
-            for(let i = 0; i < 50; i++) {
+        // বেস ব্যাকগ্রাউন্ড কালার সেট করা
+        document.body.style.backgroundColor = 'var(--bg-clear-night)'; // Default to night sky
+        weatherBackground.className = 'weather-background'; // Reset classes
+
+        if (code === 0) { // Clear sky (Night)
+            const clearSkyLayer = document.createElement('div');
+            clearSkyLayer.classList.add('clear-sky-layer');
+            weatherBackground.appendChild(clearSkyLayer);
+            document.body.style.backgroundColor = 'var(--bg-clear-night)';
+            
+            // তারার ইফেক্ট
+            for(let i = 0; i < 70; i++) { // More stars
                 const star = document.createElement('div');
-                star.style.position = 'absolute';
-                star.style.width = star.style.height = `${Math.random() * 2}px`;
-                star.style.background = 'white';
-                star.style.borderRadius = '50%';
+                star.classList.add('star');
+                star.style.width = star.style.height = `${Math.random() * 2 + 1}px`; // Smaller stars
                 star.style.top = `${Math.random() * 100}%`;
                 star.style.left = `${Math.random() * 100}%`;
-                star.style.opacity = Math.random();
-                star.style.animation = `twinkle ${Math.random() * 5 + 3}s infinite alternate`;
-                weatherBackground.appendChild(star);
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                clearSkyLayer.appendChild(star);
             }
         } else if (code >= 1 && code <= 3) { // Clouds
-            document.body.style.backgroundColor = 'var(--bg-clouds)';
-            weatherBackground.classList.add('weather-clouds-bg');
-            for(let i = 0; i < 4; i++) {
-                const cloud = document.createElement('div');
-                cloud.className = 'cloud';
-                cloud.style.width = `${Math.random() * 100 + 100}px`;
-                cloud.style.height = cloud.style.width;
-                cloud.style.top = `${Math.random() * 70}%`;
-                cloud.style.left = `${Math.random() * 100}%`;
-                cloud.style.animationDelay = `${Math.random() * 60}s`;
-                weatherBackground.appendChild(cloud);
-            }
-        } else if (code === 45) { // Fog
-            document.body.style.backgroundColor = 'var(--bg-fog)';
-            weatherBackground.classList.add('weather-fog-bg');
-            for(let i = 0; i < 3; i++) {
-                const fogLayer = document.createElement('div');
-                fogLayer.className = 'fog-layer';
-                weatherBackground.appendChild(fogLayer);
-            }
-        } else if (code >= 61 && code <= 65) { // Rain
-            document.body.style.backgroundColor = 'var(--bg-rain)';
-            weatherBackground.classList.add('weather-rain-bg');
-            for(let i = 0; i < 150; i++) { 
-                const drop = document.createElement('div');
-                drop.className = 'rain-drop';
-                drop.style.left = `${Math.random() * 100}%`;
-                drop.style.animationDelay = `${Math.random() * 0.8}s`; /* Faster random delay */
-                weatherBackground.appendChild(drop);
-            }
-        } else if (code === 71) { // Snowfall
-            document.body.style.backgroundColor = 'var(--bg-snow)';
-            weatherBackground.classList.add('weather-snow-bg');
-            for(let i = 0; i < 50; i++) {
-                const flake = document.createElement('div');
-                flake.className = 'snowflake';
-                flake.style.left = `${Math.random() * 100}%`;
-                flake.style.animationDelay = `${Math.random() * 15}s`;
-                flake.style.animationDuration = `${Math.random() * 15 + 10}s`; /* Slower */
-                flake.style.width = flake.style.height = `${Math.random() * 3 + 2}px`; /* Smaller */
-                weatherBackground.appendChild(flake);
-            }
-        } else if (code === 95) { // Thunderstorm
-            document.body.style.backgroundColor = 'var(--bg-storm)';
-            weatherBackground.classList.add('weather-storm-bg');
-            const lightning = document.createElement('div');
-            lightning.className = 'lightning';
-            weatherBackground.appendChild(lightning);
-        } else {
-            document.body.style.backgroundColor = 'var(--bg-clear)';
-            weatherBackground.classList.add('weather-clear-bg');
-        }
-    }
-
-    function showWeather(data, place) {
-      const current = data.current_weather;
-      const map = weatherMap[current.weathercode] || ['Unknown','❓'];
-      $('mainIcon').textContent = map[1];
-      $('temp').textContent = `${current.temperature.toFixed(1)}°C`;
-      $('summary').textContent = map[0];
-      $('wind').textContent = `${current.windspeed} m/s`;
-      $('location').textContent = `Location: ${place.city}, ${place.country}`;
-      const todayPrecip = data.daily.precipitation_sum[0] || 0;
-      $('precProb').textContent = todayPrecip > 0 ? todayPrecip.toFixed(1)+' mm' : '0 mm';
-      
-      buildForecast(data.daily);
-      
-      updateWeatherBackground(current.weathercode);
-    }
-
-    function buildForecast(daily) {
-      const c = $('forecast');
-      c.innerHTML = '';
-      daily.time.forEach((t,i)=>{
-        const code = daily.weathercode[i];
-        const map = weatherMap[code] || ['--','❓'];
-        const div = document.createElement('div');
-        const date = new Date(t);
-        div.className = 'day';
-        div.innerHTML = `<div>${map[1]}</div>
-          <span>${date.toLocaleDateString('en-US',{weekday:'short'})}</span>
-          <span>Max: ${daily.temperature_2m_max[i].toFixed(0)}°</span>
-          <span>Min: ${daily.temperature_2m_min[i].toFixed(0)}°</span>`;
-        c.appendChild(div);
-      });
-    }
-
-    async function locate(){
-      try{
-        const loc = await getIpLocation(); 
-        const weather = await getWeather(loc.lat, loc.lon);
-        showWeather(weather, loc);
-        status.textContent = 'Update complete ✅';
-      }catch(e){
-        console.error(e);
-        status.textContent = 'Error: Location not found ❌';
-        updateWeatherBackground(0); 
-      }
-    }
-
-    locate(); 
-  </script>
-</body>
-</html>
+            document.body.style.backgroundColor = 'var(--bg-clouds-base)';
+            const cloudsLayer1 = document.createElement('div');
+            cloudsLayer1.classList.add('clouds-layer');
+            weatherBackground
