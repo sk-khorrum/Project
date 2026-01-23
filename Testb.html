@@ -3,267 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK KHORRUM | Advanced 3D Visionary</title>
     
-    <title>SK KHORRUM | 3D Creative Developer & Founder of DRT</title>
-    <meta name="description" content="SK Khorrum - Expert Frontend Developer, AI Specialist, and Founder of Team DRT. 3+ years experience in building smart web solutions.">
-    <meta name="keywords" content="SK Khorrum, DRT, 3D Web Design, Full Stack Developer Bangladesh, AI Photo Maker, Web Apps">
-    
-    <meta property="og:title" content="SK KHORRUM | Professional Portfolio">
-    <meta property="og:description" content="Innovating the digital future with 3D web experiences.">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#0f172a">
-
+    <meta name="description" content="SK Khorrum - Lead Developer at Team DRT. Expert in 3D Web Architectures & AI Systems.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
         
-        :root {
-            --primary: #3b82f6;
-            --accent: #8b5cf6;
-            --bg: #0f172a;
-        }
-
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: white;
+            background-color: #020617;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #f8fafc;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* 3D Canvas Background */
-        #canvas-container {
+        #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             z-index: -1;
-            width: 100%;
-            height: 100vh;
         }
 
-        /* Glassmorphism UI */
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(to right, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .project-card:hover {
-            transform: translateY(-12px);
-            background: rgba(255, 255, 255, 0.07);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(59, 130, 246, 0.2);
-        }
-
-        .nav-blur {
+        .cyber-card {
+            background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(20px);
-            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Animated Pulse for AI */
-        .ai-pulse {
-            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-            animation: pulse 2s infinite;
+        .cyber-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
+            transform: translateY(-10px) rotateX(5deg);
         }
 
-        @keyframes pulse {
-            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
         }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .nav-link {
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #38bdf8;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9, #6366f1);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.6);
+            transform: scale(1.05);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating { animation: float 4s ease-in-out infinite; }
     </style>
 </head>
 <body>
 
-    <div id="canvas-container"></div>
+    <canvas id="bg-canvas"></canvas>
 
-    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-extrabold tracking-tighter">SK <span class="text-blue-500">KHORRUM</span></div>
-            <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-widest">
-                <a href="#home" class="hover:text-blue-400 transition">Home</a>
-                <a href="#about" class="hover:text-blue-400 transition">About</a>
-                <a href="#work" class="hover:text-blue-400 transition">Projects</a>
-                <a href="#contact" class="text-blue-500 border border-blue-500/30 px-4 py-1 rounded-lg">Hire Me</a>
-            </div>
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-slate-950/50 backdrop-blur-md border-b border-white/5">
+        <div class="text-2xl font-bold tracking-widest text-glow">SK <span class="text-sky-500">KHORRUM</span></div>
+        <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-tighter">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">Matrix</a>
+            <a href="#projects" class="nav-link">Works</a>
+            <a href="#contact" class="nav-link">Terminal</a>
         </div>
+        <div class="text-xs border border-sky-500/50 px-3 py-1 rounded text-sky-400">STATUS: ONLINE</div>
     </nav>
 
-    <section id="home" class="min-h-screen flex items-center justify-center px-6 relative">
-        <div class="text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-blue-500/20 text-blue-400 text-xs font-bold mb-8">
-                <span class="w-2 h-2 rounded-full bg-blue-500 animate-ping"></span> Founder of DRT
-            </div>
-            <h1 class="text-6xl md:text-8xl font-extrabold mb-6 hero-gradient tracking-tight">3D Digital <br>Experience.</h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12">
-                I am SK Khorrum, a creative developer building smart web applications with AI and high-performance backend systems.
-            </p>
-            <div class="flex flex-col md:flex-row gap-5 justify-center items-center">
-                <a href="#work" class="px-10 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 hover:scale-105 transition shadow-lg shadow-blue-500/30">
-                    See Projects
-                </a>
-                <a href="https://t.me/Sk_khorrum" target="_blank" class="px-10 py-4 glass font-bold rounded-2xl hover:bg-white/10 transition flex items-center gap-2">
-                    <i class="ri-telegram-line"></i> Telegram Me
-                </a>
-            </div>
+    <section class="h-screen flex flex-col items-center justify-center text-center px-6">
+        <div class="floating mb-4">
+            <span class="text-sky-500 font-mono tracking-widest text-sm">[ INITIALIZING INTERFACE... ]</span>
+        </div>
+        <h1 class="text-6xl md:text-9xl font-bold mb-6 tracking-tighter leading-none">
+            3D DIGITAL <br> <span class="text-sky-500">ARCHITECT.</span>
+        </h1>
+        <p class="max-w-2xl text-slate-400 md:text-xl mb-10 font-light">
+            I build hyper-scalable web environments and AI-driven infrastructures as the Lead of <span class="text-white font-bold">Team DRT</span>.
+        </p>
+        <div class="flex gap-6">
+            <a href="#projects" class="btn-primary px-10 py-4 rounded-full font-bold uppercase tracking-widest">View Archives</a>
+            <a href="#contact" class="border border-white/20 px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-white hover:text-black transition duration-500">Direct Link</a>
         </div>
     </section>
 
-    <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="glass p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center">
-            <div class="w-48 h-48 md:w-64 md:h-64 rounded-3xl overflow-hidden border-4 border-blue-500/20">
-                <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Sk Khorrum" class="w-full h-full object-cover">
+    <section id="about" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-sky-500/10 blur-3xl"></div>
+                <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Profile" class="rounded-2xl border border-white/10 w-full grayscale hover:grayscale-0 transition duration-700">
             </div>
-            <div class="flex-1">
-                <h2 class="text-3xl font-bold mb-4">Who is SK Khorrum?</h2>
-                <p class="text-gray-400 leading-relaxed mb-6 text-lg">
-                    A tech visionary and 3D web specialist. I have spent the last 3 years perfecting the art of building scalable tools like <b>AI Photo Makers</b> and <b>Security Bot</b> systems. As the founder of DRT, I focus on delivering quality and performance.
-                </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="glass p-4 text-center">
-                        <span class="text-2xl font-bold text-blue-500">15+</span>
-                        <p class="text-xs text-gray-500 uppercase mt-1">Web Tools</p>
-                    </div>
-                    <div class="glass p-4 text-center">
-                        <span class="text-2xl font-bold text-purple-500">07+</span>
-                        <p class="text-xs text-gray-500 uppercase mt-1">Android Apps</p>
+            <div>
+                <h2 class="text-4xl font-bold mb-8">System Profile</h2>
+                <div class="space-y-6 text-slate-400 text-lg">
+                    <p>SK Khorrum, Founder of Team DRT. 3 years of deep-tech experience in front-end design and back-end logic synchronization.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="cyber-card p-6">
+                            <div class="text-3xl font-bold text-sky-400">15+</div>
+                            <div class="text-xs uppercase tracking-widest mt-2">Projects Deployed</div>
+                        </div>
+                        <div class="cyber-card p-6">
+                            <div class="text-3xl font-bold text-indigo-400">07+</div>
+                            <div class="text-xs uppercase tracking-widest mt-2">Core Algorithms</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="work" class="py-24 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-16">Smart Creations</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="project-card glass p-5 group">
-                <div class="rounded-2xl overflow-hidden h-44 mb-6 relative">
-                    <img src="https://skkhorruproject.vercel.app/Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-full object-cover" alt="AI Photo">
-                    <div class="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition"></div>
+    <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
+        <h2 class="text-center text-4xl font-bold mb-20 tracking-tighter">PROJECT REGISTRY</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="cyber-card p-4 group">
+                <div class="overflow-hidden rounded-xl h-52 mb-6">
+                    <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Project">
                 </div>
-                <h3 class="text-xl font-bold mb-2">AI Photo Maker</h3>
-                <p class="text-gray-400 text-sm mb-6">Unlimited AI-powered image generation tool for creative designers.</p>
-                <a href="https://text-to-images-by-sk-khorrum.vercel.app/" target="_blank" class="text-blue-500 font-bold flex items-center gap-2 hover:underline">Launch App <i class="ri-external-link-line"></i></a>
+                <h3 class="text-xl font-bold mb-2">AI PHOTO ENGINE</h3>
+                <p class="text-slate-500 text-sm mb-6">High-performance AI image generation interface.</p>
+                <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="text-sky-400 font-mono text-xs hover:tracking-widest transition-all">ACCESS PROJECT_</a>
             </div>
 
-            <div class="project-card glass p-5 group">
-                <div class="rounded-2xl overflow-hidden h-44 mb-6">
-                    <img src="https://skkhorruproject.vercel.app/Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-full object-cover" alt="FB Downloader">
+            <div class="cyber-card p-4 group">
+                <div class="overflow-hidden rounded-xl h-52 mb-6">
+                    <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Project">
                 </div>
-                <h3 class="text-xl font-bold mb-2">FB Downloader</h3>
-                <p class="text-gray-400 text-sm mb-6">HD quality video downloader tool built for fast and secure downloads.</p>
-                <a href="https://drt-downloader.vercel.app/" target="_blank" class="text-blue-500 font-bold flex items-center gap-2 hover:underline">Launch App <i class="ri-external-link-line"></i></a>
+                <h3 class="text-xl font-bold mb-2">FB VIDEO PROTOCOL</h3>
+                <p class="text-slate-500 text-sm mb-6">Advanced downloader with 4K stream extraction.</p>
+                <a href="https://drt-downloader.vercel.app/" class="text-sky-400 font-mono text-xs hover:tracking-widest transition-all">ACCESS PROJECT_</a>
             </div>
 
-            <div class="project-card glass p-5 group">
-                <div class="rounded-2xl overflow-hidden h-44 mb-6">
-                    <img src="https://skkhorruproject.vercel.app/Ass/home/clicktochat.png" class="w-full h-full object-cover" alt="WhatsApp">
+            <div class="cyber-card p-4 group">
+                <div class="overflow-hidden rounded-xl h-52 mb-6">
+                    <img src="https://skkhorrumproject.vercel.app/Ass/home/clicktochat.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Project">
                 </div>
-                <h3 class="text-xl font-bold mb-2">Click to Chat PRO</h3>
-                <p class="text-gray-400 text-sm mb-6">Professional WhatsApp marketing tool for direct messaging without saving numbers.</p>
-                <a href="https://click-to-chat-pro.vercel.app/" target="_blank" class="text-blue-500 font-bold flex items-center gap-2 hover:underline">Launch App <i class="ri-external-link-line"></i></a>
+                <h3 class="text-xl font-bold mb-2">CLICK-TO-CHAT PRO</h3>
+                <p class="text-slate-500 text-sm mb-6">Bypassing saved contact protocols for WhatsApp.</p>
+                <a href="https://click-to-chat-pro.vercel.app/" class="text-sky-400 font-mono text-xs hover:tracking-widest transition-all">ACCESS PROJECT_</a>
             </div>
-        </div>
-        
-        <div class="text-center mt-16">
-            <a href="https://skkhorrumproject.vercel.app/" target="_blank" class="px-8 py-3 rounded-full border border-blue-500/30 hover:bg-blue-500/10 transition">View All 20+ Projects</a>
         </div>
     </section>
 
-    <section id="contact" class="py-24 px-6 max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-8">Ready to Collaborate?</h2>
-        <p class="text-gray-400 mb-12">I am currently available for new projects and consultant services. Feel free to reach out via any platform.</p>
-        <div class="flex flex-wrap justify-center gap-6">
-            <a href="mailto:skkhorrun@yahoo.com" class="glass p-6 w-40 hover:border-blue-500 transition">
-                <i class="ri-mail-line text-3xl text-blue-500"></i>
-                <p class="text-sm mt-2">Email</p>
-            </a>
-            <a href="https://t.me/Sk_khorrum" target="_blank" class="glass p-6 w-40 hover:border-blue-500 transition">
-                <i class="ri-telegram-line text-3xl text-blue-400"></i>
-                <p class="text-sm mt-2">Telegram</p>
-            </a>
-            <a href="https://facebook.com/drt.ceo" target="_blank" class="glass p-6 w-40 hover:border-blue-500 transition">
-                <i class="ri-facebook-box-line text-3xl text-blue-600"></i>
-                <p class="text-sm mt-2">Facebook</p>
-            </a>
-        </div>
-    </section>
-
-    <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
-        <p>© 2026 SK KHORRUM. All Rights Reserved. <br> Powered by <span class="text-blue-500 font-bold">Team DRT</span></p>
+    <footer class="py-10 border-t border-white/5 text-center text-slate-600">
+        <p class="text-xs tracking-widest font-mono">© 2026 SYSTEM OVERRIDE BY SK KHORRUM | DRT CORE</p>
     </footer>
 
     <script>
-        // Three.js Scene Setup
-        const container = document.querySelector('#canvas-container');
+        const canvas = document.querySelector('#bg-canvas');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+
         renderer.setSize(window.innerWidth, window.innerHeight);
-        container.appendChild(renderer.domElement);
+        renderer.setPixelRatio(window.devicePixelRatio);
 
-        // Particle System
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 2000;
-        const posArray = new Float32Array(particlesCount * 3);
-
-        for(let i=0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 6;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.007,
-            color: '#3b82f6',
+        // Advanced Wireframe Sphere
+        const geometry = new THREE.IcosahedronGeometry(10, 2);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0x38bdf8,
+            wireframe: true,
             transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending
+            opacity: 0.2
         });
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
 
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-        camera.position.z = 2.5;
+        // Background Particles
+        const partGeo = new THREE.BufferGeometry();
+        const partCount = 1000;
+        const posArr = new Float32Array(partCount * 3);
+        for(let i=0; i < partCount * 3; i++) {
+            posArr[i] = (Math.random() - 0.5) * 50;
+        }
+        partGeo.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
+        const partMat = new THREE.PointsMaterial({ size: 0.05, color: 0xffffff });
+        const particles = new THREE.Points(partGeo, partMat);
+        scene.add(particles);
+
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(1, 1, 2);
+        scene.add(light);
+        
+        camera.position.z = 25;
 
         // Interaction
         let mouseX = 0;
         let mouseY = 0;
         window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX - window.innerWidth / 2;
-            mouseY = e.clientY - window.innerHeight / 2;
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
         });
 
-        // Animation Loop
         function animate() {
             requestAnimationFrame(animate);
-            particlesMesh.rotation.y += 0.001;
+            sphere.rotation.y += 0.002;
+            sphere.rotation.x += 0.001;
             
-            // Smooth mouse movement follow
-            particlesMesh.rotation.x += (mouseY * 0.00005 - particlesMesh.rotation.x) * 0.05;
-            particlesMesh.rotation.y += (mouseX * 0.00005 - particlesMesh.rotation.y) * 0.05;
-            
+            // Smooth Camera Movement
+            camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 10 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
             renderer.render(scene, camera);
         }
         animate();
 
-        // Responsive Window
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
@@ -271,4 +245,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
