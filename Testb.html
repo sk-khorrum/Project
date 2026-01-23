@@ -1,225 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="SK Khorrum, SK Khorrum Developer, SK Khorrum Frontend Developer, SK Khorrum Web Developer, SK Khorrum App Developer, SK Khorrum Firebase Expert, SK Khorrum Designer, SK Khorrum Bangladesh Developer, SK Khorrum Technology Specialist, SK Khorrum Portfolio, Best Frontend Developer Bangladesh, SK Khorrum React Developer, SK Khorrum Tailwind CSS Expert, SK Khorrum UI/UX Designer, SK Khorrum App Development Services, SK Khorrum IT Expert, SK Khorrum Freelance Developer, SK Khorrum Project Portfolio, SK Khorrum Creative Designer, SK Khorrum Mobile App Developer, Top Web Developer Bangladesh, SK Khorrum Web Development Company, SK Khorrum UI Developer, Frontend Development Services by SK Khorrum">
-    <meta name="title" content="About SK Khorrum">
-    <meta name="description" content="SK Khorrum - Frontend App Developer & Backend (Firebase, Google Spreadsheet) Developer">
-    <meta property="og:title" content="About SK Khorrum">
-    <meta property="og:description" content="SK Khorrum - Frontend App Developer & Backend (Firebase, Google Spreadsheet) Developer">
-    <meta property="og:url" content="https://sk-khorrum-ceo.vercel.app/">
-    <meta property="og:type" content="website">
+    
+    <title>SK KHORRUM | 3D Creative Developer & Founder of DRT</title>
+    <meta name="description" content="Official portfolio of SK Khorrum - Expert Frontend Developer, AI Specialist, and Founder of Team DRT. Explore innovative 3D web solutions.">
+    <meta name="keywords" content="SK Khorrum, DRT, 3D Web Design, Full Stack Developer Bangladesh, AI Photo Maker, Web Apps">
+    <meta property="og:title" content="SK KHORRUM | Professional Portfolio">
+    <meta property="og:image" content="assets/img/about.jpg">
+    <meta name="theme-color" content="#0f172a">
 
-    <link rel="icon" href="assets/favicons/assets/img/sk khorrum.png" type="image/png">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        :root {
+            --primary: #3b82f6;
+            --accent: #8b5cf6;
+            --bg: #0f172a;
+        }
 
-    <title>About Sk khorrum</title>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+
+        .hero-text {
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    </style>
 </head>
-
 <body>
-    <header class="header" id="header">
-        <nav class="nav container">
-            <a href="#" class="nav__logo">SK khorrum</a>
-            <div class="nav__menu">
-                <ul class="nav__list">
-                    <li class="nav__item "><a href="#home" class="nav__link"><i class='bx bx-home'></i></a></li>
-                    <li class="nav__item "><a href="#about" class="nav__link"><i class='bx bx-user'></i></a></li>
-                    <li class="nav__item"><a href="#skills" class="nav__link"><i class='bx bx-book'></i></a></li>
-                    <li class="nav__item"><a href="#work" class="nav__link"><i class='bx bx-briefcase-alt-2'></i></a></li>
-                    <li class="nav__item"><a href="#contact" class="nav__link"><i class='bx bx-message-square-dots'></i></a></li>
-                </ul>
+
+    <div id="canvas-container"></div>
+
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-extrabold tracking-tighter">SK <span class="text-blue-500">KHORRUM</span></div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#home" class="hover:text-blue-400 transition">Home</a>
+                <a href="#about" class="hover:text-blue-400 transition">About</a>
+                <a href="#work" class="hover:text-blue-400 transition">Projects</a>
+                <a href="#contact" class="px-5 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition">Contact</a>
             </div>
-            <i class='bx bx-moon change-theme change-theme-button' id="theme-button"></i>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main class="main">
-        <section class="home section" id="home">
-            <div class="home__container container grid">
-                <div class="home__data">
-                    <span class="home__greeting">Hey There, I'm</span>
-                    <h1 class="home__name">SK KHORRUM</h1>
-                    <h3 class="home__education"> WEB APPS Designer & Developer</h3>
-                    <div class="home__button">
-                        <a href="https://skkhorrumproject.vercel.app/" class="button button--ghost">All Project</a>
-                        <br>
-                        <a href="https://drt.vercel.app/main_dashboard.html" class="button">DRT</a>
-                    </div>
-                </div>
-
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/sk-khorrum-36107a263" target="_blank" class="home__social-link"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://github.com/skkhorru" target="_blank" class="home__social-link"><i class='bx bxl-github'></i></a>
-                    <a href="https://google.com/search?q=about+sk+khorrum" target="_blank" class="home__social-link"><i class='bx bxl-dribbble'></i></a>
-                </div>
-
-                <a href="#about" class="home__scroll">
-                    <i class='bx bx-mouse home__scroll-icon'></i>
-                    <span class="home__scroll-name">Scroll Down</span>
-                </a>
+    <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="text-center">
+            <span class="px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6 inline-block">Founder of Team DRT</span>
+            <h1 class="text-5xl md:text-8xl font-extrabold mb-6 hero-text">Innovating the <br>Digital Future.</h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                I'm SK Khorrum, a creative developer specializing in 3D experiences, scalable web apps, and AI integrations.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#work" class="px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-gray-200 transition">View My Work</a>
+                <a href="https://t.me/Sk_khorrum" class="px-8 py-4 glass font-bold rounded-2xl hover:bg-white/10 transition">Let's Talk</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="about section" id="about">
-            <span class="section__subtitle">My Information</span>
-            <h2 class="section__title">About Me</h2>
-            <div class="about__container container grid">
-                <img src="assets/img/about.jpg" alt="" class="about__img">
-                <div class="about__data">
-                    <div class="about__info">
-                        <div class="about__box">
-                            <i class='bx bx-award about__icon'></i>
-                            <h3 class="about__title">Experience</h3>
-                            <span class="about__subtitle">3 Years Working</span>
-                        </div>
-                        <div class="about__box">
-                            <i class='bx bx-briefcase-alt about__icon'></i>
-                            <h3 class="about__title">Completed</h3>
-                            <span class="about__subtitle">7 Apk & 15 Website </span>
-                        </div>
-                        <div class="about__box">
-                            <i class='bx bx-support about__icon'></i>
-                            <h3 class="about__title">Support</h3>
-                            <span class="about__subtitle">Online 24/4</span>
-                        </div>
-                    </div>
-                    <p class="about__description">
-                        I am SK khorrum. 18 Years Old. I am a Frontend App Developer and Backend (Firebase, Google Spreadsheet) Developer. I am the founder of DRT.
-                    </p>
-                    <a href="#contact" class="button about__button-contact">Contact Me</a>
-                </div>
+    <section id="work" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+                <div class="h-1 w-20 bg-blue-500 rounded-full"></div>
             </div>
-        </section>
+        </div>
 
-        <section class="work section" id="work">
-            <span class="section__subtitle">My Project</span>
-            <h2 class="section__title">Recent Works</h2>
-
-            <div class="work__filters">
-                <span class="work__item active-work" data-filter='all'>All</span>
-                <span class="work__item" data-filter='.web'>Website</span>
-                <span class="work__item" data-filter='.movil'>Apps</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="project-card glass p-4 transition-all duration-500 group">
+                <div class="relative overflow-hidden rounded-2xl h-48 mb-6">
+                    <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="AI Photo">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+                <h3 class="text-xl font-bold mb-2">AI Photo Maker</h3>
+                <p class="text-gray-400 text-sm mb-6">Unlimited free photo making tool powered by AI.</p>
+                <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="text-blue-400 font-bold flex items-center gap-2">Explore <i class="ri-arrow-right-up-line"></i></a>
             </div>
 
-            <div class="work__container container grid">
-                
-                <div class="work__card mix web">
-                    <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" alt="" class="work__img">
-                    <h3 class="work__title">FB Video Downloader</h3>
-                    <a href="https://drt-downloader.vercel.app/" target="_blank" class="work__button">
-                        View Tool <i class='bx bx-right-arrow work__icon'></i>
-                    </a>
+            <div class="project-card glass p-4 transition-all duration-500 group">
+                <div class="relative overflow-hidden rounded-2xl h-48 mb-6">
+                    <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="FB Downloader">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
-
-                <div class="work__card mix web">
-                    <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" alt="" class="work__img">
-                    <h3 class="work__title">AI Photo Maker</h3>
-                    <a href="https://text-to-images-by-sk-khorrum.vercel.app/" target="_blank" class="work__button">
-                        View Tool <i class='bx bx-right-arrow work__icon'></i>
-                    </a>
-                </div>
-
-                <div class="work__card mix web">
-                    <img src="Ass/home/clicktochat.png" alt="" class="work__img">
-                    <h3 class="work__title">Click to Chat PRO</h3>
-                    <a href="https://click-to-chat-pro.vercel.app/" target="_blank" class="work__button">
-                        View Tool <i class='bx bx-right-arrow work__icon'></i>
-                    </a>
-                </div>
-
-                <div class="work__card mix web">
-                    <img src="Ass/home/weathernaw.png" alt="" class="work__img">
-                    <h3 class="work__title">Weather Now</h3>
-                    <a href="https://skkhorrumproject.vercel.app/page/Weather.html" target="_blank" class="work__button">
-                        View Web <i class='bx bx-right-arrow work__icon'></i>
-                    </a>
-                </div>
-
-                <div class="work__card mix web">
-                    <img src="Ass/home/Screenshot_2025_0710_075636.png" alt="" class="work__img">
-                    <h3 class="work__title">Khela Dakhbo</h3>
-                    <a href="https://khela-dakhbo.vercel.app/" target="_blank" class="work__button">
-                        Watch Live <i class='bx bx-right-arrow work__icon'></i>
-                    </a>
-                </div>
-
-                <div class="work__card mix web">
-                    <img src="Ass/home/Screenshot_2025_0628_184058.png" alt="" class="work__img">
-                    <h3 class="work__title">Secure File Tool</h3>
-                    <a href="https://dark-access-bot444.vercel.app/" target="_blank" class="work__button">
-                        View Tool <i class='bx bx-right-arrow work__icon'></i>
-                    </a>
-                </div>
-
-                <div class="work__card mix web">
-                    <img src="Ass/home/Screenshot_2025_0514_154111.png" alt="" class="work__img">
-                    <h3 class="work__title">Facebook Clone</h3>
-                    <a href="https://skkhorrumproject.vercel.app/page/Facebook.html" target="_blank" class="work__button">
-                        View Demo <i class='bx bx-right-arrow work__icon'></i>
-                    </a>
-                </div>
-
-                <div class="work__card mix web">
-                    <img src="Ass/home/Screenshot_2025_0514_205908.png" alt="" class="work__img">
-                    <h3 class="work__title">Age Calculator</h3>
-                    <a href="https://skkhorrumproject.vercel.app/page/age.html" target="_blank" class="work__button">
-                        Try Now <i class='bx bx-right-arrow work__icon'></i>
-                    </a>
-                </div>
-
+                <h3 class="text-xl font-bold mb-2">FB Video Downloader</h3>
+                <p class="text-gray-400 text-sm mb-6">HD quality video downloader with one-click access.</p>
+                <a href="https://drt-downloader.vercel.app/" class="text-blue-400 font-bold flex items-center gap-2">Try Tool <i class="ri-arrow-right-up-line"></i></a>
             </div>
-        </section>
 
-        <section class="contact section" id="contact">
-            <span class="section__subtitle">Get in touch</span>
-            <h3 class="section__title">Contact Me</h3>
-            <div class="contact__container container grid">
-                <div class="contact__content">
-                    <h3 class="contact__title contact__title-info">Talk to me</h3>
-                    <div class="contact__info">
-                        <div class="contact__card">
-                            <i class='bx bx-mail-send contact__card-icon'></i>
-                            <h3 class="contact__card-title">Email</h3>
-                            <span class="contact__card-data">skkhorrun@yahoo.com</span>
-                            <a href="mailto:skkhorrun@yahoo.com" target="_blank" class="contact__button">Write Me <i class='bx bx-right-arrow contact__button-icon'></i></a>
-                        </div>
-                        <div class="contact__card">
-                            <i class='bx bxl-messenger contact__card-icon'></i>
-                            <h3 class="contact__card-title">Facebook</h3>
-                            <span class="contact__card-data">Messenger</span>
-                            <a href="https://m.me/drt.ceo" target="_blank" class="contact__button">Write Me <i class='bx bx-right-arrow contact__button-icon'></i></a>
-                        </div>
-                        <div class="contact__card">
-                            <i class='bx bxl-telegram contact__card-icon'></i>
-                            <h3 class="contact__card-title">Telegram</h3>
-                            <span class="contact__card-data">Sk_khorrum</span>
-                            <a href="https://t.me/Sk_khorrum" target="_blank" class="contact__button">Contact Me <i class='bx bx-right-arrow contact__button-icon'></i></a>
-                        </div>
-                    </div>
+            <div class="project-card glass p-4 transition-all duration-500 group">
+                <div class="relative overflow-hidden rounded-2xl h-48 mb-6">
+                    <img src="Ass/home/clicktochat.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Click Chat">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
+                <h3 class="text-xl font-bold mb-2">Click to Chat PRO</h3>
+                <p class="text-gray-400 text-sm mb-6">Efficient tool for WhatsApp Marketing and Templates.</p>
+                <a href="https://click-to-chat-pro.vercel.app/" class="text-blue-400 font-bold flex items-center gap-2">View Web <i class="ri-arrow-right-up-line"></i></a>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <footer class="footer">
-        <div class="footer__container container">
-            <h1 class="footer__title">SK Khorrum</h1>
-            <ul class="footer__list">
-                <li><a href="#home" class="footer__link">Home</a></li>
-                <li><a href="#work" class="footer__link">Work</a></li>
-                <li><a href="#contact" class="footer__link">Contact</a></li>
-            </ul>
-            <span class="footer__copy">&#169; 2025 All Copyright reserved by Sk khorrum.</span>
+        <div class="mt-12 text-center">
+            <a href="https://skkhorrumproject.vercel.app/" class="inline-block px-10 py-4 glass border-blue-500/20 text-blue-400 font-bold rounded-2xl hover:bg-blue-500/10 transition">Explore All 20+ Projects</a>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:row justify-between items-center gap-6">
+            <p class="text-gray-500">© 2026 SK KHORRUM. Powered by Team DRT.</p>
+            <div class="flex space-x-6 text-2xl">
+                <a href="https://github.com/skkhorru" class="hover:text-blue-500 transition"><i class="ri-github-fill"></i></a>
+                <a href="https://facebook.com/drt.ceo" class="hover:text-blue-500 transition"><i class="ri-facebook-box-fill"></i></a>
+                <a href="https://t.me/Sk_khorrum" class="hover:text-blue-500 transition"><i class="ri-telegram-fill"></i></a>
+            </div>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/mixitup.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script>
+        const container = document.querySelector('#canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        // Create Particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1500;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i=0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 5;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const material = new THREE.PointsMaterial({
+            size: 0.005,
+            color: '#3b82f6',
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, material);
+        scene.add(particlesMesh);
+        camera.position.z = 2;
+
+        // Mouse Interaction
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.001;
+            
+            if (mouseX > 0) {
+                particlesMesh.rotation.x = mouseY * 0.00005;
+                particlesMesh.rotation.y = mouseX * 0.00005;
+            }
+            
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>
