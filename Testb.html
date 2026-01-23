@@ -3,245 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SK KHORRUM | Advanced 3D Visionary</title>
+    <title>SK KHORRUM | Software Architect & 3D Visionary</title>
     
-    <meta name="description" content="SK Khorrum - Lead Developer at Team DRT. Expert in 3D Web Architectures & AI Systems.">
+    <meta name="description" content="Official Portfolio of SK Khorrum - Founder of Team DRT, Full-stack Developer, and AI Expert.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;500;800&display=swap');
         
+        :root {
+            --bg: #030712;
+            --accent: #38bdf8;
+        }
+
         body {
-            background-color: #020617;
-            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
+            font-family: 'Bricolage Grotesque', sans-serif;
             color: #f8fafc;
             overflow-x: hidden;
         }
 
-        #bg-canvas {
+        #canvas-bg {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             z-index: -1;
         }
 
-        .cyber-card {
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .cyber-card:hover {
-            border-color: #38bdf8;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
-            transform: translateY(-10px) rotateX(5deg);
-        }
-
-        .text-glow {
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
-        }
-
-        .nav-link {
-            position: relative;
-            transition: 0.3s;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: #38bdf8;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #0ea5e9, #6366f1);
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: 0.4s;
-            position: relative;
-            overflow: hidden;
         }
 
-        .btn-primary:hover {
-            box-shadow: 0 0 30px rgba(14, 165, 233, 0.6);
-            transform: scale(1.05);
+        .glass-panel:hover {
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.8);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .text-gradient {
+            background: linear-gradient(to bottom right, #fff, #64748b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .floating { animation: float 4s ease-in-out infinite; }
+        .skill-tag {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        .project-img {
+            transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <canvas id="bg-canvas"></canvas>
+    <canvas id="canvas-bg"></canvas>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-slate-950/50 backdrop-blur-md border-b border-white/5">
-        <div class="text-2xl font-bold tracking-widest text-glow">SK <span class="text-sky-500">KHORRUM</span></div>
-        <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-tighter">
-            <a href="#" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">Matrix</a>
-            <a href="#projects" class="nav-link">Works</a>
-            <a href="#contact" class="nav-link">Terminal</a>
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-slate-950/20 backdrop-blur-md">
+        <div class="text-xl font-extrabold tracking-tighter">SK <span class="text-sky-500">KHORRUM.</span></div>
+        <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-widest text-slate-400">
+            <a href="#home" class="hover:text-sky-400 transition">Base</a>
+            <a href="#projects" class="hover:text-sky-400 transition">Archives</a>
+            <a href="#services" class="hover:text-sky-400 transition">Specialities</a>
+            <a href="#contact" class="hover:text-sky-400 transition">Connect</a>
         </div>
-        <div class="text-xs border border-sky-500/50 px-3 py-1 rounded text-sky-400">STATUS: ONLINE</div>
+        <a href="https://t.me/Sk_khorrum" class="bg-sky-500 text-slate-950 px-5 py-2 rounded-full text-xs font-black hover:bg-white transition">HAVE A PROJECT?</a>
     </nav>
 
-    <section class="h-screen flex flex-col items-center justify-center text-center px-6">
-        <div class="floating mb-4">
-            <span class="text-sky-500 font-mono tracking-widest text-sm">[ INITIALIZING INTERFACE... ]</span>
-        </div>
-        <h1 class="text-6xl md:text-9xl font-bold mb-6 tracking-tighter leading-none">
-            3D DIGITAL <br> <span class="text-sky-500">ARCHITECT.</span>
-        </h1>
-        <p class="max-w-2xl text-slate-400 md:text-xl mb-10 font-light">
-            I build hyper-scalable web environments and AI-driven infrastructures as the Lead of <span class="text-white font-bold">Team DRT</span>.
-        </p>
-        <div class="flex gap-6">
-            <a href="#projects" class="btn-primary px-10 py-4 rounded-full font-bold uppercase tracking-widest">View Archives</a>
-            <a href="#contact" class="border border-white/20 px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-white hover:text-black transition duration-500">Direct Link</a>
+    <section id="home" class="min-h-screen flex flex-col items-center justify-center px-6 pt-20">
+        <div class="text-center">
+            <h2 class="text-sky-500 font-mono text-sm tracking-[0.3em] mb-4 uppercase">System Architect & Founder @ DRT</h2>
+            <h1 class="text-6xl md:text-[10rem] font-extrabold tracking-tighter leading-none mb-8 text-gradient">
+                ENGINEERING <br> FUTURE WEB.
+            </h1>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="glass-panel px-6 py-3 rounded-2xl flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-sm">Available for Freelance</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-20 items-center">
-            <div class="relative">
-                <div class="absolute -top-10 -left-10 w-40 h-40 bg-sky-500/10 blur-3xl"></div>
-                <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" alt="Profile" class="rounded-2xl border border-white/10 w-full grayscale hover:grayscale-0 transition duration-700">
-            </div>
-            <div>
-                <h2 class="text-4xl font-bold mb-8">System Profile</h2>
-                <div class="space-y-6 text-slate-400 text-lg">
-                    <p>SK Khorrum, Founder of Team DRT. 3 years of deep-tech experience in front-end design and back-end logic synchronization.</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="cyber-card p-6">
-                            <div class="text-3xl font-bold text-sky-400">15+</div>
-                            <div class="text-xs uppercase tracking-widest mt-2">Projects Deployed</div>
-                        </div>
-                        <div class="cyber-card p-6">
-                            <div class="text-3xl font-bold text-indigo-400">07+</div>
-                            <div class="text-xs uppercase tracking-widest mt-2">Core Algorithms</div>
-                        </div>
+    <section class="py-20 px-6 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass-panel p-8 rounded-3xl text-center">
+            <div class="text-4xl font-extrabold mb-2">03+</div>
+            <div class="text-xs text-slate-500 uppercase tracking-widest">Years Experience</div>
+        </div>
+        <div class="glass-panel p-8 rounded-3xl text-center">
+            <div class="text-4xl font-extrabold mb-2">20+</div>
+            <div class="text-xs text-slate-500 uppercase tracking-widest">Global Projects</div>
+        </div>
+        <div class="glass-panel p-8 rounded-3xl text-center">
+            <div class="text-4xl font-extrabold mb-2">100%</div>
+            <div class="text-xs text-slate-500 uppercase tracking-widest">System Security</div>
+        </div>
+        <div class="glass-panel p-8 rounded-3xl text-center">
+            <div class="text-4xl font-extrabold mb-2">01</div>
+            <div class="text-xs text-slate-500 uppercase tracking-widest">Team Founder</div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
+        <h3 class="text-4xl font-bold mb-16 tracking-tighter">PROJECT ARCHIVES // <span class="text-sky-500 italic">2024-2026</span></h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-8 glass-panel rounded-[2rem] overflow-hidden group relative">
+                <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="project-img w-full h-[400px] object-cover opacity-50" alt="">
+                <div class="absolute bottom-0 left-0 p-10 w-full bg-gradient-to-t from-slate-950 to-transparent">
+                    <div class="flex gap-2 mb-4">
+                        <span class="skill-tag">AI ENGINE</span>
+                        <span class="skill-tag">THREE.JS</span>
                     </div>
+                    <h4 class="text-3xl font-bold mb-2">AI PHOTO MAKER PRO</h4>
+                    <p class="text-slate-400 mb-6 max-w-md text-sm">Next-gen AI interface for high-speed neural image generation.</p>
+                    <a href="https://text-to-images-by-sk-khorrum.vercel.app/" target="_blank" class="text-xs font-bold uppercase tracking-widest text-sky-400">Launch Protocol <i class="ri-arrow-right-up-line"></i></a>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 glass-panel rounded-[2rem] overflow-hidden group relative">
+                <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="project-img w-full h-[400px] object-cover opacity-50" alt="">
+                <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-slate-950 to-transparent text-center">
+                    <h4 class="text-xl font-bold mb-2">FB VIDEO PROTOCOL</h4>
+                    <a href="https://drt-downloader.vercel.app/" target="_blank" class="text-xs font-bold uppercase tracking-widest text-sky-400">View Tool</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
-        <h2 class="text-center text-4xl font-bold mb-20 tracking-tighter">PROJECT REGISTRY</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="cyber-card p-4 group">
-                <div class="overflow-hidden rounded-xl h-52 mb-6">
-                    <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Project">
+    <section id="services" class="py-32 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-center text-5xl font-bold mb-20 tracking-tighter">CORE SPECIALITIES</h3>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="p-10 border-l border-sky-500/30 hover:bg-sky-500/5 transition">
+                    <i class="ri-code-s-slash-line text-4xl text-sky-500 mb-6 block"></i>
+                    <h4 class="text-2xl font-bold mb-4">Web Architecture</h4>
+                    <p class="text-slate-500 text-sm">Building ultra-fast, responsive web interfaces using modern frameworks like React and Tailwind.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2">AI PHOTO ENGINE</h3>
-                <p class="text-slate-500 text-sm mb-6">High-performance AI image generation interface.</p>
-                <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="text-sky-400 font-mono text-xs hover:tracking-widest transition-all">ACCESS PROJECT_</a>
-            </div>
-
-            <div class="cyber-card p-4 group">
-                <div class="overflow-hidden rounded-xl h-52 mb-6">
-                    <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Project">
+                <div class="p-10 border-l border-purple-500/30 hover:bg-purple-500/5 transition">
+                    <i class="ri-database-2-line text-4xl text-purple-500 mb-6 block"></i>
+                    <h4 class="text-2xl font-bold mb-4">Backend Logic</h4>
+                    <p class="text-slate-500 text-sm">Secure and scalable server-side solutions using Firebase and Google Cloud architectures.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2">FB VIDEO PROTOCOL</h3>
-                <p class="text-slate-500 text-sm mb-6">Advanced downloader with 4K stream extraction.</p>
-                <a href="https://drt-downloader.vercel.app/" class="text-sky-400 font-mono text-xs hover:tracking-widest transition-all">ACCESS PROJECT_</a>
-            </div>
-
-            <div class="cyber-card p-4 group">
-                <div class="overflow-hidden rounded-xl h-52 mb-6">
-                    <img src="https://skkhorrumproject.vercel.app/Ass/home/clicktochat.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Project">
+                <div class="p-10 border-l border-emerald-500/30 hover:bg-emerald-500/5 transition">
+                    <i class="ri-shield-keyhole-line text-4xl text-emerald-500 mb-6 block"></i>
+                    <h4 class="text-2xl font-bold mb-4">Cyber Security</h4>
+                    <p class="text-slate-500 text-sm">Advanced system protection and penetration testing for private infrastructures.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2">CLICK-TO-CHAT PRO</h3>
-                <p class="text-slate-500 text-sm mb-6">Bypassing saved contact protocols for WhatsApp.</p>
-                <a href="https://click-to-chat-pro.vercel.app/" class="text-sky-400 font-mono text-xs hover:tracking-widest transition-all">ACCESS PROJECT_</a>
             </div>
         </div>
     </section>
 
-    <footer class="py-10 border-t border-white/5 text-center text-slate-600">
-        <p class="text-xs tracking-widest font-mono">© 2026 SYSTEM OVERRIDE BY SK KHORRUM | DRT CORE</p>
+    <section id="contact" class="py-32 px-6 text-center">
+        <h3 class="text-7xl md:text-9xl font-extrabold tracking-tighter mb-12 opacity-10">CONNECT</h3>
+        <div class="max-w-xl mx-auto glass-panel p-12 rounded-[3rem]">
+            <h4 class="text-3xl font-bold mb-6">START A PROJECT</h4>
+            <p class="text-slate-400 mb-10 text-sm italic">"The best way to predict the future is to build it."</p>
+            <div class="flex justify-center gap-8 text-3xl">
+                <a href="mailto:skkhorrun@yahoo.com" class="hover:text-sky-400 transition"><i class="ri-mail-line"></i></a>
+                <a href="https://t.me/Sk_khorrum" class="hover:text-sky-400 transition"><i class="ri-telegram-line"></i></a>
+                <a href="https://facebook.com/drt.ceo" class="hover:text-sky-400 transition"><i class="ri-facebook-box-line"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5 text-center text-slate-700">
+        <p class="text-xs tracking-[0.5em] font-bold">© 2026 SK KHORRUM | DRT CORE SYSTEMS</p>
     </footer>
 
     <script>
-        const canvas = document.querySelector('#bg-canvas');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-
-        // Advanced Wireframe Sphere
-        const geometry = new THREE.IcosahedronGeometry(10, 2);
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x38bdf8,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.2
-        });
-        const sphere = new THREE.Mesh(geometry, material);
-        scene.add(sphere);
-
-        // Background Particles
-        const partGeo = new THREE.BufferGeometry();
-        const partCount = 1000;
-        const posArr = new Float32Array(partCount * 3);
-        for(let i=0; i < partCount * 3; i++) {
-            posArr[i] = (Math.random() - 0.5) * 50;
-        }
-        partGeo.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
-        const partMat = new THREE.PointsMaterial({ size: 0.05, color: 0xffffff });
-        const particles = new THREE.Points(partGeo, partMat);
-        scene.add(particles);
-
-        const light = new THREE.DirectionalLight(0xffffff, 1);
-        light.position.set(1, 1, 2);
-        scene.add(light);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#canvas-bg'), antialias: true, alpha: true });
         
-        camera.position.z = 25;
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        // Dynamic Grid System
+        const size = 100;
+        const divisions = 50;
+        const gridHelper = new THREE.GridHelper(size, divisions, 0x0ea5e9, 0x020617);
+        scene.add(gridHelper);
+        
+        camera.position.set(0, 10, 20);
+        camera.lookAt(0,0,0);
 
-        // Interaction
-        let mouseX = 0;
-        let mouseY = 0;
-        window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) - 0.5;
-            mouseY = (e.clientY / window.innerHeight) - 0.5;
-        });
-
+        // Animation logic
         function animate() {
             requestAnimationFrame(animate);
-            sphere.rotation.y += 0.002;
-            sphere.rotation.x += 0.001;
-            
-            // Smooth Camera Movement
-            camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 10 - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
-
+            gridHelper.position.z += 0.05;
+            if (gridHelper.position.z > (size/divisions)) gridHelper.position.z = 0;
             renderer.render(scene, camera);
         }
         animate();
 
+        // Responsive
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // GSAP Scroll Animations
+        gsap.from(".text-gradient", {
+            opacity: 0, y: 100, duration: 1.5, ease: "expo.out"
         });
     </script>
 </body>
