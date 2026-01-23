@@ -3,171 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SK KHORRUM | 0x18 | DRT FOUNDER</title>
+    <title>SK KHORRUM | LEAD ARCHITECT</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&family=JetBrains+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
         
-        :root { --accent: #38bdf8; --bg: #050505; }
-        body { background: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        
-        #canvas-bg { position: fixed; top: 0; left: 0; z-index: -1; }
-        
-        /* Cute Smart Card */
-        .smart-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(20px); 
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 2rem;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        :root { --neon: #00f2ff; --purple: #7000ff; --dark: #020205; }
+        body { background: var(--dark); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        .sync { font-family: 'Syncopate', sans-serif; }
+
+        #canvas-bg { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
+
+        /* Ultra-Smart Glass */
+        .cyber-glass {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        .smart-card:hover { transform: scale(1.02); border-color: var(--accent); background: rgba(56, 189, 248, 0.05); }
 
-        .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 4px 12px; border-radius: 99px; background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+        /* Animated Neon Border */
+        .neon-border {
+            position: relative; overflow: hidden;
+            border-radius: 2rem;
+        }
+        .neon-border::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--neon));
+            animation: rotate 4s linear infinite;
+        }
+        .neon-inner { position: relative; background: var(--dark); margin: 2px; border-radius: 1.9rem; z-index: 1; }
 
-        /* Smooth Floating Animation */
-        .float { animation: float 5s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
 
+        .stat-val { background: linear-gradient(to right, var(--neon), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+        
         ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <canvas id="canvas-bg"></canvas>
 
-    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-black/20 backdrop-blur-md border-b border-white/5">
-        <div class="text-xl font-extrabold tracking-tighter">SK <span class="text-sky-400">KHORRUM</span></div>
-        <div class="flex gap-6 items-center">
-            <a href="https://t.me/Sk_khorrum" class="bg-sky-500 text-black px-5 py-2 rounded-full text-[10px] font-black hover:bg-white transition">CONNECT</a>
+    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center bg-black/40 backdrop-blur-xl border-b border-white/5">
+        <div class="sync font-bold text-sm tracking-[0.5em] text-white">SK<span class="text-cyan-400">KHORRUM</span></div>
+        <div class="flex gap-4">
+            <div class="h-2 w-2 rounded-full bg-cyan-500 animate-pulse"></div>
+            <span class="text-[9px] sync opacity-50 tracking-widest">SYSTEM: ONLINE</span>
         </div>
     </nav>
 
     <section class="min-h-screen flex flex-col items-center justify-center px-6 pt-20">
-        <div class="float relative mb-8">
-            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-sky-500/30 p-1.5 bg-gradient-to-tr from-sky-500/20 to-transparent">
-                <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" class="w-full h-full object-cover rounded-full shadow-2xl">
+        <div class="mb-8 neon-border p-1">
+            <div class="neon-inner p-1">
+                <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" class="w-32 h-32 md:w-48 md:h-48 object-cover rounded-[1.8rem]">
             </div>
-            <div class="absolute -bottom-2 right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-black"></div>
         </div>
-
-        <h1 class="text-5xl md:text-8xl font-black text-center tracking-tighter mb-4">
-            SMART <span class="text-sky-400 italic">CREATIVE.</span>
-        </h1>
         
-        <div class="flex flex-wrap justify-center gap-3 mb-10">
-            <span class="tag">18 YEARS OLD</span>
-            <span class="tag">03+ YRS EXP</span>
-            <span class="tag">DRT FOUNDER</span>
-            <span class="tag">DHAKA, BD</span>
-        </div>
+        <h1 class="text-6xl md:text-[10rem] sync font-bold leading-none tracking-tighter text-center mb-6">
+            LEAD <br> <span class="stat-val italic">CORE.</span>
+        </h1>
 
-        <p class="text-white/50 text-center max-w-lg text-sm md:text-base leading-relaxed mb-12">
-            একজন প্রফেশনাল সফটওয়্যার আর্কিটেক্ট, যিনি ৩ বছর ধরে টিম **DRT**-এর মাধ্যমে ডিজিটাল ইকোসিস্টেম তৈরি করছেন। কোডিং এখন আর শুধু লজিক নয়, আমার কাছে এটি একটি আর্ট।
-        </p>
-    </section>
-
-    <section class="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-        <div class="smart-card p-10">
-            <h3 class="text-sky-400 font-bold text-xs uppercase tracking-widest mb-6">/ core_dossier</h3>
-            <p class="text-xl leading-relaxed font-medium text-white/90">
-                আমি ৩ বছর ধরে ফেইসবুক মিডিয়া টুলস, এআই নিউরাল নেটওয়ার্ক এবং সিকিউর ডাটাবেস আর্কিটেকচার নিয়ে কাজ করছি। টিম DRT-এর মাধ্যমে আমি এমন সব টুলস রিলিজ করি যা ইউজারদের কাজকে ১০০% অটোমেটেড করে দেয়।
-            </p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-            <div class="smart-card p-6 flex flex-col items-center text-center">
-                <i class="ri-code-line text-3xl text-sky-400 mb-2"></i>
-                <h4 class="text-sm font-bold">FRONTEND</h4>
-                <p class="text-[10px] text-white/30 uppercase mt-1">React / Next.js</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mt-12">
+            <div class="cyber-glass p-6 rounded-3xl text-center">
+                <div class="text-3xl stat-val">18</div>
+                <div class="text-[9px] uppercase tracking-widest opacity-40 mt-2 font-bold">Years Age</div>
             </div>
-            <div class="smart-card p-6 flex flex-col items-center text-center">
-                <i class="ri-brain-line text-3xl text-sky-400 mb-2"></i>
-                <h4 class="text-sm font-bold">AI NEURAL</h4>
-                <p class="text-[10px] text-white/30 uppercase mt-1">Python / API</p>
+            <div class="cyber-glass p-6 rounded-3xl text-center">
+                <div class="text-3xl stat-val">03+</div>
+                <div class="text-[9px] uppercase tracking-widest opacity-40 mt-2 font-bold">Years Exp</div>
             </div>
-            <div class="smart-card p-6 flex flex-col items-center text-center">
-                <i class="ri-shield-flash-line text-3xl text-sky-400 mb-2"></i>
-                <h4 class="text-sm font-bold">SECURITY</h4>
-                <p class="text-[10px] text-white/30 uppercase mt-1">AES / Auth</p>
+            <div class="cyber-glass p-6 rounded-3xl text-center">
+                <div class="text-3xl stat-val">20+</div>
+                <div class="text-[9px] uppercase tracking-widest opacity-40 mt-2 font-bold">Projects</div>
             </div>
-            <div class="smart-card p-6 flex flex-col items-center text-center">
-                <i class="ri-global-line text-3xl text-sky-400 mb-2"></i>
-                <h4 class="text-sm font-bold">SYSTEMS</h4>
-                <p class="text-[10px] text-white/30 uppercase mt-1">Node / Cloud</p>
+            <div class="cyber-glass p-6 rounded-3xl text-center">
+                <div class="text-3xl stat-val">DRT</div>
+                <div class="text-[9px] uppercase tracking-widest opacity-40 mt-2 font-bold">Founder</div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-black mb-12 text-center">SYSTEM <span class="text-sky-400">VAULT</span></h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="smart-card p-5 group block">
-                <div class="h-52 overflow-hidden rounded-2xl mb-6">
-                    <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0">
+    <section class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <h2 class="text-4xl sync font-bold">KHORRUM <br> <span class="text-cyan-400">DATA_SET</span></h2>
+                <p class="text-white/60 leading-relaxed text-lg">
+                    আমি ৩ বছর ধরে সফটওয়্যার আর্কিটেকচার নিয়ে কাজ করছি। টিম **DRT**-এর প্রতিষ্ঠাতা হিসেবে আমার মূল লক্ষ্য হলো জটিল ডাটা প্রসেসিংকে সহজ এবং সুন্দর ইউজার ইন্টারফেসে রূপান্তর করা। আমার তৈরি টুলসগুলো বর্তমানে হাজারো ইউজার ব্যবহার করছে।
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://t.me/Sk_khorrum" class="bg-cyan-500 text-black px-8 py-4 rounded-2xl font-black sync text-[10px] tracking-widest hover:bg-white transition">INIT_CONTACT</a>
                 </div>
-                <h4 class="text-lg font-bold">AI Photo Maker</h4>
-                <p class="text-[10px] text-sky-400 font-bold uppercase mt-1 tracking-widest">Neural / UI</p>
-            </a>
-
-            <a href="https://drt-downloader.vercel.app/" class="smart-card p-5 group block">
-                <div class="h-52 overflow-hidden rounded-2xl mb-6">
-                    <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0">
+            </div>
+            <div class="grid gap-4">
+                <div class="cyber-glass p-8 rounded-[2rem] border-l-4 border-cyan-500">
+                    <h4 class="sync text-xs font-bold mb-2 text-cyan-400">Development_Stack</h4>
+                    <p class="text-xs opacity-50 uppercase tracking-widest">Next.js • Tailwind • Three.js • Python AI</p>
                 </div>
-                <h4 class="text-lg font-bold">FB Video Protocol</h4>
-                <p class="text-[10px] text-sky-400 font-bold uppercase mt-1 tracking-widest">Automation / Tool</p>
-            </a>
-
-            <a href="https://click-to-chat-pro.vercel.app/" class="smart-card p-5 group block">
-                <div class="h-52 overflow-hidden rounded-2xl mb-6">
-                    <img src="https://skkhorrumproject.vercel.app/Ass/home/clicktochat.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0">
+                <div class="cyber-glass p-8 rounded-[2rem] border-l-4 border-purple-500">
+                    <h4 class="sync text-xs font-bold mb-2 text-purple-400">Core_Specialization</h4>
+                    <p class="text-xs opacity-50 uppercase tracking-widest">Automation • 3D UX • Cyber Security</p>
                 </div>
-                <h4 class="text-lg font-bold">Click-to-Chat Pro</h4>
-                <p class="text-[10px] text-sky-400 font-bold uppercase mt-1 tracking-widest">Utility / WA Sync</p>
-            </a>
+            </div>
         </div>
     </section>
 
-    <footer class="py-24 text-center border-t border-white/5 bg-black/40">
-        <h2 class="text-2xl font-black mb-10 italic">LEAVE A <span class="text-sky-400">MARK.</span></h2>
-        <div class="flex justify-center gap-10 text-3xl mb-12">
-            <a href="https://t.me/Sk_khorrum" class="hover:text-sky-400 transition"><i class="ri-telegram-fill"></i></a>
-            <a href="https://facebook.com/drt.ceo" class="hover:text-sky-400 transition"><i class="ri-facebook-circle-fill"></i></a>
-            <a href="mailto:skkhorrun@yahoo.com" class="hover:text-sky-400 transition"><i class="ri-mail-send-fill"></i></a>
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <h3 class="sync text-center text-2xl font-bold mb-16 tracking-[0.5em] opacity-30 italic">ACTIVE_ARCHIVES</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group relative cyber-glass p-4 rounded-[3rem] transition-all hover:bg-white/5">
+                <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="h-64 w-full object-cover rounded-[2.5rem] mb-6 grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div class="px-4 pb-4">
+                    <h4 class="sync text-sm font-bold">AI PHOTO GEN</h4>
+                    <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="inline-block mt-4 text-[10px] sync text-cyan-400 border-b border-cyan-400 pb-1">EXECUTE_PROTOCOL</a>
+                </div>
+            </div>
+            <div class="group relative cyber-glass p-4 rounded-[3rem] transition-all hover:bg-white/5">
+                <img src="https://skkhorrumproject.vercel.app/Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="h-64 w-full object-cover rounded-[2.5rem] mb-6 grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div class="px-4 pb-4">
+                    <h4 class="sync text-sm font-bold">DRT DOWNLOADER</h4>
+                    <a href="https://drt-downloader.vercel.app/" class="inline-block mt-4 text-[10px] sync text-cyan-400 border-b border-cyan-400 pb-1">EXECUTE_PROTOCOL</a>
+                </div>
+            </div>
+            <div class="group relative cyber-glass p-4 rounded-[3rem] transition-all hover:bg-white/5">
+                <img src="https://skkhorrumproject.vercel.app/Ass/home/clicktochat.png" class="h-64 w-full object-cover rounded-[2.5rem] mb-6 grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div class="px-4 pb-4">
+                    <h4 class="sync text-sm font-bold">CLICK-TO-CHAT</h4>
+                    <a href="https://click-to-chat-pro.vercel.app/" class="inline-block mt-4 text-[10px] sync text-cyan-400 border-b border-cyan-400 pb-1">EXECUTE_PROTOCOL</a>
+                </div>
+            </div>
         </div>
-        <p class="text-[9px] font-bold text-white/20 tracking-[1em] uppercase">© 2026 SK KHORRUM | DRT MASTER CORE</p>
+    </section>
+
+    <footer class="py-24 text-center border-t border-white/5">
+        <h2 class="sync text-4xl font-bold mb-12 tracking-widest text-white/20">SK_KHORRUM_CORE</h2>
+        <div class="flex justify-center gap-8 text-2xl mb-12">
+            <a href="https://t.me/Sk_khorrum" class="text-cyan-400 hover:scale-125 transition"><i class="ri-telegram-fill"></i></a>
+            <a href="https://facebook.com/drt.ceo" class="text-cyan-400 hover:scale-125 transition"><i class="ri-facebook-circle-fill"></i></a>
+            <a href="mailto:skkhorrun@yahoo.com" class="text-cyan-400 hover:scale-125 transition"><i class="ri-mail-send-fill"></i></a>
+        </div>
+        <p class="sync text-[8px] opacity-20 tracking-[1em] uppercase">Authorized Session © 2026 | Team DRT Master Node</p>
     </footer>
 
     <script>
-        // Cute Subtle Background Effects
+        // Three.js 3D Neural Sphere Background
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#canvas-bg'), antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const starGeo = new THREE.BufferGeometry();
-        const starCount = 800;
-        const starPos = new Float32Array(starCount * 3);
-        for(let i=0; i<starCount*3; i++) { starPos[i] = (Math.random() - 0.5) * 20; }
-        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-        const starMat = new THREE.PointsMaterial({ size: 0.015, color: '#38bdf8', transparent: true, opacity: 0.4 });
-        const stars = new THREE.Points(starGeo, starMat);
-        scene.add(stars);
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshPhongMaterial({ color: 0x00f2ff, wireframe: true, transparent: true, opacity: 0.1 });
+        const obj = new THREE.Mesh(geometry, material);
+        scene.add(obj);
 
-        camera.position.z = 5;
+        const light = new THREE.PointLight(0xffffff, 1);
+        light.position.set(20, 20, 20);
+        scene.add(light);
+        camera.position.z = 30;
 
         function animate() {
             requestAnimationFrame(animate);
-            stars.rotation.y += 0.0005;
+            obj.rotation.y += 0.002;
+            obj.rotation.x += 0.001;
             renderer.render(scene, camera);
         }
         animate();
+
+        // GSAP Scroll Reveal
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray(".cyber-glass").forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: card,
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power4.out"
+            });
+        });
 
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
