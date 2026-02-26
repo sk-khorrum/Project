@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sk Khorrum Projects | High-End Portfolio</title>
-    <meta name="description" content="Sk Khorrum Project Hub: Advanced AI tools, FB Downloaders, and Premium Web Apps by Team DRT. Optimized for Google & AI Search.">
-    <meta name="keywords" content="Sk Khorrum, Team DRT, SEO expert Bangladesh, Golden Keywords, AI Web Apps, Facebook Clone, Flow Eight Sigma">
+    <title>Sk Khorrum Project | Professional Portfolio & App Hub</title>
+    <meta name="description" content="Sk Khorrum Project: A collection of modern, responsive web and app projects including Facebook Clone, FB Video Downloader, AI Photo Maker, and more by Team DRT. Optimized with AI SEO and Schema.">
+    <meta name="keywords" content="Sk Khorrum, Team DRT, Facebook Clone, FB Video Downloader, AI Photo Maker, Flow Eight Sigma, Golden Keywords, SEO Expert Bangladesh, AI SEO, Schema Markup">
+    <meta name="author" content="Sk Khorrum / Team DRT">
     
+    <meta property="og:title" content="Sk Khorrum Project | Team DRT">
+    <meta property="og:image" content="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Sk Khorrum Projects",
+      "description": "Professional web and app projects by Team DRT",
+      "author": {"@type": "Person", "name": "Sk Khorrum"}
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { primary: '#3b82f6', dark: '#020617', glass: 'rgba(255, 255, 255, 0.03)' }
+                    colors: { primary: '#2563eb', dark: '#020617' }
                 }
             }
         }
@@ -22,218 +35,257 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
 
     <style>
-        body { font-family: 'Hind Siliguri', sans-serif; background: #fdfdfd; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: #f8fafc; display: flex; flex-direction: column; min-h: 100vh; }
         
-        /* 4. Smart Loading Animation */
-        .loader-wrapper {
+        /* 4. Smart Professional Loader */
+        #loader {
             position: fixed; inset: 0; background: #fff; z-index: 10000;
-            display: flex; justify-content: center; align-items: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease;
         }
-        .loader-circle {
-            width: 50px; height: 50px; border: 4px solid #f3f3f3;
-            border-top: 4px solid #3b82f6; border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loading-bar { width: 150px; height: 4px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 15px; }
+        .loading-progress { width: 0%; height: 100%; background: #2563eb; animation: progress 2s ease-in-out infinite; }
+        @keyframes progress { 0% { width: 0%; } 50% { width: 70%; } 100% { width: 100%; } }
 
-        /* Unique Project Card Design */
-        .unique-card {
-            background: #ffffff;
-            border: 1px solid #f1f5f9;
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+        /* Unique Card & Click Animation */
+        .project-card {
+            background: white; border-radius: 20px; border: 1px solid #eef2f6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer; position: relative; overflow: hidden;
         }
-
-        /* Hover & Click Animation */
-        .unique-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
-            border-color: #3b82f6;
-        }
-
-        .unique-card:active {
-            transform: scale(0.95); /* Click Animation */
-        }
-
-        .card-img-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            margin: 12px;
-        }
-
-        .card-img-container img {
-            transition: transform 0.6s ease;
-        }
-
-        .unique-card:hover .card-img-container img {
-            transform: scale(1.1);
-        }
-
-        /* Fixed Footer styling */
-        .footer-bottom { margin-top: auto; }
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #2563eb; }
+        .project-card:active { transform: scale(0.96); } /* Click Effect */
+        
+        .cat-active { background: #2563eb !important; color: white !important; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        footer { margin-top: auto; }
     </style>
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body class="min-h-screen">
 
-    <div id="loader" class="loader-wrapper">
-        <div class="loader-circle"></div>
+    <div id="loader">
+        <h2 class="text-xl font-bold text-dark">Sk Khorrum <span class="text-primary">Project</span></h2>
+        <div class="loading-bar"><div class="loading-progress"></div></div>
     </div>
 
-    <header class="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-gray-100">
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
         <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <i class="ri-code-s-slash-line text-xl"></i>
-                </div>
-                <h1 class="font-bold text-2xl text-dark">Sk Khorrum <span class="text-primary text-sm font-medium">Projects</span></h1>
+            <div class="flex items-center gap-2">
+                <img src="https://sk-khorrum-ceo.vercel.app/assets/img/about.jpg" class="w-10 h-10 rounded-full border-2 border-primary">
+                <span class="font-bold text-xl">Team <span class="text-primary">DRT</span></span>
             </div>
-            
             <div class="relative w-full md:w-96">
-                <input type="text" id="searchInput" placeholder="Search projects or categories..." 
-                       class="w-full pl-12 pr-4 py-3 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-primary/20 outline-none transition-all">
                 <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="searchInput" placeholder="Search projects..." class="w-full pl-12 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all">
             </div>
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto px-6 py-10">
-        
-        <div class="flex flex-wrap gap-3 mb-12 justify-center">
-            <button onclick="updateCategory('all')" id="btn-all" class="cat-btn px-6 py-2 rounded-xl border border-gray-100 bg-white shadow-sm hover:bg-primary hover:text-white transition-all">All</button>
-            <button onclick="updateCategory('tool')" id="btn-tool" class="cat-btn px-6 py-2 rounded-xl border border-gray-100 bg-white shadow-sm hover:bg-primary hover:text-white transition-all">Tools</button>
-            <button onclick="updateCategory('social')" id="btn-social" class="cat-btn px-6 py-2 rounded-xl border border-gray-100 bg-white shadow-sm hover:bg-primary hover:text-white transition-all">Social</button>
-            <button onclick="updateCategory('ecommerce')" id="btn-ecommerce" class="cat-btn px-6 py-2 rounded-xl border border-gray-100 bg-white shadow-sm hover:bg-primary hover:text-white transition-all">Shop</button>
+    <main class="container mx-auto px-6 py-10">
+        <div class="flex flex-wrap gap-2 mb-10 justify-center">
+            <button onclick="filterCat('all')" id="btn-all" class="cat-btn px-6 py-2 bg-white border rounded-full text-sm font-medium transition-all cat-active">সবগুলো</button>
+            <button onclick="filterCat('social')" id="btn-social" class="cat-btn px-6 py-2 bg-white border rounded-full text-sm font-medium transition-all">সোশ্যাল</button>
+            <button onclick="filterCat('tool')" id="btn-tool" class="cat-btn px-6 py-2 bg-white border rounded-full text-sm font-medium transition-all">টুলস</button>
+            <button onclick="filterCat('shop')" id="btn-shop" class="cat-btn px-6 py-2 bg-white border rounded-full text-sm font-medium transition-all">ই-কমার্স</button>
+            <button onclick="filterCat('other')" id="btn-other" class="cat-btn px-6 py-2 bg-white border rounded-full text-sm font-medium transition-all">অন্যান্য</button>
         </div>
 
-        <div id="projectGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div id="projectGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             
-            <div class="unique-card" data-category="tool" data-keywords="ai image photo generator">
-                <div class="card-img-container bg-blue-50">
-                    <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="h-48 w-full object-cover" alt="AI Photo Maker">
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-bold text-xl text-dark">AI Photo Maker</h3>
-                        <span class="bg-primary/10 text-primary text-[10px] px-2 py-1 rounded-md uppercase font-bold">AI</span>
-                    </div>
-                    <p class="text-gray-500 text-sm mb-5">Generate high-quality AI images instantly with golden keywords.</p>
-                    <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="w-full block text-center py-3 bg-dark text-white rounded-xl font-medium hover:bg-primary transition-colors">Launch App</a>
+            <div class="project-card" data-category="social" data-keywords="fb facebook clone">
+                <img src="/Ass/home/Screenshot_2025_0514_154111.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">Facebook Clone</h3>
+                    <p class="text-sm text-gray-500 mt-1">Responsive Facebook UI Clone project.</p>
+                    <a href="dk.com" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
                 </div>
             </div>
 
-            <div class="unique-card" data-category="social" data-keywords="fb downloader video reels">
-                <div class="card-img-container bg-blue-50">
-                    <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="h-48 w-full object-cover" alt="FB Downloader">
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-bold text-xl text-dark">FB Downloader</h3>
-                        <span class="bg-blue-100 text-blue-600 text-[10px] px-2 py-1 rounded-md uppercase font-bold">Social</span>
-                    </div>
-                    <p class="text-gray-500 text-sm mb-5">Professional tool to download FB Reels and Videos in HD.</p>
-                    <a href="https://drt-downloader.vercel.app/" class="w-full block text-center py-3 bg-dark text-white rounded-xl font-medium hover:bg-primary transition-colors">Launch App</a>
+            <div class="project-card" data-category="tool" data-keywords="age calculator birth">
+                <img src="Ass/home/Screenshot_2025_0514_205908.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">Age Calculator</h3>
+                    <p class="text-sm text-gray-500 mt-1">Calculate your exact age and next birthday.</p>
+                    <a href="https://skkhorrumproject.vercel.app/page/age.html" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
                 </div>
             </div>
 
+            <div class="project-card" data-category="social" data-keywords="fb downloader video reels">
+                <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">FB Video Downloader</h3>
+                    <p class="text-sm text-gray-500 mt-1">Download FB videos and reels easily.</p>
+                    <a href="https://drt-downloader.vercel.app/" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
             </div>
 
-        <div id="noResults" class="hidden text-center py-24">
-            <div class="bg-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="ri-search-eye-line text-3xl text-gray-400"></i>
+            <div class="project-card" data-category="tool" data-keywords="ai photo maker images">
+                <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">AI Photo Maker</h3>
+                    <p class="text-sm text-gray-500 mt-1">AI-powered image generation tool.</p>
+                    <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
             </div>
-            <p class="text-gray-500 text-lg">Nothing found in this category.</p>
+
+            <div class="project-card" data-category="other" data-keywords="secure file protect hacker">
+                <img src="Ass/home/Screenshot_2025_0628_184058.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">Secure File</h3>
+                    <p class="text-sm text-gray-500 mt-1">Keep your data safe and protected.</p>
+                    <a href="https://dark-access-bot444.vercel.app/" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="other" data-keywords="flow eight sigma ethical hacking">
+                <img src="Ass/home/file_00000000b90c622f8b3c4feb5045cafe.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">Flow Eight Sigma</h3>
+                    <p class="text-sm text-gray-500 mt-1">Cyber security awareness platform.</p>
+                    <a href="https://flow-eight-sigma.vercel.app/index.html" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="shop" data-keywords="yourdaraz e-commerce shop">
+                <img src="Ass/home/Screenshot_2025_0629_193122.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">YourDaraz</h3>
+                    <p class="text-sm text-gray-500 mt-1">E-commerce shopping interface demo.</p>
+                    <a href="https://skkhorrumproject.vercel.app/page/e-commerce.html" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="other" data-keywords="khela dakhbo live sports">
+                <img src="Ass/home/Screenshot_2025_0710_075636.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">Khela Dakhbo</h3>
+                    <p class="text-sm text-gray-500 mt-1">Live sports streaming application.</p>
+                    <a href="https://khela-dakhbo.vercel.app/" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="tool" data-keywords="e note online notepad">
+                <img src="Ass/home/file_0000000083c861f48d0390134a2ad31a.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">E NOTE</h3>
+                    <p class="text-sm text-gray-500 mt-1">Digital note taking tool.</p>
+                    <a href="https://enote-gamma.vercel.app/" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="other" data-keywords="proposed web love valentine">
+                <img src="Ass/home/Screenshot_2025_1003_164820.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">Proposed web</h3>
+                    <p class="text-sm text-gray-500 mt-1">Interactive Valentine special web.</p>
+                    <a href="https://obakchowdhory.vercel.app/" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="tool" data-keywords="click to chat whatsapp link">
+                <img src="Ass/home/clicktochat.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">Click to chat PRO</h3>
+                    <p class="text-sm text-gray-500 mt-1">WhatsApp message link generator.</p>
+                    <a href="https://click-to-chat-pro.vercel.app/" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="tool" data-keywords="weather now live forecast">
+                <img src="Ass/home/weathernaw.png" class="h-44 w-full object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg">Weather Now</h3>
+                    <p class="text-sm text-gray-500 mt-1">Real-time weather tracking app.</p>
+                    <a href="https://skkhorrumproject.vercel.app/page/Weather.html" class="mt-4 block text-center py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm">View Project</a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div id="noResults" class="hidden text-center py-20">
+            <p class="text-gray-400">কোনো প্রজেক্ট পাওয়া যায়নি।</p>
         </div>
     </main>
 
-    <footer class="footer-bottom bg-white border-t border-gray-100 py-12">
+    <footer class="bg-white border-t py-8">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-dark font-bold text-xl mb-2">Sk Khorrum / <span class="text-primary">Team DRT</span></h2>
-            <p class="text-gray-400 text-sm mb-6">Innovative Digital Solutions & Web Security</p>
-            <div class="flex justify-center gap-6 text-gray-400 mb-8">
-                <a href="#" class="hover:text-primary transition-all"><i class="ri-facebook-circle-fill text-2xl"></i></a>
-                <a href="#" class="hover:text-primary transition-all"><i class="ri-github-fill text-2xl"></i></a>
-                <a href="#" class="hover:text-primary transition-all"><i class="ri-global-line text-2xl"></i></a>
+            <h2 class="font-bold text-dark">Sk Khorrum | <span class="text-primary">Team DRT</span></h2>
+            <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest">Digital Solutions Portfolio</p>
+            <div class="flex justify-center gap-6 mt-6">
+                <a href="#" class="text-gray-400 hover:text-primary transition-all"><i class="ri-facebook-fill text-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-primary transition-all"><i class="ri-github-fill text-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-primary transition-all"><i class="ri-code-fill text-xl"></i></a>
             </div>
-            <p class="text-gray-300 text-[12px]">© 2026 Sk Khorrum Project. All rights reserved.</p>
+            <p class="text-gray-300 text-[10px] mt-8">© 2026 Sk Khorrum Project. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Professional Loader
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 500);
-            }, 800);
-
-            // Handle URL Search Params for sharing specific category
-            const params = new URLSearchParams(window.location.search);
-            const category = params.get('cat');
-            if(category) updateCategory(category);
-        });
-
-        const cards = document.querySelectorAll('.unique-card');
+        const cards = document.querySelectorAll('.project-card');
         const searchInput = document.getElementById('searchInput');
 
-        // Update Category & URL
-        function updateCategory(cat) {
-            // UI Button Active State
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-            });
-            document.getElementById('btn-' + cat).classList.add('bg-primary', 'text-white');
+        window.onload = () => {
+            // Loader
+            setTimeout(() => { document.getElementById('loader').style.opacity = '0'; 
+            setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 500); }, 1000);
 
-            // URL Update (Shareable link)
+            // 1 & 2. Handle Shareable Category Link
+            const params = new URLSearchParams(window.location.search);
+            const initialCat = params.get('cat') || 'all';
+            filterCat(initialCat);
+        };
+
+        // 1 & 2. Dynamic Filtering & URL Sharing
+        function filterCat(cat) {
+            // UI Button Active
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('cat-active'));
+            document.getElementById('btn-' + cat).classList.add('cat-active');
+
+            // 2. URL Update (shareable link)
             const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?cat=' + cat;
             window.history.pushState({path:newUrl},'',newUrl);
 
-            // Filter logic
-            filter(cat, searchInput.value.toLowerCase());
+            applyFilters(cat, searchInput.value.toLowerCase());
         }
 
         searchInput.addEventListener('input', () => {
-            const currentCat = document.querySelector('.cat-btn.bg-primary')?.id.replace('btn-', '') || 'all';
-            filter(currentCat, searchInput.value.toLowerCase());
+            const activeBtn = document.querySelector('.cat-active').id.replace('btn-', '');
+            applyFilters(activeBtn, searchInput.value.toLowerCase());
         });
 
-        function filter(cat, query) {
-            let count = 0;
+        function applyFilters(cat, query) {
+            let visibleCount = 0;
             cards.forEach(card => {
                 const itemCat = card.getAttribute('data-category');
                 const keywords = card.getAttribute('data-keywords').toLowerCase();
                 const title = card.querySelector('h3').innerText.toLowerCase();
 
-                const matchesCat = (cat === 'all' || itemCat === cat);
-                const matchesQuery = (title.includes(query) || keywords.includes(query));
+                const matchCat = (cat === 'all' || itemCat === cat);
+                const matchQuery = (title.includes(query) || keywords.includes(query));
 
-                if(matchesCat && matchesQuery) {
+                if (matchCat && matchQuery) {
                     card.style.display = 'block';
-                    count++;
+                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
-            document.getElementById('noResults').style.display = count === 0 ? 'block' : 'none';
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
         }
 
-        // 6. Auto SEO Logic (Golden Keyword Generation)
-        // This generates a Schema structure for Google to find your projects easily
-        const schemaData = {
+        // 5 & 6. Auto SEO / Golden Keywords Implementation
+        // Injected Dynamic Structured Data for Search Engines
+        const dynamicSEO = {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "author": { "@type": "Person", "name": "Sk Khorrum" },
-            "applicationCategory": "MultimediaApplication",
-            "operatingSystem": "Web"
+            "name": "Sk Khorrum Projects",
+            "operatingSystem": "Web",
+            "applicationCategory": "DeveloperTool",
+            "creator": { "@type": "Person", "name": "Sk Khorrum" }
         };
         const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schemaData);
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(dynamicSEO);
         document.head.appendChild(script);
     </script>
 </body>
