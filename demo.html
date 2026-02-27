@@ -4,74 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sk Khorrum Project Hub | Team DRT</title>
-    <meta name="description" content="Sk Khorrum Project: Premium Hub by Team DRT. AI Tools, Social Clones, and Secure Apps.">
-    <meta name="keywords" content="Sk Khorrum, Team DRT, SEO Bangladesh, AI Photo Maker, FB Downloader, Flow Eight Sigma">
+    <title>Sk Khorrum Project Hub | Dual Mood Edition</title>
+    <meta name="description" content="Sk Khorrum's project vault. Security Labs, Entertainment tools, and AI demos. Developed by Team DRT.">
     
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
 
     <style>
-        :root { --primary: #3b82f6; }
+        :root { 
+            --primary: #3b82f6; 
+            --bg: #ffffff; 
+            --text: #1e293b; 
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --border: rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-mode { 
+            --bg: #020617; 
+            --text: #f8fafc; 
+            --card-bg: rgba(15, 23, 42, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             margin: 0; min-height: 100vh;
             display: flex; flex-direction: column;
-            overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
         }
 
-        /* Mesh Gradient Animated Background */
-        .animated-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #0f172a, #1e293b, #020617);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .animated-bg { background: linear-gradient(45deg, #f8fafc, #e2e8f0, #f1f5f9); background-size: 400% 400%; }
-            body { color: #1e293b; }
-            .glass-card { background: rgba(255, 255, 255, 0.7) !important; border: 1px solid rgba(0,0,0,0.05) !important; }
-        }
-
+        /* Glass Card Custom Styles */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
             border-radius: 28px;
             transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .glass-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--primary); }
-        .glass-card:active { transform: scale(0.94); }
+        .glass-card:hover { transform: translateY(-10px); border-color: var(--primary); }
 
-        .shining-star { color: #fbbf24; animation: star-blink 1.5s infinite; }
-        @keyframes star-blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+        /* Loader Animation */
+        #loader { 
+            position: fixed; inset: 0; background: #000; z-index: 10000; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+        }
+        .loader-text {
+            font-size: 2.5rem; font-weight: 800; color: white;
+            animation: textPulse 2s infinite;
+        }
+        @keyframes textPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.05); } }
+        .progress-bar { width: 200px; height: 4px; background: #222; border-radius: 10px; margin-top: 20px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); animation: fill 5s linear forwards; }
+        @keyframes fill { 0% { width: 0%; } 100% { width: 100%; } }
 
-        .cat-btn { padding: 10px 22px; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; font-weight: 600; }
-        .cat-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        /* Shining Star */
+        .shining-star { color: #fbbf24; animation: star-blink 1.5s infinite; margin-left: 5px; }
+        @keyframes star-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        #loader { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: 0.6s; }
-        footer { margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); padding: 30px 0; }
+        .cat-btn { padding: 10px 20px; border-radius: 12px; background: rgba(128,128,128,0.1); transition: 0.3s; font-weight: 600; }
+        .cat-btn.active { background: var(--primary); color: white; }
+
+        .theme-toggle { cursor: pointer; font-size: 1.5rem; transition: 0.3s; }
     </style>
 </head>
-<body>
+<body class="dark-mode"> <div id="loader">
+        <div class="loader-text uppercase tracking-widest">Sk Khorrum</div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
 
-    <div id="loader"><div class="w-10 h-10 border-4 border-t-blue-500 border-white/10 rounded-full animate-spin"></div></div>
-    <div class="animated-bg"></div>
-
-    <header class="sticky top-0 z-50 backdrop-blur-xl border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-6">
+    <header class="sticky top-0 z-50 backdrop-blur-xl border-b border-white/5 bg-opacity-80">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
             <h1 class="text-2xl font-extrabold tracking-tighter uppercase">Project <span class="text-blue-500">Vault</span></h1>
-            <div class="relative w-full md:w-96">
-                <input type="text" id="searchInput" placeholder="Search projects..." class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-blue-500/50 outline-none transition-all">
-                <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-blue-500"></i>
+            
+            <div class="flex items-center gap-6">
+                <div class="relative hidden md:block w-64">
+                    <input type="text" id="searchInput" placeholder="Search..." class="w-full pl-10 pr-4 py-2 bg-gray-500/10 border border-white/10 rounded-xl outline-none text-sm">
+                    <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-blue-500"></i>
+                </div>
+                <div onclick="toggleTheme()" class="theme-toggle" id="themeIcon">
+                    <i class="ri-sun-line"></i>
+                </div>
             </div>
         </div>
     </header>
@@ -79,141 +94,154 @@
     <main class="max-w-7xl mx-auto px-6 py-12">
         <div class="flex flex-wrap gap-3 mb-12 justify-center">
             <button onclick="setTab('all')" id="tab-all" class="cat-btn active">All Labs</button>
-            <button onclick="setTab('social')" id="tab-social" class="cat-btn">Social</button>
-            <button onclick="setTab('tool')" id="tab-tool" class="cat-btn">Tools</button>
-            <button onclick="setTab('shop')" id="tab-shop" class="cat-btn">E-com</button>
-            <button onclick="setTab('other')" id="tab-other" class="cat-btn">Other</button>
+            <button onclick="setTab('security')" id="tab-security" class="cat-btn">Security & Hacking Lab</button>
+            <button onclick="setTab('entertainment')" id="tab-entertainment" class="cat-btn">Entertainment</button>
+            <button onclick="setTab('tools')" id="tab-tools" class="cat-btn">Tools</button>
+            <button onclick="setTab('demo')" id="tab-demo" class="cat-btn">Demo Site</button>
         </div>
 
         <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             
-            <div class="glass-card p-4 group" data-cat="social" data-keywords="facebook clone">
-                <img src="/Ass/home/Screenshot_2025_0514_154111.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">Facebook Clone</h3>
-                <p class="text-gray-500 text-xs mt-2">Responsive UI Clone.</p>
-                <a href="dk.com" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
-            </div>
-
-            <div class="glass-card p-4 group" data-cat="social" data-keywords="fb downloader">
-                <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">FB Downloader <i class="ri-star-fill shining-star"></i></h3>
-                <p class="text-gray-500 text-xs mt-2">Download Reels & Videos.</p>
-                <a href="https://drt-downloader.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
-            </div>
-
-            <div class="glass-card p-4 group" data-cat="tool" data-keywords="ai photo maker">
-                <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">AI Photo Maker</h3>
-                <p class="text-gray-500 text-xs mt-2">AI Image Generation.</p>
-                <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
-            </div>
-
-            <div class="glass-card p-4 group" data-cat="other" data-keywords="flow eight sigma">
-                <img src="Ass/home/file_00000000b90c622f8b3c4feb5045cafe.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">Flow Eight Sigma <i class="ri-star-fill shining-star"></i></h3>
-                <p class="text-gray-500 text-xs mt-2">Security & Hacking Lab.</p>
-                <a href="https://flow-eight-sigma.vercel.app/index.html" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
-            </div>
-
-            <div class="glass-card p-4 group" data-cat="other" data-keywords="khela dakhbo">
-                <img src="Ass/home/Screenshot_2025_0710_075636.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">Khela Dakhbo <i class="ri-star-fill shining-star"></i></h3>
-                <p class="text-gray-500 text-xs mt-2">Live Sports Streaming.</p>
-                <a href="https://khela-dakhbo.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
-            </div>
-
-            <div class="glass-card p-4 group" data-cat="tool" data-keywords="age calculator">
-                <img src="Ass/home/Screenshot_2025_0514_205908.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">Age Calculator</h3>
-                <p class="text-gray-500 text-xs mt-2">Exact Age Tracker.</p>
-                <a href="https://skkhorrumproject.vercel.app/page/age.html" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
-            </div>
-
-            <div class="glass-card p-4 group" data-cat="other" data-keywords="secure file">
+            <div class="glass-card p-4" data-cat="security" data-name="Secure File">
                 <img src="Ass/home/Screenshot_2025_0628_184058.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">Secure File</h3>
+                <h3 class="font-bold text-lg">Secure File <i class="ri-star-fill shining-star"></i></h3>
                 <p class="text-gray-500 text-xs mt-2">Encrypted Data Vault.</p>
                 <a href="https://dark-access-bot444.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
             </div>
 
-            <div class="glass-card p-4 group" data-cat="shop" data-keywords="yourdaraz">
-                <img src="Ass/home/Screenshot_2025_0629_193122.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">YourDaraz</h3>
-                <p class="text-gray-500 text-xs mt-2">E-commerce Shop UI.</p>
-                <a href="https://skkhorrumproject.vercel.app/page/e-commerce.html" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
+            <div class="glass-card p-4" data-cat="security" data-name="Flow Eight Sigma">
+                <img src="Ass/home/file_00000000b90c622f8b3c4feb5045cafe.png" class="w-full h-44 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-lg">Flow Eight Sigma <i class="ri-star-fill shining-star"></i></h3>
+                <p class="text-gray-500 text-xs mt-2">Security Lab.</p>
+                <a href="https://flow-eight-sigma.vercel.app/index.html" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
             </div>
 
-            <div class="glass-card p-4 group" data-cat="tool" data-keywords="e note">
-                <img src="Ass/home/file_0000000083c861f48d0390134a2ad31a.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">E NOTE</h3>
-                <p class="text-gray-500 text-xs mt-2">Cloud Digital Notebook.</p>
-                <a href="https://enote-gamma.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
+            <div class="glass-card p-4" data-cat="entertainment" data-name="Khela Dakhbo">
+                <img src="Ass/home/Screenshot_2025_0710_075636.png" class="w-full h-44 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-lg">Khela Dakhbo <i class="ri-star-fill shining-star"></i></h3>
+                <p class="text-gray-500 text-xs mt-2">Live Streaming.</p>
+                <a href="https://khela-dakhbo.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
             </div>
 
-            <div class="glass-card p-4 group" data-cat="other" data-keywords="proposed web">
+            <div class="glass-card p-4" data-cat="entertainment" data-name="Proposed Web">
                 <img src="Ass/home/Screenshot_2025_1003_164820.png" class="w-full h-44 object-cover rounded-2xl mb-4">
                 <h3 class="font-bold text-lg">Proposed Web</h3>
-                <p class="text-gray-500 text-xs mt-2">Creative Valentine App.</p>
+                <p class="text-gray-500 text-xs mt-2">Valentine App.</p>
                 <a href="https://obakchowdhory.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
             </div>
 
-            <div class="glass-card p-4 group" data-cat="tool" data-keywords="click to chat">
+            <div class="glass-card p-4" data-cat="tools" data-name="FB Downloader">
+                <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-44 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-lg">FB Downloader <i class="ri-star-fill shining-star"></i></h3>
+                <p class="text-gray-500 text-xs mt-2">Video Downloader.</p>
+                <a href="https://drt-downloader.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
+            </div>
+
+            <div class="glass-card p-4" data-cat="tools" data-name="Age Calculator">
+                <img src="Ass/home/Screenshot_2025_0514_205908.png" class="w-full h-44 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-lg">Age Calculator <i class="ri-star-fill shining-star"></i></h3>
+                <p class="text-gray-500 text-xs mt-2">Precise Age Calc.</p>
+                <a href="https://skkhorrumproject.vercel.app/page/age.html" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
+            </div>
+
+            <div class="glass-card p-4" data-cat="tools" data-name="E NOTE">
+                <img src="Ass/home/file_0000000083c861f48d0390134a2ad31a.png" class="w-full h-44 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-lg">E NOTE <i class="ri-star-fill shining-star"></i></h3>
+                <p class="text-gray-500 text-xs mt-2">Digital Notebook.</p>
+                <a href="https://enote-gamma.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
+            </div>
+
+            <div class="glass-card p-4" data-cat="tools" data-name="Click Chat PRO">
                 <img src="Ass/home/clicktochat.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">Click Chat PRO</h3>
-                <p class="text-gray-500 text-xs mt-2">WhatsApp Marketing Tool.</p>
+                <h3 class="font-bold text-lg">Click Chat PRO <i class="ri-star-fill shining-star"></i></h3>
+                <p class="text-gray-500 text-xs mt-2">WhatsApp Tool.</p>
                 <a href="https://click-to-chat-pro.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
             </div>
 
-            <div class="glass-card p-4 group" data-cat="tool" data-keywords="weather now">
+            <div class="glass-card p-4" data-cat="tools" data-name="Weather Now">
                 <img src="Ass/home/weathernaw.png" class="w-full h-44 object-cover rounded-2xl mb-4">
-                <h3 class="font-bold text-lg">Weather Now</h3>
-                <p class="text-gray-500 text-xs mt-2">Live Weather Updates.</p>
+                <h3 class="font-bold text-lg">Weather Now <i class="ri-star-fill shining-star"></i></h3>
+                <p class="text-gray-500 text-xs mt-2">Live Weather.</p>
                 <a href="https://skkhorrumproject.vercel.app/page/Weather.html" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
+            </div>
+
+            <div class="glass-card p-4" data-cat="demo" data-name="YourDaraz">
+                <img src="Ass/home/Screenshot_2025_0629_193122.png" class="w-full h-44 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-lg">YourDaraz</h3>
+                <p class="text-gray-500 text-xs mt-2">E-commerce UI.</p>
+                <a href="https://skkhorrumproject.vercel.app/page/e-commerce.html" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
+            </div>
+
+            <div class="glass-card p-4" data-cat="demo" data-name="AI Photo Maker">
+                <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-44 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-lg">AI Photo Maker</h3>
+                <p class="text-gray-500 text-xs mt-2">AI Image Gen.</p>
+                <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
+            </div>
+
+            <div class="glass-card p-4" data-cat="demo" data-name="Facebook Clone">
+                <img src="/Ass/home/Screenshot_2025_0514_154111.png" class="w-full h-44 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-lg">Facebook Clone</h3>
+                <p class="text-gray-500 text-xs mt-2">Social UI Clone.</p>
+                <a href="dk.com" class="mt-5 block w-full py-3 text-center bg-blue-600 text-white rounded-xl text-xs font-bold">Launch App</a>
             </div>
 
         </div>
     </main>
 
-    <footer class="py-10 text-center">
+    <footer class="py-10 text-center border-t border-white/5 mt-auto">
         <p class="text-xs text-gray-500 font-bold uppercase tracking-[4px]">Sk Khorrum / Team DRT © 2026</p>
     </footer>
 
     <script>
-        const cards = document.querySelectorAll('.glass-card');
-        const searchInput = document.getElementById('searchInput');
-
+        // Loader Control
         window.onload = () => {
-            setTimeout(() => { document.getElementById('loader').style.opacity = '0'; 
-            setTimeout(() => document.getElementById('loader').style.display = 'none', 500); }, 600);
-            
-            const params = new URLSearchParams(window.location.search);
-            const cat = params.get('cat') || 'all';
-            setTab(cat);
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+            }, 5000); // 5 Seconds
         };
 
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.querySelector('#themeIcon i');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.className = 'ri-sun-line';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.className = 'ri-moon-line';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Filter Logic
         function setTab(cat) {
             document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('tab-' + cat).classList.add('active');
             
-            const nUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?cat=' + cat;
-            window.history.pushState({path:nUrl},'',nUrl);
-            filter(cat, searchInput.value.toLowerCase());
-        }
-
-        searchInput.addEventListener('input', () => {
-            const activeTab = document.querySelector('.cat-btn.active').id.replace('tab-', '');
-            filter(activeTab, searchInput.value.toLowerCase());
-        });
-
-        function filter(cat, query) {
+            const cards = document.querySelectorAll('.glass-card');
             cards.forEach(card => {
-                const itemCat = card.getAttribute('data-cat');
-                const title = card.querySelector('h3').innerText.toLowerCase();
-                const matchCat = (cat === 'all' || itemCat === cat);
-                const matchSearch = title.includes(query);
-                card.style.display = (matchCat && matchSearch) ? 'block' : 'none';
+                if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
             });
         }
+
+        // Search Logic
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.glass-card').forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                card.style.display = name.includes(term) ? 'block' : 'none';
+            });
+        });
+
+        // Persistent Theme
+        if (localStorage.getItem('theme') === 'light') toggleTheme();
     </script>
 </body>
 </html>
