@@ -4,349 +4,281 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sk Khorrum Project Hub | Premium Dynamic Portfolio</title>
-    <meta name="description" content="Discover Sk Khorrum's 12+ premium projects. AI Tools, Social Clones, and Secure Apps by Team DRT. Optimized for Google SEO & AI Search.">
-    <meta name="keywords" content="Sk Khorrum, Team DRT, Golden Keywords, SEO Expert Bangladesh, AI Photo Maker, FB Downloader, Scama, Scema SEO, Web Developer">
+    <title>Sk Khorrum Project Hub | Premium Dynamic Ecosystem</title>
+    <meta name="description" content="Explore Sk Khorrum's premium ecosystem. 12+ Professional projects including AI tools, Social Clones, and Security Apps by Team DRT. Optimized for SEO.">
+    <meta name="keywords" content="Sk Khorrum, Team DRT, Golden Keywords, SEO Bangladesh, AI Photo Maker, FB Downloader, Scama, Scema SEO, Web Dev Bangladesh">
     
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
 
     <style>
-        :root { --primary: #6366f1; --accent: #a855f7; }
+        :root { --primary: #0071e3; --accent: #64ffda; --bg: #000000; }
         body { 
-            font-family: 'Outfit', sans-serif; 
-            background: #05070a; 
-            color: #fff; 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); color: #fff; 
             display: flex; flex-direction: column; min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* 4. Futuristic Top Loader */
-        #loader-line {
-            position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent));
-            z-index: 9999; transition: width 0.4s ease;
+        /* 4. Smart Professional Loader */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 10000;
+            display: flex; justify-content: center; align-items: center; transition: 0.8s ease;
         }
+        .loading-text { font-family: 'Syncopate', sans-serif; letter-spacing: 5px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* Animated Background */
-        .bg-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
-            z-index: -1; pointer-events: none;
+        /* Liquid Background Effect */
+        .liquid-bg {
+            position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, #111 0%, #000 70%);
+            z-index: -1;
         }
+        .blob {
+            position: absolute; width: 500px; height: 500px;
+            background: linear-gradient(45deg, var(--primary), #8e2de2);
+            filter: blur(100px); border-radius: 50%; opacity: 0.2;
+            animation: move 20s infinite alternate;
+        }
+        @keyframes move { from { transform: translate(0, 0); } to { transform: translate(20%, 30%); } }
 
-        /* 3. Unique 3D Project Card */
-        .glass-card {
+        /* Premium Card Design & Click Animation */
+        .premium-card {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative; overflow: hidden;
         }
-
-        .glass-card:hover {
-            transform: translateY(-12px) scale(1.02) rotateX(5deg);
-            background: rgba(255, 255, 255, 0.06);
+        .premium-card:hover {
+            transform: translateY(-15px) scale(1.03);
             border-color: var(--primary);
-            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 40px 80px -20px rgba(0, 113, 227, 0.3);
         }
+        .premium-card:active { transform: scale(0.94); } /* Click Bounce */
 
-        .glass-card:active { transform: scale(0.95); } /* Click Animation */
-
-        .card-badge {
-            position: absolute; top: 15px; right: 15px;
-            padding: 4px 12px; border-radius: 10px; font-size: 10px;
-            font-weight: 800; text-transform: uppercase; background: var(--primary);
+        .card-btn {
+            background: #fff; color: #000; font-weight: 700;
+            padding: 12px; border-radius: 15px; width: 100%;
+            display: block; text-align: center; transition: 0.3s;
         }
+        .card-btn:hover { background: var(--primary); color: #fff; }
 
-        /* Category Buttons */
-        .cat-btn {
-            padding: 10px 24px; border-radius: 14px; background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+        /* Category Filter UI */
+        .cat-tab {
+            padding: 10px 25px; border-radius: 50px; background: rgba(255,255,255,0.05);
+            font-size: 13px; font-weight: 600; transition: 0.4s; border: 1px solid rgba(255,255,255,0.1);
         }
-        .cat-btn.active { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+        .cat-tab.active { background: #fff; color: #000; box-shadow: 0 10px 20px rgba(255,255,255,0.2); }
 
-        footer { margin-top: auto; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
+        footer { margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 0; }
     </style>
 </head>
 <body>
 
-    <div id="loader-line" style="width: 0%"></div>
-    <div class="bg-glow"></div>
+    <div id="loader"><div class="loading-text text-white text-xs md:text-xl">SK KHORRUM</div></div>
+    <div class="liquid-bg"><div class="blob"></div></div>
 
-    <header class="sticky top-0 z-50 px-6 py-4 border-b border-white/5 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <header class="sticky top-0 z-50 backdrop-blur-2xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
-                    <i class="ri-fire-fill text-2xl"></i>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                    <i class="ri-shining-fill text-black text-xl"></i>
                 </div>
-                <div>
-                    <h1 class="text-xl font-black tracking-tighter">SK KHORRUM <span class="text-indigo-400">PRO</span></h1>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest">Team DRT Project Hub</p>
-                </div>
+                <h1 class="text-xl font-bold tracking-tighter uppercase">Project <span class="text-gray-500">Vault</span></h1>
             </div>
-            
             <div class="relative w-full md:w-96">
-                <input type="text" id="searchInput" placeholder="Search for projects..." 
-                    class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-indigo-500/50 outline-none transition-all">
-                <i class="ri-search-eye-line absolute left-4 top-1/2 -translate-y-1/2 text-indigo-400"></i>
+                <input type="text" id="searchInput" placeholder="Search the ecosystem..." 
+                    class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-2xl focus:border-white/40 outline-none transition-all text-sm">
+                <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
             </div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-12">
-        
-        <div class="flex flex-wrap gap-3 mb-16 justify-center">
-            <button onclick="setTab('all')" id="tab-all" class="cat-btn active">All Labs</button>
-            <button onclick="setTab('social')" id="tab-social" class="cat-btn">Social</button>
-            <button onclick="setTab('tool')" id="tab-tool" class="cat-btn">Tools</button>
-            <button onclick="setTab('shop')" id="tab-shop" class="cat-btn">Ecommerce</button>
-            <button onclick="setTab('other')" id="tab-other" class="cat-btn">System</button>
+        <div class="flex flex-wrap gap-4 mb-16 justify-center">
+            <button onclick="applyTab('all')" id="tab-all" class="cat-tab active">All Projects</button>
+            <button onclick="applyTab('social')" id="tab-social" class="cat-tab">Social Lab</button>
+            <button onclick="applyTab('tool')" id="tab-tool" class="cat-tab">Utility</button>
+            <button onclick="applyTab('shop')" id="tab-shop" class="cat-tab">Ecommerce</button>
+            <button onclick="applyTab('other')" id="tab-other" class="cat-tab">Creative</button>
         </div>
 
-        <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
             
-            <div class="glass-card p-3 group" data-cat="social" data-keywords="facebook clone fb">
-                <div class="card-badge">Social</div>
-                <img src="/Ass/home/Screenshot_2025_0514_154111.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">Facebook Clone</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">High-end UI replication of Facebook platform.</p>
-                    <a href="dk.com" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="social" data-keywords="facebook clone fb">
+                <img src="/Ass/home/Screenshot_2025_0514_154111.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">Facebook Clone</h3>
+                <p class="text-gray-500 text-xs mb-6">Premium UI reconstruction of the social giant.</p>
+                <a href="dk.com" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="tool" data-keywords="ai photo maker">
-                <div class="card-badge">AI Tool</div>
-                <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">AI Photo Maker</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Generate unique AI artwork with one click.</p>
-                    <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="tool" data-keywords="ai photo maker">
+                <img src="Ass/home/file_00000000d6b8622f95abb86015d11566.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">AI Photo Maker</h3>
+                <p class="text-gray-500 text-xs mb-6">Generative AI art platform for creators.</p>
+                <a href="https://text-to-images-by-sk-khorrum.vercel.app/" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="social" data-keywords="fb downloader">
-                <div class="card-badge">Downloader</div>
-                <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">FB Downloader</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Secure HD video downloader for social media.</p>
-                    <a href="https://drt-downloader.vercel.app/" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="social" data-keywords="fb downloader">
+                <img src="Ass/home/file_00000000a51861f992c3fb6479cf025b.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">FB Downloader</h3>
+                <p class="text-gray-500 text-xs mb-6">Professional reels & video save utility.</p>
+                <a href="https://drt-downloader.vercel.app/" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="tool" data-keywords="age calculator">
-                <div class="card-badge">Utility</div>
-                <img src="Ass/home/Screenshot_2025_0514_205908.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">Age Calculator</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Calculate your life milestones accurately.</p>
-                    <a href="https://skkhorrumproject.vercel.app/page/age.html" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="tool" data-keywords="age calculator">
+                <img src="Ass/home/Screenshot_2025_0514_205908.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">Age Calculator</h3>
+                <p class="text-gray-500 text-xs mb-6">Precise age and birthday tracking system.</p>
+                <a href="https://skkhorrumproject.vercel.app/page/age.html" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="other" data-keywords="secure file">
-                <div class="card-badge">Security</div>
-                <img src="Ass/home/Screenshot_2025_0628_184058.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">Secure File</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Data protection and file safety system.</p>
-                    <a href="https://dark-access-bot444.vercel.app/" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="other" data-keywords="secure file">
+                <img src="Ass/home/Screenshot_2025_0628_184058.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">Secure File</h3>
+                <p class="text-gray-500 text-xs mb-6">Encrypted data protection vault.</p>
+                <a href="https://dark-access-bot444.vercel.app/" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="other" data-keywords="flow eight sigma">
-                <div class="card-badge">Hacking Lab</div>
-                <img src="Ass/home/file_00000000b90c622f8b3c4feb5045cafe.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">Flow Eight Sigma</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Ethical hacking education and scema tools.</p>
-                    <a href="https://flow-eight-sigma.vercel.app/index.html" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="other" data-keywords="flow eight sigma">
+                <img src="Ass/home/file_00000000b90c622f8b3c4feb5045cafe.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">Flow Eight Sigma</h3>
+                <p class="text-gray-500 text-xs mb-6">Advanced scema and ethical hacking lab.</p>
+                <a href="https://flow-eight-sigma.vercel.app/index.html" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="shop" data-keywords="yourdaraz shop">
-                <div class="card-badge">Ecom</div>
-                <img src="Ass/home/Screenshot_2025_0629_193122.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">YourDaraz</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Modern ecommerce interface solution.</p>
-                    <a href="https://skkhorrumproject.vercel.app/page/e-commerce.html" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="shop" data-keywords="yourdaraz">
+                <img src="Ass/home/Screenshot_2025_0629_193122.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">YourDaraz</h3>
+                <p class="text-gray-500 text-xs mb-6">Dynamic ecommerce shopping interface.</p>
+                <a href="https://skkhorrumproject.vercel.app/page/e-commerce.html" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="other" data-keywords="khela dakhbo live">
-                <div class="card-badge">Streaming</div>
-                <img src="Ass/home/Screenshot_2025_0710_075636.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">Khela Dakhbo</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Live sports tracking and streaming app.</p>
-                    <a href="https://khela-dakhbo.vercel.app/" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="other" data-keywords="khela dakhbo">
+                <img src="Ass/home/Screenshot_2025_0710_075636.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">Khela Dakhbo</h3>
+                <p class="text-gray-500 text-xs mb-6">Live sports tracking and stream portal.</p>
+                <a href="https://khela-dakhbo.vercel.app/" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="tool" data-keywords="e note notepad">
-                <div class="card-badge">Workspace</div>
-                <img src="Ass/home/file_0000000083c861f48d0390134a2ad31a.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">E NOTE</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Cloud-synced digital notebook.</p>
-                    <a href="https://enote-gamma.vercel.app/" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="tool" data-keywords="e note">
+                <img src="Ass/home/file_0000000083c861f48d0390134a2ad31a.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">E NOTE</h3>
+                <p class="text-gray-500 text-xs mb-6">Smart digital note management tool.</p>
+                <a href="https://enote-gamma.vercel.app/" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="other" data-keywords="proposed web">
-                <div class="card-badge">Creative</div>
-                <img src="Ass/home/Screenshot_2025_1003_164820.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">Proposed Web</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Interactive Valentine proposal system.</p>
-                    <a href="https://obakchowdhory.vercel.app/" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="other" data-keywords="proposed web">
+                <img src="Ass/home/Screenshot_2025_1003_164820.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">Proposed Web</h3>
+                <p class="text-gray-500 text-xs mb-6">Interactive creative valentine web.</p>
+                <a href="https://obakchowdhory.vercel.app/" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="tool" data-keywords="click to chat pro">
-                <div class="card-badge">Marketing</div>
-                <img src="Ass/home/clicktochat.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">Click Chat PRO</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Direct messaging link generation tool.</p>
-                    <a href="https://click-to-chat-pro.vercel.app/" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="tool" data-keywords="click to chat">
+                <img src="Ass/home/clicktochat.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">Click Chat PRO</h3>
+                <p class="text-gray-500 text-xs mb-6">Direct WhatsApp marketing link tool.</p>
+                <a href="https://click-to-chat-pro.vercel.app/" class="card-btn">Launch Project</a>
             </div>
 
-            <div class="glass-card p-3 group" data-cat="tool" data-keywords="weather now">
-                <div class="card-badge">System</div>
-                <img src="Ass/home/weathernaw.png" class="w-full h-44 object-cover rounded-xl" alt="Project">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg group-hover:text-indigo-400 transition-colors">Weather Now</h3>
-                    <p class="text-gray-500 text-xs mt-2 line-clamp-2">Real-time global weather forecasting.</p>
-                    <a href="https://skkhorrumproject.vercel.app/page/Weather.html" class="mt-5 flex items-center justify-between py-3 px-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all">
-                        <span class="text-sm font-bold">Explore Lab</span>
-                        <i class="ri-arrow-right-up-line"></i>
-                    </a>
-                </div>
+            <div class="premium-card p-4 group" data-cat="tool" data-keywords="weather now">
+                <img src="Ass/home/weathernaw.png" class="w-full h-48 object-cover rounded-[20px] mb-4">
+                <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">Weather Now</h3>
+                <p class="text-gray-500 text-xs mb-6">Real-time global weather forecasting.</p>
+                <a href="https://skkhorrumproject.vercel.app/page/Weather.html" class="card-btn">Launch Project</a>
             </div>
 
         </div>
 
-        <div id="noResults" class="hidden text-center py-20 text-gray-500">
-            No projects found matching your search.
+        <div id="noResults" class="hidden text-center py-24 text-gray-500 font-bold uppercase tracking-widest text-xs">
+            No Match Found in Ecosystem
         </div>
     </main>
 
-    <footer class="py-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center gap-8 mb-6">
-                <a href="#" class="text-gray-400 hover:text-indigo-400 text-xl"><i class="ri-github-line"></i></a>
-                <a href="#" class="text-gray-400 hover:text-indigo-400 text-xl"><i class="ri-facebook-line"></i></a>
-                <a href="#" class="text-gray-400 hover:text-indigo-400 text-xl"><i class="ri-mail-line"></i></a>
+    <footer>
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
+            <p class="text-[10px] text-gray-600 font-bold tracking-[8px] uppercase mb-8">SK KHORRUM | TEAM DRT</p>
+            <div class="flex gap-8">
+                <a href="#" class="text-gray-500 hover:text-white transition-all"><i class="ri-github-fill text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition-all"><i class="ri-facebook-circle-fill text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition-all"><i class="ri-code-s-slash-line text-xl"></i></a>
             </div>
-            <p class="text-xs text-gray-600 font-bold uppercase tracking-[5px]">Sk Khorrum / Team DRT © 2026</p>
+            <p class="text-[9px] text-gray-800 mt-10">© 2026 DIGITAL HUB. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 
     <script>
-        const cards = document.querySelectorAll('.glass-card');
+        const cards = document.querySelectorAll('.premium-card');
         const searchInput = document.getElementById('searchInput');
-        const loader = document.getElementById('loader-line');
 
-        // Loading Progress Simulation
-        window.addEventListener('load', () => {
-            loader.style.width = '100%';
-            setTimeout(() => { loader.style.opacity = '0'; }, 500);
+        window.onload = () => {
+            // Smart Loader Removal
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 800);
+            }, 1200);
 
-            // 5. Dynamic Category Share Link Support
+            // 2. Shareable Category URL Support
             const params = new URLSearchParams(window.location.search);
             const cat = params.get('cat') || 'all';
-            setTab(cat);
-        });
+            applyTab(cat);
+        };
 
-        // 1 & 2. Dynamic Filtering Logic
-        function setTab(cat) {
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+        // 1 & 2. Dynamic Filtering & URL Management
+        function applyTab(cat) {
+            document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
             document.getElementById('tab-' + cat).classList.add('active');
 
-            // 6. Update URL for Sharing
-            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?cat=' + cat;
-            window.history.pushState({path:newUrl},'',newUrl);
+            // Update URL for sharing
+            const nUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?cat=' + cat;
+            window.history.pushState({path:nUrl},'',nUrl);
 
-            filter(cat, searchInput.value.toLowerCase());
+            runFilter(cat, searchInput.value.toLowerCase());
         }
 
         searchInput.addEventListener('input', () => {
-            const activeTab = document.querySelector('.cat-btn.active').id.replace('tab-', '');
-            filter(activeTab, searchInput.value.toLowerCase());
+            const activeTab = document.querySelector('.cat-tab.active').id.replace('tab-', '');
+            runFilter(activeTab, searchInput.value.toLowerCase());
         });
 
-        function filter(cat, query) {
-            let found = 0;
+        function runFilter(cat, query) {
+            let matches = 0;
             cards.forEach(card => {
-                const itemCat = card.getAttribute('data-cat');
-                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                const cCat = card.getAttribute('data-cat');
+                const keys = card.getAttribute('data-keywords').toLowerCase();
                 const title = card.querySelector('h3').innerText.toLowerCase();
 
-                const matchCat = (cat === 'all' || itemCat === cat);
-                const matchSearch = (title.includes(query) || keywords.includes(query));
+                const mCat = (cat === 'all' || cCat === cat);
+                const mSearch = (title.includes(query) || keys.includes(query));
 
-                if(matchCat && matchSearch) {
+                if(mCat && mSearch) {
                     card.style.display = 'block';
-                    found++;
+                    matches++;
                 } else {
                     card.style.display = 'none';
                 }
             });
-            document.getElementById('noResults').style.display = found === 0 ? 'block' : 'none';
+            document.getElementById('noResults').style.display = matches === 0 ? 'block' : 'none';
         }
 
-        // 5. Automatic SEO & Golden Keywords Structure
-        const seoHelper = {
+        // 5 & 6. Auto SEO / Golden Keywords Schema
+        const schema = {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "Sk Khorrum Projects",
+            "name": "Sk Khorrum Project Hub",
             "author": "Sk Khorrum",
             "operatingSystem": "Web",
             "applicationCategory": "DeveloperApplication"
         };
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.text = JSON.stringify(seoHelper);
-        document.head.appendChild(script);
+        const s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.text = JSON.stringify(schema);
+        document.head.appendChild(s);
     </script>
 </body>
 </html>
